@@ -73,3 +73,12 @@ hs_err_pid*
 # End of https://www.gitignore.io/api/intellij,java
 
 !lib/*
+resources/node_modules
+resources/semantic/src
+resources/semantic/tasks
+resources/semantic/gulpfile.js
+resources/semantic.json
+!resources/semantic
+!resources/semantic/dist/*
+output.html
+output/*

@@ -6,14 +6,48 @@ import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.VolunteerWork;
+import com.lukechenshui.jresume.themes.DefaultTheme;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        createExample();
+        if (args.length > 0) {
+            String jsonResumePath = args[0];
+            Gson gson = new Gson();
+            String json = "";
+            copyResourcesZip();
+            try {
+                if (!Files.exists(Paths.get("output"))) {
+                    Files.createDirectory(Paths.get("output"));
+                }
+
+                Scanner reader = new Scanner(new File(jsonResumePath));
+                FileWriter writer = new FileWriter("output/output.html", false);
+                while (reader.hasNextLine()) {
+                    json += reader.nextLine();
+                    json += "\n";
+                }
+                reader.close();
+                System.out.println(json);
+                Resume resume = gson.fromJson(json, Resume.class);
+                DefaultTheme theme = new DefaultTheme();
+                String html = theme.generate(resume);
+                writer.write(html);
+                writer.close();
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+
+        }
+        //createExample();
     }
 
     public static void createExample(){
@@ -43,5 +77,21 @@ public class Main {
         catch (Exception exc){
             exc.printStackTrace();
         }
+    }
+
+    private static void copyResourcesZip() {
+        try {
+            String classUrl = Main.class.getResource("Main.class").toString();
+            File tempFile = File.createTempFile("jresume", "resource");
+            tempFile.delete();
+            URL url = Main.class.getResource("/resources.zip");
+            System.out.println("JAR Resource Zip URL: " + url.toString());
+            InputStream inputStream = url.openStream();
+            Files.copy(inputStream, tempFile.toPath());
+            Runtime.unzipResourceZip(tempFile.getAbsolutePath());
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+
     }
 }
