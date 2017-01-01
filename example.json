@@ -11,7 +11,9 @@
     {
       "company": "Example Ltd.",
       "position": "Software Engineer",
-      "summary": "At Example Ltd., I did such and such.",
+      "summary": "At Example Ltd., I did such and such and such and such and such and such and such and such and such.",
+      "startDate": "August 19, 1997",
+      "endDate": "August 19, 1990",
       "highlights": [
         "Worked on such and such",
         "Also worked on this"

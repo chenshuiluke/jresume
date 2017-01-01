@@ -6,11 +6,13 @@ import java.util.ArrayList;
  * Created by luke on 12/31/16.
  */
 public class Work {
-    protected String company = "";
-    protected String position = "";
-    protected String summary = "";
-    protected ArrayList<String> highlights = new ArrayList<>();
-    protected ArrayList<String> keywords = new ArrayList<>();
+    protected String company;
+    protected String position;
+    protected String summary;
+    protected String startDate;
+    protected String endDate;
+    protected ArrayList<String> highlights;
+    protected ArrayList<String> keywords;
 
     public Work(String company, String position, String summary) {
         this.company = company;
@@ -79,5 +81,21 @@ public class Work {
 
     public void addKeyWord(String keyword){
         keywords.add(keyword);
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }

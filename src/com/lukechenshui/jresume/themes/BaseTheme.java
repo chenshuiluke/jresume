@@ -21,6 +21,10 @@ public abstract class BaseTheme {
 
     public abstract String generate(Resume resume);
 
+    protected abstract ContainerTag generateJobWork();
+
+    protected abstract ContainerTag generateVolunteerWork();
+
     protected String getResource(String fileName) {
         String currentDir = System.getProperty("user.dir") + "/output";
         String resourceDirectory = Paths.get(Runtime.getResourceDirectory().getAbsolutePath(), fileName).toString();
