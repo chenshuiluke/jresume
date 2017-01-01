@@ -1,9 +1,9 @@
 package com.lukechenshui.jresume.resume;
 
+import com.lukechenshui.jresume.resume.items.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
 import com.lukechenshui.jresume.resume.items.VolunteerWork;
-import com.lukechenshui.jresume.resume.items.JobWork;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ import java.util.ArrayList;
  */
 public class Resume {
     Person person = new Person();
-    ArrayList<JobWork> jobWork = new ArrayList<>();
-    ArrayList<VolunteerWork> volunteerWork = new ArrayList<>();
-    ArrayList<Project> projects = new ArrayList<>();
+    ArrayList<JobWork> jobWork;
+    ArrayList<VolunteerWork> volunteerWork;
+    ArrayList<Project> projects;
 
 
     public Resume() {

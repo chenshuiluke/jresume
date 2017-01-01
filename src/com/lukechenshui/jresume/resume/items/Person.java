@@ -4,12 +4,12 @@ package com.lukechenshui.jresume.resume.items;
  * Created by luke on 12/31/16.
  */
 public class Person {
-    String name = "";
-    String jobTitle = "";
-    String address = "";
-    String phoneNumber = "";
-    String email = "";
-    String website = "";
+    String name;
+    String jobTitle;
+    String address;
+    String phoneNumber;
+    String email;
+    String website;
 
     public Person() {
     }
@@ -61,5 +61,13 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }
