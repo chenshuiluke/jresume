@@ -1,0 +1,35 @@
+{
+  "person": {
+    "name": "John Doe",
+    "jobTitle": "Junior Software Engineer",
+    "address": "800 Java Road, OOP City",
+    "phoneNumber": "+1(345)-335-8964",
+    "email": "johndoe@gmail.com",
+    "website": "http://johndoe.com"
+  },
+  "jobWork": [
+    {
+      "company": "Example Ltd.",
+      "position": "Software Engineer",
+      "summary": "At Example Ltd., I did such and such.",
+      "highlights": [
+        "Worked on such and such",
+        "Also worked on this"
+      ],
+      "keywords": [
+        "java",
+        "c++"
+      ]
+    }
+  ],
+  "volunteerWork": [
+    {
+      "company": "Example Institution",
+      "position": "Volunteer",
+      "summary": "At Example Institution, I did such and such.",
+      "highlights": [],
+      "keywords": []
+    }
+  ],
+  "projects": []
+}

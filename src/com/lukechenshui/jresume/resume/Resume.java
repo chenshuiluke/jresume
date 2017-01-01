@@ -3,7 +3,7 @@ package com.lukechenshui.jresume.resume;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
 import com.lukechenshui.jresume.resume.items.VolunteerWork;
-import com.lukechenshui.jresume.resume.items.Work;
+import com.lukechenshui.jresume.resume.items.JobWork;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,11 @@ import java.util.ArrayList;
  * Created by luke on 12/31/16.
  */
 public class Resume {
-    Person person;
-    ArrayList<Work> work = new ArrayList<>();
-    ArrayList<Project> projects = new ArrayList<>();
+    Person person = new Person();
+    ArrayList<JobWork> jobWork = new ArrayList<>();
     ArrayList<VolunteerWork> volunteerWork = new ArrayList<>();
+    ArrayList<Project> projects = new ArrayList<>();
+
 
     public Resume() {
 
@@ -28,12 +29,12 @@ public class Resume {
         this.person = person;
     }
 
-    public ArrayList<Work> getWork() {
-        return work;
+    public ArrayList<JobWork> getJobWork() {
+        return jobWork;
     }
 
-    public void setWork(ArrayList<Work> work) {
-        this.work = work;
+    public void setJobWork(ArrayList<JobWork> jobWork) {
+        this.jobWork = jobWork;
     }
 
     public ArrayList<Project> getProjects() {
@@ -50,5 +51,15 @@ public class Resume {
 
     public void setVolunteerWork(ArrayList<VolunteerWork> volunteerWork) {
         this.volunteerWork = volunteerWork;
+    }
+
+    public void addJobWork(JobWork jobWork){
+        this.jobWork.add(jobWork);
+    }
+    public void addVolunteerWork(VolunteerWork volunteerWork){
+        this.volunteerWork.add(volunteerWork);
+    }
+    public void addProject(Project project){
+        this.projects.add(project);
     }
 }
