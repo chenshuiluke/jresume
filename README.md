@@ -13,6 +13,40 @@
         "jobTitle": "Software Engineer",
         "website": "https://www.google.com"
       },
+      "skills": [
+        {
+          "name": "Java",
+          "competence": "Intermediate"
+        },
+        {
+          "name": "C++",
+          "competence": "Beginner"
+        },
+        {
+          "name": "Android",
+          "competence": "Intermediate"
+        },
+        {
+          "name": "Wordpress",
+          "competence": "Beginner"
+        },
+        {
+          "name": "Laravel",
+          "competence": "Beginner"
+        },
+        {
+          "name": "PHP",
+          "competence": "Beginner"
+        },
+        {
+          "name": "Python",
+          "competence": "Beginner"
+        },
+        {
+          "name": "Javascript",
+          "competence": "Beginner"
+        }
+      ],
       "jobWork": [
         {
           "company": "Example Ltd.",
@@ -39,20 +73,7 @@
           "keywords": []
         }
       ],
-      "skills": [
-        {
-          "name": "Java",
-          "competence": "Intermediate"
-        },
-        {
-          "name": "C++",
-          "competence": "Beginner"
-        },
-        {
-          "name": "Android",
-          "competence": "Intermediate"
-        }
-      ]
+      "numSkillColumns": 3
     }
 
 ###Usage:
@@ -61,4 +82,4 @@
 
 ###Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_477872efc0d7f9ab29a30b89c71237108b57a035.png)
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_d17fd0b877099052f09977b4764948eb655a4695.png)
