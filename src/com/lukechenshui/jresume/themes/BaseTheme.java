@@ -12,6 +12,11 @@ public abstract class BaseTheme {
     protected String htmlString;
     protected ContainerTag html;
     protected Resume resumeBeingOperatedOn;
+    protected String themeName;
+
+    public BaseTheme(String themeName) {
+        this.themeName = themeName;
+    }
 
     protected abstract void generateHead();
 
@@ -30,5 +35,13 @@ public abstract class BaseTheme {
         String resourceDirectory = Paths.get(Runtime.getResourceDirectory().getAbsolutePath(), fileName).toString();
         resourceDirectory = resourceDirectory.replace(currentDir + "/", "");
         return resourceDirectory;
+    }
+
+    public String getThemeName() {
+        return themeName;
+    }
+
+    public void setThemeName(String themeName) {
+        this.themeName = themeName;
     }
 }

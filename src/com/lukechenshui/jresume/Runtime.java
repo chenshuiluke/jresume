@@ -23,10 +23,11 @@ public class Runtime {
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
             }
-            if (!Files.exists(Paths.get("output/resources"))) {
-                Files.createDirectory(Paths.get("output/resources"));
+            File resourceDirectory = Paths.get(Config.getOutputDirectory(), "/resources").toFile();
+            if (!resourceDirectory.exists()) {
+                resourceDirectory.mkdirs();
             }
-            FileUtils.copyDirectory(tempDirectory, new File("output/resources"));
+            FileUtils.copyDirectory(tempDirectory, resourceDirectory);
         } catch (Exception exc) {
 
             exc.printStackTrace();
@@ -34,7 +35,11 @@ public class Runtime {
     }
 
     public static File getResourceDirectory() {
-        return new File("output/resources");
+        return Paths.get(Config.getOutputDirectory(), "/resources").toFile();
+    }
+
+    public static File getOutputHtmlFile() {
+        return Paths.get(Config.getOutputDirectory(), "output.html").toFile();
     }
 
 }

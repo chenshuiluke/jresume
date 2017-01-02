@@ -1,11 +1,13 @@
 package com.lukechenshui.jresume;
 
+import com.beust.jcommander.JCommander;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.VolunteerWork;
+import com.lukechenshui.jresume.themes.BaseTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
 
 import java.io.File;
@@ -19,35 +21,40 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        if (args.length > 0) {
-            String jsonResumePath = args[0];
-            Gson gson = new Gson();
-            String json = "";
-            copyResourcesZip();
-            try {
-                if (!Files.exists(Paths.get("output"))) {
-                    Files.createDirectory(Paths.get("output"));
-                }
+        registerThemes();
+        Config config = new Config();
+        new JCommander(config, args);
 
-                Scanner reader = new Scanner(new File(jsonResumePath));
-                FileWriter writer = new FileWriter("output/output.html", false);
-                while (reader.hasNextLine()) {
-                    json += reader.nextLine();
-                    json += "\n";
-                }
-                reader.close();
-                System.out.println(json);
-                Resume resume = gson.fromJson(json, Resume.class);
-                DefaultTheme theme = new DefaultTheme();
-                String html = theme.generate(resume);
-                writer.write(html);
-                writer.close();
-            } catch (Exception exc) {
-                exc.printStackTrace();
+        String jsonResumePath = Config.getInputFileName();
+        Gson gson = new Gson();
+        String json = "";
+        copyResourcesZip();
+        try {
+            if (!Files.exists(Paths.get("output"))) {
+                Files.createDirectory(Paths.get("output"));
             }
 
+            Scanner reader = new Scanner(new File(jsonResumePath));
+            FileWriter writer = new FileWriter(Runtime.getOutputHtmlFile(), false);
+            while (reader.hasNextLine()) {
+                json += reader.nextLine();
+                json += "\n";
+            }
+            reader.close();
+            System.out.println(json);
+            Resume resume = gson.fromJson(json, Resume.class);
+            BaseTheme theme = Config.getThemeHashMap().get(Config.getThemeName());
+            String html = theme.generate(resume);
+            writer.write(html);
+            writer.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
         }
         //createExample();
+    }
+
+    public static void registerThemes() {
+        DefaultTheme.registerTheme();
     }
 
     public static void createExample(){

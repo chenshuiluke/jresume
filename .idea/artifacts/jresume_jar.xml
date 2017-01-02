@@ -19,6 +19,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jarjar-1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/zip4j-1.3.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-io-1.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jcommander-1.48.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

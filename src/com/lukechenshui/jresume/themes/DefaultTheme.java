@@ -1,5 +1,6 @@
 package com.lukechenshui.jresume.themes;
 
+import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
@@ -16,6 +17,15 @@ import static j2html.TagCreator.*;
  * Created by luke on 12/31/16.
  */
 public class DefaultTheme extends BaseTheme {
+
+
+    public DefaultTheme(String themeName) {
+        super(themeName);
+    }
+
+    public static void registerTheme() {
+        Config.addTheme(new DefaultTheme("default"));
+    }
 
     protected void generateHead() {
         ArrayList<Tag> children = new ArrayList<>();
