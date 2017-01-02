@@ -1,9 +1,6 @@
 package com.lukechenshui.jresume.resume;
 
-import com.lukechenshui.jresume.resume.items.JobWork;
-import com.lukechenshui.jresume.resume.items.Person;
-import com.lukechenshui.jresume.resume.items.Project;
-import com.lukechenshui.jresume.resume.items.VolunteerWork;
+import com.lukechenshui.jresume.resume.items.*;
 
 import java.util.ArrayList;
 
@@ -15,7 +12,7 @@ public class Resume {
     ArrayList<JobWork> jobWork;
     ArrayList<VolunteerWork> volunteerWork;
     ArrayList<Project> projects;
-
+    ArrayList<Skill> skills;
 
     public Resume() {
 
@@ -61,5 +58,13 @@ public class Resume {
     }
     public void addProject(Project project){
         this.projects.add(project);
+    }
+
+    public ArrayList<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(ArrayList<Skill> skills) {
+        this.skills = skills;
     }
 }

@@ -4,6 +4,7 @@ import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
+import com.lukechenshui.jresume.resume.items.Skill;
 import com.lukechenshui.jresume.resume.items.VolunteerWork;
 import j2html.tags.ContainerTag;
 import j2html.tags.EmptyTag;
@@ -34,10 +35,16 @@ public class DefaultTheme extends BaseTheme {
 
         EmptyTag firstSemanticUI = link().withRel("stylesheet").withHref(getResource("semantic/dist/semantic.min.css"));
         ContainerTag secondSemanticUI = script().withSrc(getResource("semantic/dist/semantic.min.js"));
+        EmptyTag ratingSemanticCSSComponent = link().withRel("stylesheet").withHref(getResource("semantic/dist/components/rating.min.css"));
         ContainerTag jquery = script().withSrc(getResource("jquery-3.1.1.min.js"));
+        ContainerTag ratingSemanticJSComponent = script().withSrc(getResource("semantic/dist/components/rating.min.js"));
+        ContainerTag initializeRating = script().withType("text/javascript").withText("$(document).ready(function(){$('.rating').rating('disable');});");
         children.add(jquery);
         children.add(firstSemanticUI);
         children.add(secondSemanticUI);
+        children.add(ratingSemanticJSComponent);
+        children.add(ratingSemanticCSSComponent);
+        children.add(initializeRating);
 
 
         if (person != null && person.getName() != null) {
@@ -53,6 +60,10 @@ public class DefaultTheme extends BaseTheme {
         body.with(generatePerson());
         body.with(generateJobWork());
         body.with(generateVolunteerWork());
+        body.with(generateSkills());
+        body.with(br());
+        body.with(br());
+        body.with(br());
         html = html.with(body);
     }
 
@@ -282,6 +293,57 @@ public class DefaultTheme extends BaseTheme {
         workHtml.with(workChildren);
 
         return workHtml;
+    }
+
+    public ContainerTag generateSkills() {
+        ContainerTag skills = div().withId("skills").withClass("ui very padded text container");
+        ArrayList<Tag> children = new ArrayList<>();
+        ContainerTag list = div().withClass("ui content relaxed divided list");
+
+        if (resumeBeingOperatedOn.getSkills().size() > 0) {
+            children.add(h2("Skills").withClass("ui header centered"));
+        }
+
+        for (Skill skill : resumeBeingOperatedOn.getSkills()) {
+            ContainerTag skillItem = div().withClass("ui horizontal item");
+
+            if (skill.getName() != null) {
+                String text = skill.getName();
+                if (skill.getCompetence() != null) {
+                    text += " - " + skill.getCompetence();
+                }
+                ContainerTag skillContent = div().withText(text).withClass("content");
+                skillItem.with(skillContent);
+            }
+
+            if (skill.getCompetence() != null) {
+                ContainerTag skillRating = div().withClass("ui rating").attr("data-max-rating", "5");
+
+                String competence = skill.getCompetence();
+
+                switch (competence.toLowerCase()) {
+                    case "beginner":
+                        skillRating.attr("data-rating", String.valueOf(Skill.competenceToStarHashMap.get("beginner")));
+                        break;
+                    case "intermediate":
+                        skillRating.attr("data-rating", String.valueOf(Skill.competenceToStarHashMap.get("intermediate")));
+                        break;
+                    case "advanced":
+                        skillRating.attr("data-rating", String.valueOf(Skill.competenceToStarHashMap.get("advanced")));
+                        break;
+                    default:
+                        System.out.println("Skill " + skill.getName() + " has invalid competence - " +
+                                skill.getCompetence() + ". Valid competence levels" +
+                                " are beginner, intermediate and advanced.");
+                        break;
+                }
+                skillItem.with(skillRating);
+            }
+            list.with(skillItem);
+        }
+        children.add(list);
+        skills.with(children);
+        return skills;
     }
 
 
