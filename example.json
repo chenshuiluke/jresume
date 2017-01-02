@@ -36,11 +36,15 @@
   "skills": [
     {
       "name": "Java",
-      "competence": "Beginner"
+      "competence": "Intermediate"
     },
     {
       "name": "C++",
-      "competence": "Advanced"
+      "competence": "Beginner"
+    },
+    {
+      "name": "Android",
+      "competence": "Intermediate"
     }
   ]
 }

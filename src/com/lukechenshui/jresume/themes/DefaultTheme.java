@@ -298,7 +298,7 @@ public class DefaultTheme extends BaseTheme {
     public ContainerTag generateSkills() {
         ContainerTag skills = div().withId("skills").withClass("ui very padded text container");
         ArrayList<Tag> children = new ArrayList<>();
-        ContainerTag list = div().withClass("ui content relaxed divided list");
+        ContainerTag list = div().withClass("ui content relaxed divided horizontal list");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             children.add(h2("Skills").withClass("ui header centered"));
