@@ -1,11 +1,21 @@
 package com.lukechenshui.jresume.resume.items;
 
+import java.util.ArrayList;
+
 /**
  * Created by luke on 12/31/16.
  */
 public class Project {
-    String name = "";
-    String summary = "";
+    String name;
+    String description;
+    String url;
+    ArrayList<String> highlights;
+    ArrayList<String> keywords;
+
+    public Project(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public String getName() {
         return name;
@@ -15,16 +25,35 @@ public class Project {
         this.name = name;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Project(String name, String summary) {
-        this.name = name;
-        this.summary = summary;
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public ArrayList<String> getHighlights() {
+        return highlights;
+    }
+
+    public void setHighlights(ArrayList<String> highlights) {
+        this.highlights = highlights;
+    }
+
+    public ArrayList<String> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(ArrayList<String> keywords) {
+        this.keywords = keywords;
     }
 }

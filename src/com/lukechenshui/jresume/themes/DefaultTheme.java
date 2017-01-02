@@ -4,10 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
-import com.lukechenshui.jresume.resume.items.JobWork;
-import com.lukechenshui.jresume.resume.items.Person;
-import com.lukechenshui.jresume.resume.items.Skill;
-import com.lukechenshui.jresume.resume.items.VolunteerWork;
+import com.lukechenshui.jresume.resume.items.*;
 import j2html.tags.ContainerTag;
 import j2html.tags.EmptyTag;
 import j2html.tags.Tag;
@@ -68,15 +65,23 @@ public class DefaultTheme extends BaseTheme {
             switch (key.toLowerCase()) {
                 case "person":
                     body.with(generatePerson());
+                    body.with(br());
                     break;
                 case "jobwork":
                     body.with(generateJobWork());
+                    body.with(br());
                     break;
                 case "volunteerwork":
                     body.with(generateVolunteerWork());
+                    body.with(br());
                     break;
                 case "skills":
                     body.with(generateSkills());
+                    body.with(br());
+                    break;
+                case "projects":
+                    body.with(generateProjects());
+                    body.with(br());
                     break;
             }
         }
@@ -219,7 +224,7 @@ public class DefaultTheme extends BaseTheme {
                     }
                     content.with(keywords);
                 }
-
+                content.with(br());
 
                 workChildren.add(content);
             }
@@ -303,7 +308,7 @@ public class DefaultTheme extends BaseTheme {
                     }
                     content.with(keywords);
                 }
-
+                content.with(br());
 
                 workChildren.add(content);
             }
@@ -368,6 +373,64 @@ public class DefaultTheme extends BaseTheme {
         return skills;
     }
 
+    public ContainerTag generateProjects() {
+        ContainerTag projects = div().withId("projects").withClass("ui very padded text container");
+        ArrayList<Tag> children = new ArrayList<>();
+
+        if (resumeBeingOperatedOn.getProjects().size() > 0) {
+            children.add(h2("Projects").withClass("ui header centered"));
+        }
+
+        for (Project project : resumeBeingOperatedOn.getProjects()) {
+            ContainerTag content = div().withClass("ui content");
+
+            ContainerTag headingAndLinkGrid = div().withClass("ui grid relaxed two column");
+
+            if (project.getName() != null) {
+                ContainerTag projectName = div().withClass("ui header column center aligned").withText(project.getName());
+                headingAndLinkGrid.with(projectName);
+            }
+
+            if (project.getUrl() != null) {
+                ContainerTag projectURL = a(project.getUrl()).withClass("ui column center aligned").withHref(project.getUrl());
+                headingAndLinkGrid.with(projectURL);
+            }
+
+            content.with(headingAndLinkGrid);
+
+            if (project.getDescription() != null) {
+                ContainerTag description = div().withText(project.getDescription()).withClass("ui container");
+                content.with(description);
+            }
+
+            if (project.getHighlights() != null && project.getHighlights().size() > 0) {
+                ContainerTag highlightHeading = h4("Highlights").withClass("ui header");
+                content.with(highlightHeading);
+
+                ContainerTag highlights = div().withClass("ui bulleted list");
+                for (String highlight : project.getHighlights()) {
+                    ContainerTag item = div().withText(highlight).withClass("ui item");
+                    highlights.with(item);
+                }
+                content.with(highlights);
+            }
+
+            if (project.getKeywords() != null && project.getKeywords().size() > 0) {
+                ContainerTag keywords = div().withClass("ui  centered container");
+
+                for (String keyword : project.getKeywords()) {
+                    ContainerTag item = a(keyword).withClass("ui blue label");
+                    keywords.with(item);
+                }
+                content.with(keywords);
+            }
+            content.with(br());
+
+            children.add(content);
+        }
+        projects.with(children);
+        return projects;
+    }
 
     public String generate(Resume resume) {
         html = html();
