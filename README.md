@@ -42,11 +42,15 @@
       "skills": [
         {
           "name": "Java",
-          "competence": "Beginner"
+          "competence": "Intermediate"
         },
         {
           "name": "C++",
-          "competence": "Advanced"
+          "competence": "Beginner"
+        },
+        {
+          "name": "Android",
+          "competence": "Intermediate"
         }
       ]
     }
@@ -57,4 +61,4 @@
 
 ###Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_14b62a447cc8c52712d1853d7ea5daacd86db993.png)
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_477872efc0d7f9ab29a30b89c71237108b57a035.png)
