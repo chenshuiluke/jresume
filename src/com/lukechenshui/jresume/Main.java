@@ -3,6 +3,8 @@ package com.lukechenshui.jresume;
 import com.beust.jcommander.JCommander;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
@@ -43,6 +45,11 @@ public class Main {
             reader.close();
             System.out.println(json);
             Resume resume = gson.fromJson(json, Resume.class);
+
+            JsonParser parser = new JsonParser();
+            JsonObject obj = parser.parse(json).getAsJsonObject();
+            resume.setJsonObject(obj);
+
             BaseTheme theme = Config.getThemeHashMap().get(Config.getThemeName());
             String html = theme.generate(resume);
             writer.write(html);

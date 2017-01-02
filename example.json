@@ -7,6 +7,20 @@
     "jobTitle": "Software Engineer",
     "website": "https://www.google.com"
   },
+  "skills": [
+    {
+      "name": "Java",
+      "competence": "Intermediate"
+    },
+    {
+      "name": "C++",
+      "competence": "Beginner"
+    },
+    {
+      "name": "Android",
+      "competence": "Intermediate"
+    }
+  ],
   "jobWork": [
     {
       "company": "Example Ltd.",
@@ -31,20 +45,6 @@
       "summary": "At Example Institution, I did such and such.",
       "highlights": [],
       "keywords": []
-    }
-  ],
-  "skills": [
-    {
-      "name": "Java",
-      "competence": "Intermediate"
-    },
-    {
-      "name": "C++",
-      "competence": "Beginner"
-    },
-    {
-      "name": "Android",
-      "competence": "Intermediate"
     }
   ]
 }

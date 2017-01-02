@@ -1,5 +1,7 @@
 package com.lukechenshui.jresume.themes;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.JobWork;
@@ -11,6 +13,7 @@ import j2html.tags.EmptyTag;
 import j2html.tags.Tag;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static j2html.TagCreator.*;
 
@@ -57,10 +60,25 @@ public class DefaultTheme extends BaseTheme {
 
     protected void generateBody() {
         ContainerTag body = body().withClass("ui container");
-        body.with(generatePerson());
-        body.with(generateJobWork());
-        body.with(generateVolunteerWork());
-        body.with(generateSkills());
+        JsonObject jsonObject = resumeBeingOperatedOn.getJsonObject();
+
+        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+            String key = entry.getKey();
+            switch (key.toLowerCase()) {
+                case "person":
+                    body.with(generatePerson());
+                    break;
+                case "jobwork":
+                    body.with(generateJobWork());
+                    break;
+                case "volunteerwork":
+                    body.with(generateVolunteerWork());
+                    break;
+                case "skills":
+                    body.with(generateSkills());
+                    break;
+            }
+        }
         body.with(br());
         body.with(br());
         body.with(br());
