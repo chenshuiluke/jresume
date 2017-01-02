@@ -19,7 +19,7 @@
           "position": "Software Engineer",
           "summary": "At Example Ltd., I did such and such and such and such and such and such and such and such and such.",
           "startDate": "August 19, 1997",
-          "endDate": "August 19, 1990t",
+          "endDate": "August 19, 1990",
           "highlights": [
             "Worked on such and such",
             "Also worked on this"
@@ -38,6 +38,16 @@
           "highlights": [],
           "keywords": []
         }
+      ],
+      "skills": [
+        {
+          "name": "Java",
+          "competence": "Beginner"
+        },
+        {
+          "name": "C++",
+          "competence": "Advanced"
+        }
       ]
     }
 
@@ -47,4 +57,4 @@
 
 ###Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_07d8c69c6d41f728fb72fe35917c60b66861cee5.png)
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_14b62a447cc8c52712d1853d7ea5daacd86db993.png)
