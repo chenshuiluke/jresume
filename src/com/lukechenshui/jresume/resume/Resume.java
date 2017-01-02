@@ -14,6 +14,7 @@ public class Resume {
     ArrayList<VolunteerWork> volunteerWork;
     ArrayList<Project> projects;
     ArrayList<Skill> skills;
+    int numSkillColumns = 2;
     transient JsonObject jsonObject;
     public Resume() {
 
@@ -75,5 +76,13 @@ public class Resume {
 
     public void setJsonObject(JsonObject jsonObject) {
         this.jsonObject = jsonObject;
+    }
+
+    public int getNumSkillColumns() {
+        return numSkillColumns;
+    }
+
+    public void setNumSkillColumns(int numSkillColumns) {
+        this.numSkillColumns = numSkillColumns;
     }
 }

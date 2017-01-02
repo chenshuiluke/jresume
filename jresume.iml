@@ -13,5 +13,6 @@
     <orderEntry type="library" name="net.lingala.zip4j:zip4j:1.3.2" level="project" />
     <orderEntry type="library" name="org.apache.commons:commons-io:1.3.2" level="project" />
     <orderEntry type="library" name="com.beust:jcommander:1.48" level="project" />
+    <orderEntry type="library" name="tradukisto-0.5.2-SNAPSHOT-all" level="project" />
   </component>
 </module>

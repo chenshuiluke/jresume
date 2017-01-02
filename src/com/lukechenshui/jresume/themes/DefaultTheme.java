@@ -11,6 +11,7 @@ import com.lukechenshui.jresume.resume.items.VolunteerWork;
 import j2html.tags.ContainerTag;
 import j2html.tags.EmptyTag;
 import j2html.tags.Tag;
+import pl.allegro.finance.tradukisto.ValueConverters;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -316,21 +317,24 @@ public class DefaultTheme extends BaseTheme {
     public ContainerTag generateSkills() {
         ContainerTag skills = div().withId("skills").withClass("ui very padded text container");
         ArrayList<Tag> children = new ArrayList<>();
-        ContainerTag list = div().withClass("ui content relaxed divided horizontal list");
+        ValueConverters converter = ValueConverters.ENGLISH_INTEGER;
+        String numberOfSkillColumns = converter.asWords(resumeBeingOperatedOn.getNumSkillColumns());
+        ContainerTag list = div().withClass("ui " + numberOfSkillColumns + " column grid container relaxed centered")
+                .with(div().withClass("ui row"));
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             children.add(h2("Skills").withClass("ui header centered"));
         }
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
-            ContainerTag skillItem = div().withClass("ui horizontal item");
+            ContainerTag skillItem = div().withClass("ui center aligned column");
 
             if (skill.getName() != null) {
                 String text = skill.getName();
                 if (skill.getCompetence() != null) {
                     text += " - " + skill.getCompetence();
                 }
-                ContainerTag skillContent = div().withText(text).withClass("content");
+                ContainerTag skillContent = div().withText(text).withClass("content centered");
                 skillItem.with(skillContent);
             }
 
