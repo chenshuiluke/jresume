@@ -1,4 +1,4 @@
-#JResume - The best JSON->resume generator.
+#JResume - The best JSON to HTML resume generator.
 
 ##Example usage
 
@@ -129,4 +129,4 @@
 
 ###Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_2dfcf5aac0e1542f216efc529adaddcb45d59844.png)
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_9fe766ad23a192d2f4b833eb8623d558bd4443b1.png)
