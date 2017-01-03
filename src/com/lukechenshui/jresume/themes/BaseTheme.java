@@ -1,6 +1,6 @@
 package com.lukechenshui.jresume.themes;
 
-import com.lukechenshui.jresume.Runtime;
+import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import j2html.tags.ContainerTag;
 
@@ -35,9 +35,9 @@ public abstract class BaseTheme {
     protected abstract ContainerTag generateProjects();
 
     protected String getResource(String fileName) {
-        String currentDir = System.getProperty("user.dir") + "/output";
-        String resourceDirectory = Paths.get(Runtime.getResourceDirectory().getAbsolutePath(), fileName).toString();
-        resourceDirectory = resourceDirectory.replace(currentDir + "/", "");
+        String dirToRemove = Config.getOutputDirectory();
+        String resourceDirectory = Paths.get(Config.getOutputDirectory(), "resources", fileName).toString();
+        resourceDirectory = resourceDirectory.replace(dirToRemove + "/", "");
         return resourceDirectory;
     }
 

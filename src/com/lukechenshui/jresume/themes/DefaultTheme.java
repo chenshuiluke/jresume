@@ -377,15 +377,15 @@ public class DefaultTheme extends BaseTheme {
             children.add(project.checkForAndGeneratePrecedingLineBreaks());
             ContainerTag content = div().withClass("ui content");
 
-            ContainerTag headingAndLinkGrid = div().withClass("ui grid relaxed two column");
+            ContainerTag headingAndLinkGrid = div().withClass("ui grid relaxed one column");
 
             if (project.getName() != null) {
-                ContainerTag projectName = div().withClass("ui header column center aligned").withText(project.getName());
+                ContainerTag projectName = div().withClass("ui header row").withText(project.getName());
                 headingAndLinkGrid.with(projectName);
             }
 
             if (project.getUrl() != null) {
-                ContainerTag projectURL = a(project.getUrl()).withClass("ui column center aligned").withHref(project.getUrl());
+                ContainerTag projectURL = a(project.getUrl()).withClass("ui row").withHref(project.getUrl());
                 headingAndLinkGrid.with(projectURL);
             }
 
