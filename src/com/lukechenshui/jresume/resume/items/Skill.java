@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * Created by luke on 1/1/17.
  */
-public class Skill {
+public class Skill extends BaseResumeItem {
     public static transient HashMap<String, Integer> competenceToStarHashMap = new HashMap<String, Integer>() {{
         put("beginner", 1);
         put("intermediate", 3);

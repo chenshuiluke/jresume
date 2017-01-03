@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by luke on 12/31/16.
  */
-public class Work {
+public class Work extends BaseResumeItem {
     protected String company;
     protected String position;
     protected String summary;

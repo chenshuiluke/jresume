@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by luke on 12/31/16.
  */
-public class Project {
+public class Project extends BaseResumeItem {
     String name;
     String description;
     String url;
