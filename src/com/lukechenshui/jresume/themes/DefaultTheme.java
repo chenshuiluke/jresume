@@ -65,22 +65,27 @@ public class DefaultTheme extends BaseTheme {
             switch (key.toLowerCase()) {
                 case "person":
                     body.with(generatePerson());
+                    body.with(div().withClass("ui divider"));
                     body.with(br());
                     break;
                 case "jobwork":
                     body.with(generateJobWork());
+                    body.with(div().withClass("ui divider"));
                     body.with(br());
                     break;
                 case "volunteerwork":
                     body.with(generateVolunteerWork());
+                    body.with(div().withClass("ui divider"));
                     body.with(br());
                     break;
                 case "skills":
                     body.with(generateSkills());
+                    body.with(div().withClass("ui divider"));
                     body.with(br());
                     break;
                 case "projects":
                     body.with(generateProjects());
+                    body.with(div().withClass("ui divider"));
                     body.with(br());
                     break;
             }
@@ -101,49 +106,33 @@ public class DefaultTheme extends BaseTheme {
             }
             if (person.getJobTitle() != null) {
                 children.add(h2(person.getJobTitle()).withClass("ui header centered"));
+                children.add(br());
             }
 
-            if (person.getWebsite() != null) {
-                ContainerTag heading = h3().withClass("ui header centered");
-                ContainerTag address = a(person.getWebsite())
-                        .withHref(person.getWebsite()).withTarget("_blank").withClass("ui centered link");
-                heading = heading.with(address);
-                children.add(heading);
-            }
+            ContainerTag centeredGrid = div().withClass("ui tight grid one column centered");
 
-            ContainerTag detailsTable = table().withClass("ui very basic table");
-            ContainerTag columnHeaderElements = thead();
-            ContainerTag columnElements = tbody();
-
-            if (person.getEmail() != null) {
-                ContainerTag header = th("Email").withClass("ui center aligned header");
-                ContainerTag email = td(person.getEmail()).withClass("ui center aligned text");
-
-                columnHeaderElements.with(header);
-                columnElements.with(email);
-            }
 
             if (person.getAddress() != null) {
-                ContainerTag header = th("Address").withClass("ui center aligned header");
-                ContainerTag address = td(person.getAddress()).withClass("ui center aligned text");
+                ContainerTag address = div().withText(person.getAddress()).withClass("ui centered row").attr("style", "padding:0px;");
+                centeredGrid.with(address);
+            }
 
-                columnHeaderElements.with(header);
-                columnElements.with(address);
+            if (person.getEmail() != null) {
+                ContainerTag email = div().withText(person.getEmail()).withClass("ui row").attr("style", "padding:0px;");
+                centeredGrid.with(email);
             }
 
             if (person.getPhoneNumber() != null) {
-                ContainerTag header = th("Phone Number").withClass("ui center aligned header");
-                ContainerTag address = td(person.getPhoneNumber()).withClass("ui center aligned text");
-
-                columnHeaderElements.with(header);
-                columnElements.with(address);
+                ContainerTag phoneNumber = div().withText(person.getPhoneNumber()).withClass("ui centered row").attr("style", "padding:0px;");
+                centeredGrid.with(phoneNumber);
             }
 
-
-
-            detailsTable.with(columnHeaderElements);
-            detailsTable.with(columnElements);
-            children.add(detailsTable);
+            if (person.getWebsite() != null) {
+                ContainerTag address = a(person.getWebsite())
+                        .withHref(person.getWebsite()).withTarget("_blank").withClass("ui centered row").attr("style", "padding:0px;");
+                centeredGrid.with(address);
+            }
+            children.add(centeredGrid);
         }
 
         personHtml.with(children);
@@ -224,7 +213,7 @@ public class DefaultTheme extends BaseTheme {
                     }
                     content.with(keywords);
                 }
-                content.with(br());
+
 
                 workChildren.add(content);
             }
