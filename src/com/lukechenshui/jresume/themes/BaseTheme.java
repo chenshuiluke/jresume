@@ -4,6 +4,7 @@ import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import j2html.tags.ContainerTag;
 
+import java.io.File;
 import java.nio.file.Paths;
 /**
  * Created by luke on 12/31/16.
@@ -52,9 +53,9 @@ public  class BaseTheme {
 
     protected String getResource(String fileName) {
         String dirToRemove = Config.getOutputDirectory();
+        System.out.println(dirToRemove);
         String resourceDirectory = Paths.get(Config.getOutputDirectory(), "resources", fileName).toString();
-        //Converts the path from an absolute path to a relative path.
-        resourceDirectory = resourceDirectory.replace(dirToRemove + "/", "");
+        resourceDirectory = resourceDirectory.replace(dirToRemove + File.separator, "");
         return resourceDirectory;
     }
 

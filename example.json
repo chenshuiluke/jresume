@@ -1,6 +1,34 @@
 {
+  "projects": [
+    {
+      "name": "AwesomeProject",
+      "description": "This awesome project is awesome!",
+      "highlights": [
+        "Does such and such.",
+        "And it does such and such."
+      ],
+      "keywords": [
+        "java",
+        "c++"
+      ],
+      "url": "https://www.github.com"
+    },
+    {
+      "name": "AwesomeProject2",
+      "description": "This awesome project2 is awesome!",
+      "highlights": [
+        "Does such and such.",
+        "And it does such and such."
+      ],
+      "keywords": [
+        "java",
+        "c++"
+      ],
+      "url": "https://www.github.com"
+    }
+  ],
   "person": {
-    "name": "John Doe",
+    "name": "Bob",
     "email": "johndoe@gmail.com",
     "address": "7 Java Drive, OOP City",
     "phoneNumber": "+1(334)567-2346",
@@ -10,7 +38,7 @@
   "skills": [
     {
       "name": "Java",
-      "competence": "Intermediate"
+      "competence": "Advanced"
     },
     {
       "name": "C++",
@@ -27,7 +55,7 @@
       "position": "Software Engineer",
       "summary": "At Example Ltd., I did such and such and such and such and such and such and such and such and such.",
       "startDate": "August 19, 1997",
-      "endDate": "August 19, 1990",
+      "endDate": "August 19, 2001",
       "highlights": [
         "Worked on such and such",
         "Also worked on this"
