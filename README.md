@@ -119,8 +119,8 @@
           "url": "https://www.github.com"
         }
       ],
-
-      "numSkillColumns": 3
+      "numSkillColumns": 3,
+      "numPersonalDetailsColumns": 3
     }
 
 ###Usage:
@@ -129,4 +129,4 @@
 
 ###Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_9fe766ad23a192d2f4b833eb8623d558bd4443b1.png)
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
