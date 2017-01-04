@@ -7,12 +7,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import com.lukechenshui.jresume.resume.Resume;
+import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.education.BaseEducationItem;
 import com.lukechenshui.jresume.resume.items.education.Examination;
 import com.lukechenshui.jresume.resume.items.education.ExaminationSubject;
 import com.lukechenshui.jresume.resume.items.education.School;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
-import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import com.lukechenshui.jresume.themes.BaseTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
@@ -31,7 +31,7 @@ public class Main {
         registerThemes();
         Config config = new Config();
         new JCommander(config, args);
-
+        //createExample();
         String jsonResumePath = Config.getInputFileName();
         RuntimeTypeAdapterFactory<BaseEducationItem> adapter =
                 RuntimeTypeAdapterFactory

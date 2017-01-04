@@ -70,6 +70,9 @@ public class Work extends BaseResumeItem {
     }
 
     public void addHighlight(String highlight){
+        if (highlights == null) {
+            highlights = new ArrayList<>();
+        }
         highlights.add(highlight);
     }
 
@@ -82,6 +85,9 @@ public class Work extends BaseResumeItem {
     }
 
     public void addKeyWord(String keyword){
+        if (this.keywords == null) {
+            this.keywords = new ArrayList<>();
+        }
         keywords.add(keyword);
     }
 

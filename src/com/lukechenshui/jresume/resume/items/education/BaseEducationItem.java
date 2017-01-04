@@ -11,7 +11,6 @@ public class BaseEducationItem extends BaseResumeItem {
     String startDate;
     String endDate;
 
-    String result;
 
     public String getName() {
         return name;
@@ -37,11 +36,5 @@ public class BaseEducationItem extends BaseResumeItem {
         this.endDate = endDate;
     }
 
-    public String getResult() {
-        return result;
-    }
 
-    public void setResult(String result) {
-        this.result = result;
-    }
 }
