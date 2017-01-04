@@ -14,5 +14,6 @@
     <orderEntry type="library" name="org.apache.commons:commons-io:1.3.2" level="project" />
     <orderEntry type="library" name="com.beust:jcommander:1.48" level="project" />
     <orderEntry type="library" name="tradukisto-0.5.2-SNAPSHOT-all" level="project" />
+    <orderEntry type="library" name="org.danilopianini:gson-extras:0.2.1" level="project" />
   </component>
 </module>

@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 /**
  * Created by luke on 12/31/16.
  */
-public abstract class BaseTheme {
+public  class BaseTheme {
     protected String htmlString;
     protected ContainerTag html;
     protected Resume resumeBeingOperatedOn;
@@ -18,25 +18,42 @@ public abstract class BaseTheme {
         this.themeName = themeName;
     }
 
-    protected abstract void generateHead();
+    protected  void generateHead(){
 
-    protected abstract void generateBody();
+    }
 
-    protected abstract ContainerTag generatePerson();
+    protected  void generateBody(){
 
-    public abstract String generate(Resume resume);
+    }
 
-    protected abstract ContainerTag generateJobWork();
+    protected  ContainerTag generatePerson(){
+        return null;
+    }
 
-    protected abstract ContainerTag generateVolunteerWork();
+    public  String generate(Resume resume){
+        return null;
+    }
 
-    protected abstract ContainerTag generateSkills();
+    protected  ContainerTag generateJobWork(){
+        return null;
+    }
 
-    protected abstract ContainerTag generateProjects();
+    protected  ContainerTag generateVolunteerWork(){
+        return null;
+    }
+
+    protected  ContainerTag generateSkills(){
+        return null;
+    }
+
+    protected  ContainerTag generateProjects(){
+        return null;
+    }
 
     protected String getResource(String fileName) {
         String dirToRemove = Config.getOutputDirectory();
         String resourceDirectory = Paths.get(Config.getOutputDirectory(), "resources", fileName).toString();
+        //Converts the path from an absolute path to a relative path.
         resourceDirectory = resourceDirectory.replace(dirToRemove + "/", "");
         return resourceDirectory;
     }

@@ -2,6 +2,9 @@ package com.lukechenshui.jresume.resume;
 
 import com.google.gson.JsonObject;
 import com.lukechenshui.jresume.resume.items.*;
+import com.lukechenshui.jresume.resume.items.education.BaseEducationItem;
+import com.lukechenshui.jresume.resume.items.work.JobWork;
+import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 
 import java.util.ArrayList;
 
@@ -14,6 +17,7 @@ public class Resume {
     ArrayList<VolunteerWork> volunteerWork;
     ArrayList<Project> projects;
     ArrayList<Skill> skills;
+    ArrayList<BaseEducationItem> educationItems;
     int numSkillColumns = 2;
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
@@ -93,5 +97,13 @@ public class Resume {
 
     public void setNumPersonalDetailsColumns(int numPersonalDetailsColumns) {
         this.numPersonalDetailsColumns = numPersonalDetailsColumns;
+    }
+
+    public ArrayList<BaseEducationItem> getEducationItems() {
+        return educationItems;
+    }
+
+    public void setEducationItems(ArrayList<BaseEducationItem> educationItems) {
+        this.educationItems = educationItems;
     }
 }

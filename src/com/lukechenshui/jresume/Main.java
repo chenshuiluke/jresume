@@ -5,10 +5,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import com.lukechenshui.jresume.resume.Resume;
-import com.lukechenshui.jresume.resume.items.JobWork;
+import com.lukechenshui.jresume.resume.items.education.BaseEducationItem;
+import com.lukechenshui.jresume.resume.items.education.Examination;
+import com.lukechenshui.jresume.resume.items.education.ExaminationSubject;
+import com.lukechenshui.jresume.resume.items.education.School;
+import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.Person;
-import com.lukechenshui.jresume.resume.items.VolunteerWork;
+import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import com.lukechenshui.jresume.themes.BaseTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
 
@@ -28,7 +33,13 @@ public class Main {
         new JCommander(config, args);
 
         String jsonResumePath = Config.getInputFileName();
-        Gson gson = new Gson();
+        RuntimeTypeAdapterFactory<BaseEducationItem> adapter =
+                RuntimeTypeAdapterFactory
+                        .of(BaseEducationItem.class)
+                        .registerSubtype(School.class)
+                        .registerSubtype(Examination.class)
+                        .registerSubtype(ExaminationSubject.class);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = "";
         copyResourcesZip();
         try {

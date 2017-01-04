@@ -113,6 +113,20 @@
       "url": "https://www.github.com"
     }
   ],
+  "educationItems": [
+    {
+      "type": "Examination",
+      "name": "CXC",
+      "startDate": "2014",
+      "subjects":[
+        {
+          "type": "ExaminationSubject",
+          "name": "Mathematics",
+          "result": "I"
+        }
+      ]
+    }
+  ],
   "numSkillColumns": 3,
   "numPersonalDetailsColumns": 3
 }

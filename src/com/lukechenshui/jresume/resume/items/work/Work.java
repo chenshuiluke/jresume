@@ -1,4 +1,6 @@
-package com.lukechenshui.jresume.resume.items;
+package com.lukechenshui.jresume.resume.items.work;
+
+import com.lukechenshui.jresume.resume.items.BaseResumeItem;
 
 import java.util.ArrayList;
 

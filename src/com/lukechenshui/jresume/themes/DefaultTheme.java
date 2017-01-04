@@ -5,6 +5,8 @@ import com.google.gson.JsonObject;
 import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.*;
+import com.lukechenshui.jresume.resume.items.work.JobWork;
+import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import j2html.tags.ContainerTag;
 import j2html.tags.EmptyTag;
 import j2html.tags.Tag;

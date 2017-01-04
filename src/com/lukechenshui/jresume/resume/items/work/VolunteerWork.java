@@ -1,6 +1,4 @@
-package com.lukechenshui.jresume.resume.items;
-
-import java.util.ArrayList;
+package com.lukechenshui.jresume.resume.items.work;
 
 /**
  * Created by luke on 12/31/16.
