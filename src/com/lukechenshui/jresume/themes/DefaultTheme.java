@@ -5,6 +5,8 @@ import com.google.gson.JsonObject;
 import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.*;
+import com.lukechenshui.jresume.resume.items.education.Education;
+import com.lukechenshui.jresume.resume.items.education.School;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import j2html.tags.ContainerTag;
@@ -85,6 +87,10 @@ public class DefaultTheme extends BaseTheme {
                     break;
                 case "projects":
                     body.with(generateProjects());
+                    body.with(div().withClass("ui divider"));
+                    break;
+                case "education":
+                    body.with(generateEducation());
                     body.with(div().withClass("ui divider"));
                     break;
             }
@@ -312,7 +318,7 @@ public class DefaultTheme extends BaseTheme {
 
         return workHtml;
     }
-
+    
     public ContainerTag generateSkills() {
         ContainerTag skills = div().withId("skills").withClass("ui very padded text container");
         ArrayList<Tag> children = new ArrayList<>();
@@ -426,6 +432,53 @@ public class DefaultTheme extends BaseTheme {
         }
         projects.with(children);
         return projects;
+    }
+
+    @Override
+    protected ContainerTag generateEducation() {
+        ContainerTag educationDiv = div().withId("education").withClass("ui very padded text container");
+        ArrayList<Tag> children = new ArrayList<>();
+        Education education = resumeBeingOperatedOn.getEducation();
+
+        if(education.getExaminations() != null || education.getSchools() != null){
+            children.add(h2("Education").withClass("ui header centered"));
+        }
+        for(School school : education.getSchools()){
+            ContainerTag schoolDiv = div().withClass("ui container");
+            if (school.getName() != null) {
+                ContainerTag companyName = div().withClass("ui header").withText(school.getName());
+                schoolDiv.with(companyName);
+            }
+            if (school.getStartDate() != null || school.getEndDate() != null) {
+                ContainerTag timeLine = div().withClass("ui gray small label");
+                String text = "";
+
+                if (school.getStartDate() != null) {
+                    text += school.getStartDate();
+                }
+
+                if (school.getEndDate() != null) {
+                    if (school.getStartDate() != null) {
+                        text += " - ";
+                    }
+
+                    text += school.getEndDate();
+                }
+                timeLine = timeLine.withText(text);
+                schoolDiv.with(timeLine);
+            }
+            if(school.getGpa() != null){
+                ContainerTag gpa = div().withClass("ui blue small label").withText(school.getGpa() + " GPA");
+                schoolDiv.with(gpa);
+            }
+            if(school.getSummary() != null){
+                ContainerTag summary = div().withClass("regularText").withText(school.getSummary());
+                schoolDiv.with(summary);
+            }
+            children.add(schoolDiv);
+        }
+        educationDiv.with(children);
+        return educationDiv;
     }
 
     public String generate(Resume resume) {

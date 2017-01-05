@@ -51,6 +51,10 @@ public  class BaseTheme {
         return null;
     }
 
+    protected ContainerTag generateEducation(){
+        return null;
+    }
+
     protected String getResource(String fileName) {
         String dirToRemove = Config.getOutputDirectory();
         System.out.println(dirToRemove);

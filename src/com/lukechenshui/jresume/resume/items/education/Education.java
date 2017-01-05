@@ -7,4 +7,21 @@ import java.util.ArrayList;
  */
 public class Education extends BaseEducationItem {
     ArrayList<School> schools;
+    ArrayList<School> examinations;
+
+    public ArrayList<School> getSchools() {
+        return schools;
+    }
+
+    public void setSchools(ArrayList<School> schools) {
+        this.schools = schools;
+    }
+
+    public ArrayList<School> getExaminations() {
+        return examinations;
+    }
+
+    public void setExaminations(ArrayList<School> examinations) {
+        this.examinations = examinations;
+    }
 }
