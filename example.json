@@ -148,10 +148,42 @@
         "startDate": "2009",
         "endDate": "2014",
         "summary": "Some summary!",
-        "gpa": "5.0"
+        "gpa": "5.0",
+        "examinations": [
+          {
+            "name": "CSEC",
+            "startDate": "2014",
+            "subjects": [
+              {
+                "name": "Math",
+                "result": "100"
+              },
+              {
+                "name": "English",
+                "result": "100"
+              }
+            ]
+          }
+        ]
       }
-
+    ],
+    "examinations": [
+      {
+        "name": "CSEC",
+        "startDate": "2014",
+        "subjects": [
+          {
+            "name": "Math",
+            "result": "100"
+          },
+          {
+            "name": "English",
+            "result": "100"
+          }
+        ]
+      }
     ]
+
   },
   "numSkillColumns": 3,
   "numPersonalDetailsColumns": 3

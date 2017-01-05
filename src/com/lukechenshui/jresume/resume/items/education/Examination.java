@@ -11,4 +11,12 @@ public class Examination extends BaseEducationItem{
     as well as startDate and endDate
      */
     ArrayList<ExaminationSubject> subjects;
+
+    public ArrayList<ExaminationSubject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(ArrayList<ExaminationSubject> subjects) {
+        this.subjects = subjects;
+    }
 }
