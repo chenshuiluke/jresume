@@ -17,7 +17,6 @@ else{
 		orientation: 'portrait',
 		margin: '0.4in'
 	};
-	page.dpi = 300;
 
 
 	page.open(htmlFile, function(status){
