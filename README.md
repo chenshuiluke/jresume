@@ -6,7 +6,7 @@
 
     {
       "person": {
-        "name": "John Doe",
+        "name": "Bob",
         "email": "johndoe@gmail.com",
         "address": "7 Java Drive, OOP City",
         "phoneNumber": "+1(334)567-2346",
@@ -16,7 +16,7 @@
       "skills": [
         {
           "name": "Java",
-          "competence": "Intermediate"
+          "competence": "Advanced"
         },
         {
           "name": "C++",
@@ -33,7 +33,7 @@
           "position": "Software Engineer",
           "summary": "At Example Ltd., I did such and such and such and such and such and such and such and such and such.",
           "startDate": "August 19, 1997",
-          "endDate": "August 19, 1990",
+          "endDate": "August 19, 2001",
           "highlights": [
             "Worked on such and such",
             "Also worked on this"
@@ -48,7 +48,7 @@
           "position": "Software Engineer",
           "summary": "At Example Ltd.2, I did such and such and such and such and such and such and such and such and such.",
           "startDate": "August 19, 1997",
-          "endDate": "August 19, 1990",
+          "endDate": "August 19, 2001",
           "highlights": [
             "Worked on such and such",
             "Also worked on this"
@@ -65,7 +65,7 @@
           "position": "Volunteer",
           "summary": "At Example Institution, I did such and such.",
           "startDate": "August 19, 1997",
-          "endDate": "August 19, 1990",
+          "endDate": "August 19, 2001",
           "highlights": [
             "Worked on such and such",
             "Also worked on this"
@@ -80,7 +80,7 @@
           "position": "Volunteer",
           "summary": "At Example Institution2, I did such and such.",
           "startDate": "August 19, 1997",
-          "endDate": "August 19, 1990",
+          "endDate": "August 19, 2001",
           "highlights": [
             "Worked on such and such",
             "Also worked on this"
@@ -119,6 +119,78 @@
           "url": "https://www.github.com"
         }
       ],
+      "projects": [
+        {
+          "name": "AwesomeProject",
+          "description": "This awesome project is awesome!",
+          "highlights": [
+            "Does such and such.",
+            "And it does such and such."
+          ],
+          "keywords": [
+            "java",
+            "c++"
+          ],
+          "url": "https://www.github.com"
+        },
+        {
+          "name": "AwesomeProject2",
+          "description": "This awesome project2 is awesome!",
+          "highlights": [
+            "Does such and such.",
+            "And it does such and such."
+          ],
+          "keywords": [
+            "java",
+            "c++"
+          ],
+          "url": "https://www.github.com"
+        }
+      ],
+      "education": {
+        "schools": [
+          {
+            "name": "Ardenne High School",
+            "startDate": "2009",
+            "endDate": "2014",
+            "summary": "Some summary!",
+            "gpa": "5.0",
+            "examinations": [
+              {
+                "name": "CSEC",
+                "startDate": "2014",
+                "subjects": [
+                  {
+                    "name": "Math",
+                    "result": "100"
+                  },
+                  {
+                    "name": "English",
+                    "result": "100"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "examinations": [
+          {
+            "name": "CSEC",
+            "startDate": "2014",
+            "subjects": [
+              {
+                "name": "Math",
+                "result": "100"
+              },
+              {
+                "name": "English",
+                "result": "100"
+              }
+            ]
+          }
+        ]
+
+      },
       "numSkillColumns": 3,
       "numPersonalDetailsColumns": 3
     }
@@ -130,3 +202,11 @@
 ###Output:
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
+
+###Converting to PDF
+
+If you don't want to use your browser to save the web resume as a pdf, you can install phantomjs and do the following:
+
+    phantomjs pdf.js <webresume_file>.html <pdf_resume_file>.pdf
+
+pdf.js is in the root directory of the jresume directory.
