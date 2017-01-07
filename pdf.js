@@ -13,11 +13,11 @@ else{
 	var outputPdfFile = system.args[2];
 
 	page.paperSize = {
-		format: 'letter',
+		format: 'Letter',
 		orientation: 'portrait',
-		margin: '1cm'
+		margin: '0.4in'
 	};
-
+	page.dpi = 300;
 
 
 	page.open(htmlFile, function(status){
@@ -28,8 +28,7 @@ else{
 		else{
 			console.log("Successfully loaded page!");
 			page.render(outputPdfFile, {
-				format: "pdf",
-				quality: "100"
+				format: "pdf"
 			});
 			phantom.exit();
 		}

@@ -106,7 +106,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected ContainerTag generatePerson() {
-        ContainerTag personHtml = div().withId("person").withClass("ui very padded text segment container");
+        ContainerTag personHtml = div().withId("person").withClass("ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         Person person = resumeBeingOperatedOn.getPerson();
         children.add(person.checkForAndGeneratePrecedingLineBreaks());
@@ -155,7 +155,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected ContainerTag generateJobWork() {
-        ContainerTag workHtml = div().withId("work").withClass("ui very padded text segment container");
+        ContainerTag workHtml = div().withId("work").withClass("ui very padded text  container");
 
         ArrayList<Tag> workChildren = new ArrayList<>();
         ArrayList<Tag> workItemsChildren = new ArrayList<>();
@@ -240,7 +240,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected ContainerTag generateVolunteerWork() {
-        ContainerTag workHtml = div().withId("volunteerWork").withClass("ui very padded text segment container");
+        ContainerTag workHtml = div().withId("volunteerWork").withClass("ui very padded text  container");
 
         ArrayList<Tag> workChildren = new ArrayList<>();
         ArrayList<Tag> workItemsChildren = new ArrayList<>();
@@ -324,11 +324,11 @@ public class DefaultTheme extends BaseTheme {
     }
 
     public ContainerTag generateSkills() {
-        ContainerTag skills = div().withId("skills").withClass("ui very padded text segment container");
+        ContainerTag skills = div().withId("skills").withClass("ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         ValueConverters converter = ValueConverters.ENGLISH_INTEGER;
         String numberOfSkillColumns = converter.asWords(resumeBeingOperatedOn.getNumSkillColumns());
-        ContainerTag list = div().withClass("ui " + numberOfSkillColumns + " column grid segment container relaxed centered");
+        ContainerTag list = div().withClass("ui " + numberOfSkillColumns + " column grid  container relaxed centered");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             children.add(h2("Skills").withClass("ui header centered"));
@@ -378,7 +378,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     public ContainerTag generateProjects() {
-        ContainerTag projects = div().withId("projects").withClass("ui very padded text segment container");
+        ContainerTag projects = div().withId("projects").withClass("ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
 
         if (resumeBeingOperatedOn.getProjects().size() > 0) {
@@ -389,19 +389,16 @@ public class DefaultTheme extends BaseTheme {
             children.add(project.checkForAndGeneratePrecedingLineBreaks());
             ContainerTag content = div().withClass("ui content");
 
-            ContainerTag headingAndLinkGrid = div().withClass("ui grid relaxed one column");
-
             if (project.getName() != null) {
-                ContainerTag projectName = div().withClass("ui header row").withText(project.getName());
-                headingAndLinkGrid.with(projectName);
+                ContainerTag projectName = div().withClass("ui header").withText(project.getName());
+                content.with(projectName);
             }
 
             if (project.getUrl() != null) {
-                ContainerTag projectURL = a(project.getUrl()).withClass("ui row").withHref(project.getUrl());
-                headingAndLinkGrid.with(projectURL);
+                ContainerTag projectURL = a(project.getUrl()).withClass("ui").withHref(project.getUrl());
+                content.with(projectURL);
             }
 
-            content.with(headingAndLinkGrid);
 
             if (project.getDescription() != null) {
                 ContainerTag description = div().withText(project.getDescription()).withClass("regularText");
@@ -440,7 +437,7 @@ public class DefaultTheme extends BaseTheme {
 
     @Override
     protected ContainerTag generateEducation() {
-        ContainerTag educationDiv = div().withId("education").withClass("ui very padded text segment container");
+        ContainerTag educationDiv = div().withId("education").withClass("ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         Education education = resumeBeingOperatedOn.getEducation();
 
@@ -448,7 +445,7 @@ public class DefaultTheme extends BaseTheme {
             children.add(h2("Education").withClass("ui header centered"));
         }
         for(School school : education.getSchools()){
-            ContainerTag schoolDiv = div().withClass("ui segment container");
+            ContainerTag schoolDiv = div().withClass("ui  container");
             if (school.getName() != null) {
                 ContainerTag schoolName = div().withClass("ui header").withText(school.getName());
                 schoolDiv.with(schoolName);
@@ -489,7 +486,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     private ContainerTag generateExaminations(ArrayList<Examination> examinations) {
-        ContainerTag examinationDiv = div().withClass("ui segment container");
+        ContainerTag examinationDiv = div().withClass("ui  container");
         if (examinations != null) {
             for (Examination examination : examinations) {
                 if (examination.getName() != null) {
