@@ -7,6 +7,8 @@
 ###Example JSON resume (example.json):
 
     {
+      "skillsHeading": "Custom Skills Heading",
+      "jobWorkHeading": "Custom Work Heading",
       "person": {
         "name": "Bob",
         "email": "johndoe@gmail.com",
@@ -21,6 +23,7 @@
           "competence": "Advanced"
         },
         {
+
           "name": "C++",
           "competence": "Beginner"
         },
