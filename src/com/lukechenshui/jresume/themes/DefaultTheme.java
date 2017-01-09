@@ -13,6 +13,7 @@ import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import j2html.tags.ContainerTag;
 import j2html.tags.EmptyTag;
 import j2html.tags.Tag;
+import org.apache.commons.lang3.StringUtils;
 import pl.allegro.finance.tradukisto.ValueConverters;
 
 import java.util.ArrayList;
@@ -118,7 +119,12 @@ public class DefaultTheme extends BaseTheme {
 
         if (resumeBeingOperatedOn != null && jobWork != null) {
             if (jobWork.size() > 0) {
-                workChildren.add(h2("Work Experience").withClass("ui header centered"));
+                if (StringUtils.isNoneEmpty(resumeBeingOperatedOn.getJobWorkHeading())) {
+                    workChildren.add(h2(resumeBeingOperatedOn.getJobWorkHeading()).withClass("ui header centered"));
+                } else {
+                    workChildren.add(h2("Work Experience").withClass("ui header centered"));
+                }
+
             }
 
 
@@ -203,7 +209,11 @@ public class DefaultTheme extends BaseTheme {
 
         if (resumeBeingOperatedOn != null && volunteerWork != null) {
             if (volunteerWork.size() > 0) {
-                workChildren.add(h2("Volunteer Work Experience").withClass("ui header centered"));
+                if (StringUtils.isNoneEmpty(resumeBeingOperatedOn.getVolunteerWorkHeading())) {
+                    workChildren.add(h2(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("ui header centered"));
+                } else {
+                    workChildren.add(h2("Volunteer Work Experience").withClass("ui header centered"));
+                }
             }
 
 
@@ -286,7 +296,12 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag list = div().withClass("ui " + numberOfSkillColumns + " column grid  container relaxed centered");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
-            children.add(h2("Skills").withClass("ui header centered"));
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getSkillsHeading())){
+                children.add(h2(resumeBeingOperatedOn.getSkillsHeading()).withClass("ui header centered"));
+            }  else{
+                children.add(h2("Skills").withClass("ui header centered"));
+            }
+
         }
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
@@ -339,7 +354,11 @@ public class DefaultTheme extends BaseTheme {
         ArrayList<Tag> children = new ArrayList<>();
 
         if (resumeBeingOperatedOn.getProjects().size() > 0) {
-            children.add(h2("Projects").withClass("ui header centered"));
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getProjectsHeading())){
+                children.add(h2(resumeBeingOperatedOn.getProjectsHeading()).withClass("ui header centered"));
+            }   else {
+                children.add(h2("Projects").withClass("ui header centered"));
+            }
         }
 
         for (Project project : resumeBeingOperatedOn.getProjects()) {
@@ -398,8 +417,13 @@ public class DefaultTheme extends BaseTheme {
         ArrayList<Tag> children = new ArrayList<>();
         Education education = resumeBeingOperatedOn.getEducation();
         children.add(education.checkForAndGeneratePrecedingLineBreaks());
+
         if(education.getExaminations() != null || education.getSchools() != null){
-            children.add(h2("Education").withClass("ui header centered"));
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getEducationHeading())){
+                children.add(h2(resumeBeingOperatedOn.getEducationHeading()).withClass("ui header centered"));
+            }   else {
+                children.add(h2("Education").withClass("ui header centered"));
+            }
         }
         for(School school : education.getSchools()){
             children.add(school.checkForAndGeneratePrecedingLineBreaks());
