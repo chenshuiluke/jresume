@@ -205,6 +205,44 @@
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
+###Customizing space between sections
+
+You may use `numPrecedingLineBreaks` or `numFollowingLineBreaks` to add space before or after each section respectively.
+
+####Spacing examples:
+
+Without Spacing:
+
+  "person": {
+    "name": "Bob",
+    "email": "johndoe@gmail.com",
+    "address": "7 Java Drive, OOP City",
+    "phoneNumber": "+1(334)567-2346",
+    "jobTitle": "Software Engineer",
+    "website": "https://www.google.com"
+  },
+  ...
+
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_before.png)
+
+With Spacing:
+
+  "person": {
+    "name": "Bob",
+    "email": "johndoe@gmail.com",
+    "address": "7 Java Drive, OOP City",
+    "phoneNumber": "+1(334)567-2346",
+    "jobTitle": "Software Engineer",
+    "website": "https://www.google.com",
+    "numFollowingLineBreaks": 10
+  },
+  ...
+
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_after.png)
+
+
+
+
 ###Converting to PDF
 
 If you don't want to use your browser to save the web resume as a pdf, you can install phantomjs and do the following:
