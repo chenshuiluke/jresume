@@ -1,4 +1,9 @@
 {
+  "skillsHeading": "Custom Skills",
+  "jobWorkHeading": "Custom Job Work",
+  "volunteerWorkHeading": "Custom Volunteer",
+  "projectsHeading": "Custom Projects",
+  "educationHeading": "Custom Education",
   "person": {
     "name": "Bob",
     "email": "johndoe@gmail.com",
