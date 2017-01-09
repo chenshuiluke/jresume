@@ -205,11 +205,13 @@
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
-###Customizing space between sections
+###Customizing the Output:
+
+####Customizing space between sections
 
 You may use `numPrecedingLineBreaks` or `numFollowingLineBreaks` to add space before or after each section respectively.
 
-####Spacing examples:
+#####Spacing examples:
 
 Without Spacing:
 
@@ -241,7 +243,33 @@ With Spacing:
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_after.png)
 
 
+####Customizing Section Headings
+You can customize the various headings by adding the following to your resume JSON file:
 
+1. skillsHeading
+2. jobWorkHeading
+3. volunteerWorkHeading
+4. projectHeading
+5. educationHeading
+
+Example:
+
+    {
+      "skillsHeading": "Custom Skills Heading",
+      "jobWorkHeading": "Custom Work Heading",
+      "person": {
+        "name": "Bob",
+        "email": "johndoe@gmail.com",
+        "address": "7 Java Drive, OOP City",
+        "phoneNumber": "+1(334)567-2346",
+        "jobTitle": "Software Engineer",
+        "website": "https://www.google.com"
+      },
+
+
+Output:
+
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/custom_theme_heading_example.png)
 
 ###Converting to PDF
 
