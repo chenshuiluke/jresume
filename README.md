@@ -206,7 +206,7 @@
 
 ###Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
+![default_theme_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
 ###Customizing the Output:
 
@@ -228,7 +228,7 @@ Without Spacing:
       },
       ...
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_before.png)
+![spacing_before_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_before.png)
 
 With Spacing:
 
@@ -243,7 +243,7 @@ With Spacing:
       },
       ...
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_after.png)
+![spacing_after_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_after.png)
 
 
 ####Customizing Section Headings
@@ -272,7 +272,7 @@ Example:
 
 Output:
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/custom_theme_heading_example.png)
+![custom_headings](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/custom_theme_heading_example.png)
 
 ###Converting to PDF
 
