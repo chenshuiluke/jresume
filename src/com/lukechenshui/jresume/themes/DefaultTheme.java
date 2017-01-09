@@ -291,7 +291,7 @@ public class DefaultTheme extends BaseTheme {
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
             ContainerTag skillItem = div().withClass("ui center aligned column");
-            children.add(skill.checkForAndGeneratePrecedingLineBreaks());
+            list.with(skill.checkForAndGeneratePrecedingLineBreaks());
             if (skill.getName() != null) {
                 String text = skill.getName();
                 if (skill.getCompetence() != null) {
@@ -323,9 +323,11 @@ public class DefaultTheme extends BaseTheme {
                         break;
                 }
                 skillItem.with(skillRating);
-                children.add(skill.checkForAndGeneratePrecedingLineBreaks());
+
             }
+
             list.with(skillItem);
+            list.with(skill.checkForAndGenerateFollowingLineBreaks());
         }
         children.add(list);
         skills.with(children);
@@ -395,11 +397,12 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag educationDiv = div().withId("education").withClass("ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         Education education = resumeBeingOperatedOn.getEducation();
-
+        children.add(education.checkForAndGeneratePrecedingLineBreaks());
         if(education.getExaminations() != null || education.getSchools() != null){
             children.add(h2("Education").withClass("ui header centered"));
         }
         for(School school : education.getSchools()){
+            children.add(school.checkForAndGeneratePrecedingLineBreaks());
             ContainerTag schoolDiv = div().withClass("ui  container");
             if (school.getName() != null) {
                 ContainerTag schoolName = div().withClass("ui header").withText(school.getName());
@@ -434,8 +437,10 @@ public class DefaultTheme extends BaseTheme {
             }
             schoolDiv.with(generateExaminations(school.getExaminations()));
             children.add(schoolDiv);
+            children.add(school.checkForAndGenerateFollowingLineBreaks());
         }
         children.add(generateExaminations(education.getExaminations()));
+        children.add(education.checkForAndGenerateFollowingLineBreaks());
         educationDiv.with(children);
         return educationDiv;
     }
@@ -444,6 +449,7 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag examinationDiv = div().withClass("ui  container");
         if (examinations != null) {
             for (Examination examination : examinations) {
+                examinationDiv.with(examination.checkForAndGeneratePrecedingLineBreaks());
                 if (examination.getName() != null) {
                     examinationDiv.with(br());
                     ContainerTag examinationName = div().withClass("ui header").withText(examination.getName());
@@ -472,6 +478,7 @@ public class DefaultTheme extends BaseTheme {
                         examinationDiv.with(h4().withClass("ui header").withText("Results"));
                     }
                     for (ExaminationSubject subject : examination.getSubjects()) {
+                        subjectDiv.with(subject.checkForAndGeneratePrecedingLineBreaks());
                         ContainerTag row = div().withClass("ui row");
                         ContainerTag subjectName = div().withClass("ui column regularText");
                         ContainerTag subjectResult = div().withClass("ui column regularText");
@@ -487,8 +494,10 @@ public class DefaultTheme extends BaseTheme {
                         row.with(subjectResult);
 
                         subjectDiv.with(row);
+                        subjectDiv.with(subject.checkForAndGenerateFollowingLineBreaks());
                     }
                     examinationDiv.with(subjectDiv);
+                    examinationDiv.with(examination.checkForAndGenerateFollowingLineBreaks());
                 }
             }
         }
