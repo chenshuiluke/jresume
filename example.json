@@ -10,9 +10,9 @@
     "address": "7 Java Drive, OOP City",
     "phoneNumber": "+1(334)567-2346",
     "jobTitle": "Software Engineer",
-    "website": "https://www.google.com",
-    "numFollowingLineBreaks": 10
+    "website": "https://www.google.com"
   },
+  "skillsHeading": "Cool Custom Heading",
   "skills": [
     {
       "name": "Java",
