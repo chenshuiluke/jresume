@@ -1,8 +1,5 @@
 package com.lukechenshui.jresume.themes;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
@@ -19,7 +16,6 @@ import j2html.tags.Tag;
 import pl.allegro.finance.tradukisto.ValueConverters;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import static j2html.TagCreator.*;
 
@@ -27,14 +23,8 @@ import static j2html.TagCreator.*;
  * Created by luke on 12/31/16.
  */
 public class DefaultTheme extends BaseTheme {
-
-
     public DefaultTheme(String themeName) {
         super(themeName);
-    }
-
-    public static void registerTheme() {
-        Config.addTheme(new DefaultTheme("default"));
     }
 
     protected void generateHead() {
@@ -67,42 +57,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected void generateBody() {
-        ContainerTag body = body();
-        JsonObject jsonObject = resumeBeingOperatedOn.getJsonObject();
-
-        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-            String key = entry.getKey();
-            switch (key.toLowerCase()) {
-                case "person":
-                    body.with(generatePerson());
-                    //body.with(div().withClass("ui divider"));
-                    break;
-                case "jobwork":
-                    body.with(generateJobWork());
-                    //body.with(div().withClass("ui divider"));
-                    break;
-                case "volunteerwork":
-                    body.with(generateVolunteerWork());
-                    //body.with(div().withClass("ui divider"));
-                    break;
-                case "skills":
-                    body.with(generateSkills());
-                    //body.with(div().withClass("ui divider"));
-                    break;
-                case "projects":
-                    body.with(generateProjects());
-                    //body.with(div().withClass("ui divider"));
-                    break;
-                case "education":
-                    body.with(generateEducation());
-                    //body.with(div().withClass("ui divider"));
-                    break;
-            }
-        }
-        body.with(br());
-        body.with(br());
-        body.with(br());
-        html = html.with(body);
+        super.generateBody();
     }
 
     protected ContainerTag generatePerson() {

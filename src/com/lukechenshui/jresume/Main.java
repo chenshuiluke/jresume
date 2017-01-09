@@ -10,6 +10,7 @@ import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import com.lukechenshui.jresume.themes.BaseTheme;
+import com.lukechenshui.jresume.themes.BasicExampleTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
 
 import java.io.File;
@@ -61,7 +62,8 @@ public class Main {
     }
 
     public static void registerThemes() {
-        DefaultTheme.registerTheme();
+        BaseTheme.registerTheme("default", DefaultTheme.class);
+        BaseTheme.registerTheme("blankexampletheme", BasicExampleTheme.class);
     }
 
     public static void createExample(){
