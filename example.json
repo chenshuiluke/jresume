@@ -1,9 +1,6 @@
 {
-  "skillsHeading": "Custom Skills",
-  "jobWorkHeading": "Custom Job Work",
-  "volunteerWorkHeading": "Custom Volunteer",
-  "projectsHeading": "Custom Projects",
-  "educationHeading": "Custom Education",
+  "skillsHeading": "Custom Skills Heading",
+  "jobWorkHeading": "Custom Work Heading",
   "person": {
     "name": "Bob",
     "email": "johndoe@gmail.com",
@@ -12,7 +9,6 @@
     "jobTitle": "Software Engineer",
     "website": "https://www.google.com"
   },
-  "skillsHeading": "Cool Custom Heading",
   "skills": [
     {
       "name": "Java",
