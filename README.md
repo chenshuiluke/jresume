@@ -454,4 +454,4 @@ The above loads Semantic UI and some other stuff to the `head` of the generated 
 
 You can then apply said styles by calling the `withClass` function on any of your `ContainerTag`s and passing any of the required css class names:
 
-   ContainerTag foo = div().withClass("ui");
+    ContainerTag foo = div().withClass("ui");
