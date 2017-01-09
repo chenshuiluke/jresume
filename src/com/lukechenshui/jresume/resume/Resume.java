@@ -16,10 +16,15 @@ import java.util.ArrayList;
 public class Resume {
     Person person;
     Education education;
+    String educationHeading;
     ArrayList<JobWork> jobWork;
+    String jobWorkHeading;
     ArrayList<VolunteerWork> volunteerWork;
+    String volunteerWorkHeading;
     ArrayList<Project> projects;
+    String projectsHeading;
     ArrayList<Skill> skills;
+    String skillsHeading;
     int numSkillColumns = 2;
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
@@ -43,6 +48,14 @@ public class Resume {
         this.jobWork = jobWork;
     }
 
+    public String getJobWorkHeading() {
+        return jobWorkHeading;
+    }
+
+    public void setJobWorkHeading(String jobWorkHeading) {
+        this.jobWorkHeading = jobWorkHeading;
+    }
+
     public ArrayList<Project> getProjects() {
         return projects;
     }
@@ -51,12 +64,28 @@ public class Resume {
         this.projects = projects;
     }
 
+    public String getProjectsHeading() {
+        return projectsHeading;
+    }
+
+    public void setProjectsHeading(String projectsHeading) {
+        this.projectsHeading = projectsHeading;
+    }
+
     public ArrayList<VolunteerWork> getVolunteerWork() {
         return volunteerWork;
     }
 
     public void setVolunteerWork(ArrayList<VolunteerWork> volunteerWork) {
         this.volunteerWork = volunteerWork;
+    }
+
+    public String getVolunteerWorkHeading() {
+        return volunteerWorkHeading;
+    }
+
+    public void setVolunteerWorkHeading(String volunteerWorkHeading) {
+        this.volunteerWorkHeading = volunteerWorkHeading;
     }
 
     public void addJobWork(JobWork jobWork){
@@ -84,6 +113,14 @@ public class Resume {
 
     public void setSkills(ArrayList<Skill> skills) {
         this.skills = skills;
+    }
+
+    public String getSkillsHeading() {
+        return skillsHeading;
+    }
+
+    public void setSkillsHeading(String skillsHeading) {
+        skillsHeading = skillsHeading;
     }
 
     public JsonObject getJsonObject() {
@@ -117,4 +154,13 @@ public class Resume {
     public void setEducation(Education education) {
         this.education = education;
     }
+
+    public String getEducationHeading() {
+        return educationHeading;
+    }
+
+    public void setEducationHeading(String educationHeading) {
+        this.educationHeading = educationHeading;
+    }
+
 }
