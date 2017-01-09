@@ -451,3 +451,7 @@ To load custom scripts and stylesheets from CSS frameworks like Semantic UI, you
     }
 
 The above loads Semantic UI and some other stuff to the `head` of the generated html resume. Semantic UI and Bootstrap are already in `resources.zip`.
+
+You can then apply said styles by calling the `withClass` function on any of your `ContainerTag`s and passing any of the required css class names:
+
+   ContainerTag foo = div().withClass("ui");
