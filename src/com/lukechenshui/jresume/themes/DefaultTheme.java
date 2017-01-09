@@ -119,7 +119,7 @@ public class DefaultTheme extends BaseTheme {
 
         if (resumeBeingOperatedOn != null && jobWork != null) {
             if (jobWork.size() > 0) {
-                if (StringUtils.isNoneEmpty(resumeBeingOperatedOn.getJobWorkHeading())) {
+                if (StringUtils.isNotBlank(resumeBeingOperatedOn.getJobWorkHeading())) {
                     workChildren.add(h2(resumeBeingOperatedOn.getJobWorkHeading()).withClass("ui header centered"));
                 } else {
                     workChildren.add(h2("Work Experience").withClass("ui header centered"));
