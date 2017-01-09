@@ -1,5 +1,7 @@
 #JResume - The best JSON to HTML resume generator.
 
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
+
 ##Example usage
 
 ###Example JSON resume (example.json):
