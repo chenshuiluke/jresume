@@ -20,9 +20,14 @@ public class Config {
     private static HashMap<String, BaseTheme> themeHashMap = new HashMap<String, BaseTheme>();
 
 
-    public static void addTheme(BaseTheme theme) {
+    public static void addTheme(Object theme) {
+        if (theme instanceof BaseTheme) {
+            BaseTheme themeObj = (BaseTheme) theme;
+            themeHashMap.put(themeObj.getThemeName(), themeObj);
+        } else {
+            throw new IllegalArgumentException("Object passed to addTheme is not instance or decendant of BaseTheme.");
+        }
 
-        themeHashMap.put(theme.getThemeName(), theme);
     }
 
     public static HashMap<String, BaseTheme> getThemeHashMap() {
