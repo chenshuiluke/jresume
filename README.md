@@ -258,7 +258,8 @@ pdf.js is in the root directory of the jresume directory.
 3. Register your theme in the application by
     * Adding `BaseTheme.registerTheme("<commandline_theme_name>", <ThemeClassName>.class);` to the `registerThemes` function in `Main.java`.
 4. Use your new theme by running: `java -jar jresume.jar --input <input_json_file> --output <output_folder> --theme <commandline_theme_name>`
-*See the following code for `BasicExampleTheme` below: (it can also be found in the `com.lukechenshui.jresume.themes` package)*
+
+**See the following code for `BasicExampleTheme` below: (it can also be found in the `com.lukechenshui.jresume.themes` package)**
 
         /**
          * Created by luke on 1/9/17.
