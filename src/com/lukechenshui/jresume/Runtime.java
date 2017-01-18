@@ -39,7 +39,7 @@ public class Runtime {
     }
 
     public static File getOutputHtmlFile() {
-        return Paths.get(Config.getOutputDirectory(), "output.html").toFile();
+        return Paths.get(Config.getOutputDirectory(), "resume.html").toFile();
     }
 
 }

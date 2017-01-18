@@ -189,8 +189,8 @@ public class DefaultTheme extends BaseTheme {
                     content.with(keywords);
                 }
 
-
                 workChildren.add(content);
+                workChildren.add(br());
                 workChildren.add(work.checkForAndGenerateFollowingLineBreaks());
             }
         }

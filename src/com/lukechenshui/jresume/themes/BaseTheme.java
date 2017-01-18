@@ -100,7 +100,6 @@ public abstract class BaseTheme {
         generateHead();
         generateBody();
         htmlString = html.render();
-        System.out.println(htmlString);
         return htmlString;
     }
 

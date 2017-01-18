@@ -15,5 +15,6 @@
     <orderEntry type="library" name="com.beust:jcommander:1.48" level="project" />
     <orderEntry type="library" name="tradukisto-0.5.2-SNAPSHOT-all" level="project" />
     <orderEntry type="library" name="ant-1.8.2" level="project" />
+    <orderEntry type="library" name="jtidy-r938" level="project" />
   </component>
 </module>
