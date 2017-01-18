@@ -12,10 +12,9 @@ import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import com.lukechenshui.jresume.themes.BaseTheme;
 import com.lukechenshui.jresume.themes.BasicExampleTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
+import org.w3c.tidy.Tidy;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -53,7 +52,19 @@ public class Main {
 
             BaseTheme theme = Config.getThemeHashMap().get(Config.getThemeName());
             String html = theme.generate(resume);
+
+            Tidy tidy = new Tidy();
+            tidy.setIndentContent(true);
+            tidy.setShowWarnings(false);
+            tidy.setQuiet(true);
+
+            StringReader htmlStringReader = new StringReader(html);
+            StringWriter htmlStringWriter = new StringWriter();
+            tidy.parseDOM(htmlStringReader, htmlStringWriter);
+            html = htmlStringWriter.toString();
             writer.write(html);
+
+            System.out.println(html);
             writer.close();
         } catch (Exception exc) {
             exc.printStackTrace();
