@@ -536,7 +536,7 @@ public class DefaultTheme extends BaseTheme {
         generateHead();
         generateBody();
         htmlString = html.render();
-        System.out.println(htmlString);
+        //System.out.println(htmlString);
         return htmlString;
     }
 

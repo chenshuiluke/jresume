@@ -43,7 +43,7 @@ public class Main {
                 json += "\n";
             }
             reader.close();
-            System.out.println(json);
+            //System.out.println(json);
             Resume resume = gson.fromJson(json, Resume.class);
 
             JsonParser parser = new JsonParser();
@@ -57,6 +57,7 @@ public class Main {
             tidy.setIndentContent(true);
             tidy.setShowWarnings(false);
             tidy.setQuiet(true);
+            tidy.setTrimEmptyElements(false);
 
             StringReader htmlStringReader = new StringReader(html);
             StringWriter htmlStringWriter = new StringWriter();
@@ -64,7 +65,9 @@ public class Main {
             html = htmlStringWriter.toString();
             writer.write(html);
 
-            System.out.println(html);
+            //System.out.println(html);
+
+            System.out.println("Success! You can find your resume at " + Runtime.getOutputHtmlFile().getAbsolutePath());
             writer.close();
         } catch (Exception exc) {
             exc.printStackTrace();
@@ -112,7 +115,7 @@ public class Main {
             File tempFile = File.createTempFile("jresume", "resource");
             tempFile.delete();
             URL url = Main.class.getResource("/resources.zip");
-            System.out.println("JAR Resource Zip URL: " + url.toString());
+            //System.out.println("JAR Resource Zip URL: " + url.toString());
             InputStream inputStream = url.openStream();
             Files.copy(inputStream, tempFile.toPath());
             Runtime.unzipResourceZip(tempFile.getAbsolutePath());

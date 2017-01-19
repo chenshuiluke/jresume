@@ -50,7 +50,7 @@ public class BaseResumeItem {
         for (int counter = 0; counter < numFollowingLineBreaks; counter++) {
             lineBreakDiv.with(br());
         }
-        System.out.println("Num following linebreaks: " + numFollowingLineBreaks);
+        //System.out.println("Num following linebreaks: " + numFollowingLineBreaks);
         return lineBreakDiv;
     }
 
