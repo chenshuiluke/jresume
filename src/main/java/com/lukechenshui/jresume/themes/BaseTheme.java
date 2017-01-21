@@ -114,9 +114,9 @@ public abstract class BaseTheme {
     protected abstract ContainerTag generateEducation();
 
     protected String getResource(String fileName) {
-        String dirToRemove = Config.getOutputDirectory();
+        String dirToRemove = new File(Config.getOutputDirectory()).getAbsolutePath();
         //System.out.println(dirToRemove);
-        String resourceDirectory = Paths.get(Config.getOutputDirectory(), "resources", fileName).toString();
+        String resourceDirectory = Paths.get(new File(Config.getOutputDirectory()).getAbsolutePath(), "resources", fileName).toString();
         resourceDirectory = resourceDirectory.replace(dirToRemove + File.separator, "");
         return resourceDirectory;
     }
