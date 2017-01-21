@@ -30,8 +30,9 @@ public class Main {
         String jsonResumePath = Config.getInputFileName();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = "";
-        copyResourcesZip();
+
         try {
+            copyResourcesZip();
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
             }
@@ -109,8 +110,7 @@ public class Main {
         }
     }
 
-    private static void copyResourcesZip() {
-        try {
+    private static void copyResourcesZip() throws Exception{
             String classUrl = Main.class.getResource("Main.class").toString();
             File tempFile = File.createTempFile("jresume", "resource");
             tempFile.delete();
@@ -119,9 +119,5 @@ public class Main {
             InputStream inputStream = url.openStream();
             Files.copy(inputStream, tempFile.toPath());
             Runtime.unzipResourceZip(tempFile.getAbsolutePath());
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
-
     }
 }
