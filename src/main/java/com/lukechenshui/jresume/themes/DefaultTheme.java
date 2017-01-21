@@ -39,7 +39,8 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag jquery = script().withSrc(getResource("jquery-3.1.1.min.js"));
         ContainerTag ratingSemanticJSComponent = script().withSrc(getResource("semantic/dist/components/rating.min.js"));
         ContainerTag initializeRating = script().withType("text/javascript").withText("$(document).ready(function(){$('.rating').rating('disable');});");
-        ContainerTag regularSizeTextCSS = style().withText(".regularText{font-size:14px;}");
+        ContainerTag regularSizeTextCSS = style().withText(".regularText{font-size:12px;}");
+        ContainerTag noSpacingCSS = style().withText(".noSpacing{padding:0px !important;margin:0px !important;}");
         children.add(jquery);
         children.add(firstSemanticUI);
         children.add(secondSemanticUI);
@@ -47,6 +48,7 @@ public class DefaultTheme extends BaseTheme {
         children.add(ratingSemanticCSSComponent);
         children.add(initializeRating);
         children.add(regularSizeTextCSS);
+        children.add(noSpacingCSS);
 
 
         if (person != null && person.getName() != null) {
@@ -62,43 +64,43 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected ContainerTag generatePerson() {
-        ContainerTag personHtml = div().withId("person").withClass("ui very padded text  container");
+        ContainerTag personHtml = div().withId("person").withClass("ui text container");
         ArrayList<Tag> children = new ArrayList<>();
         Person person = resumeBeingOperatedOn.getPerson();
         children.add(person.checkForAndGeneratePrecedingLineBreaks());
         if (person != null) {
             if (person.getName() != null) {
-                children.add(h1(person.getName()).withClass("ui header centered"));
+                children.add(h2(person.getName()).withClass("ui header centered noSpacing"));
             }
             if (person.getJobTitle() != null) {
-                children.add(h3(person.getJobTitle()).withClass("ui header centered"));
-                children.add(br());
+                children.add(h4(person.getJobTitle()).withClass("ui header centered noSpacing"));
+                //children.add(br());
             }
 
             ValueConverters converter = ValueConverters.ENGLISH_INTEGER;
             String numberOfPersonalDetailsColumns = converter.asWords(resumeBeingOperatedOn.getNumPersonalDetailsColumns());
 
-            ContainerTag centeredGrid = div().withClass("ui grid " + numberOfPersonalDetailsColumns + " column centered");
+            ContainerTag centeredGrid = div().withClass("ui grid " + numberOfPersonalDetailsColumns + " column centered noSpacing");
 
 
             if (person.getAddress() != null) {
-                ContainerTag address = div().withText(person.getAddress()).withClass("ui center aligned column regularText");
+                ContainerTag address = div().withText(person.getAddress()).withClass("ui center aligned column regularText noSpacing");
                 centeredGrid.with(address);
             }
 
             if (person.getEmail() != null) {
-                ContainerTag email = div().withText(person.getEmail()).withClass("ui center aligned column regularText");
+                ContainerTag email = div().withText(person.getEmail()).withClass("ui center aligned column regularText noSpacing");
                 centeredGrid.with(email);
             }
 
             if (person.getPhoneNumber() != null) {
-                ContainerTag phoneNumber = div().withText(person.getPhoneNumber()).withClass("ui center aligned column regularText");
+                ContainerTag phoneNumber = div().withText(person.getPhoneNumber()).withClass("ui center aligned column regularText noSpacing");
                 centeredGrid.with(phoneNumber);
             }
 
             if (person.getWebsite() != null) {
                 ContainerTag address = a(person.getWebsite())
-                        .withHref(person.getWebsite()).withTarget("_blank").withClass("ui center aligned column regularText");
+                        .withHref(person.getWebsite()).withTarget("_blank").withClass("ui center aligned column regularText noSpacing");
                 centeredGrid.with(address);
             }
             children.add(centeredGrid);
@@ -111,7 +113,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected ContainerTag generateJobWork() {
-        ContainerTag workHtml = div().withId("work").withClass("ui very padded text  container");
+        ContainerTag workHtml = div().withId("work").withClass("ui text container noSpacing");
 
         ArrayList<Tag> workChildren = new ArrayList<>();
         ArrayList<Tag> workItemsChildren = new ArrayList<>();
@@ -120,9 +122,9 @@ public class DefaultTheme extends BaseTheme {
         if (resumeBeingOperatedOn != null && jobWork != null) {
             if (jobWork.size() > 0) {
                 if (StringUtils.isNotBlank(resumeBeingOperatedOn.getJobWorkHeading())) {
-                    workChildren.add(h2(resumeBeingOperatedOn.getJobWorkHeading()).withClass("ui header centered"));
+                    workChildren.add(h3(resumeBeingOperatedOn.getJobWorkHeading()).withClass("noSpacing ui header centered"));
                 } else {
-                    workChildren.add(h2("Work Experience").withClass("ui header centered"));
+                    workChildren.add(h3("Work Experience").withClass("noSpacing ui header centered"));
                 }
 
             }
@@ -131,10 +133,10 @@ public class DefaultTheme extends BaseTheme {
             for (JobWork work : jobWork) {
 
                 workChildren.add(work.checkForAndGeneratePrecedingLineBreaks());
-                ContainerTag content = div().withClass("ui content");
+                ContainerTag content = div().withClass("noSpacing ui content");
 
                 if (work.getCompany() != null) {
-                    ContainerTag companyName = div().withClass("ui header").withText(work.getCompany());
+                    ContainerTag companyName = div().withClass("noSpacing ui header").withText(work.getCompany());
                     content.with(companyName);
                 }
 
@@ -163,15 +165,15 @@ public class DefaultTheme extends BaseTheme {
                 }
 
                 if (work.getSummary() != null) {
-                    ContainerTag summary = div().withText(work.getSummary()).withClass("regularText");
+                    ContainerTag summary = div().withText(work.getSummary()).withClass("noSpacing regularText");
                     content.with(summary);
                 }
 
                 if (work.getHighlights() != null && work.getHighlights().size() > 0) {
-                    ContainerTag highlightHeading = h4("Highlights").withClass("ui header");
+                    ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("ui bulleted list");
+                    ContainerTag highlights = div().withClass("noSpacing ui horizontal bulleted list");
                     for (String highlight : work.getHighlights()) {
                         ContainerTag item = div().withText(highlight).withClass("ui item regularText");
                         highlights.with(item);
@@ -201,7 +203,7 @@ public class DefaultTheme extends BaseTheme {
     }
 
     protected ContainerTag generateVolunteerWork() {
-        ContainerTag workHtml = div().withId("volunteerWork").withClass("ui very padded text  container");
+        ContainerTag workHtml = div().withId("volunteerWork").withClass("noSpacing ui very padded text  container");
 
         ArrayList<Tag> workChildren = new ArrayList<>();
         ArrayList<Tag> workItemsChildren = new ArrayList<>();
@@ -210,9 +212,9 @@ public class DefaultTheme extends BaseTheme {
         if (resumeBeingOperatedOn != null && volunteerWork != null) {
             if (volunteerWork.size() > 0) {
                 if (StringUtils.isNoneEmpty(resumeBeingOperatedOn.getVolunteerWorkHeading())) {
-                    workChildren.add(h2(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("ui header centered"));
+                    workChildren.add(h3(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("noSpacing ui header centered"));
                 } else {
-                    workChildren.add(h2("Volunteer Work Experience").withClass("ui header centered"));
+                    workChildren.add(h3("Volunteer Work Experience").withClass("noSpacing ui header centered"));
                 }
             }
 
@@ -220,10 +222,10 @@ public class DefaultTheme extends BaseTheme {
             for (VolunteerWork work : volunteerWork) {
                 workChildren.add(work.checkForAndGeneratePrecedingLineBreaks());
 
-                ContainerTag content = div().withClass("ui content");
+                ContainerTag content = div().withClass("noSpacing ui content");
 
                 if (work.getCompany() != null) {
-                    ContainerTag companyName = div().withClass("ui header").withText(work.getCompany());
+                    ContainerTag companyName = div().withClass("noSpacing ui header").withText(work.getCompany());
                     content.with(companyName);
                 }
 
@@ -252,15 +254,15 @@ public class DefaultTheme extends BaseTheme {
                 }
 
                 if (work.getSummary() != null) {
-                    ContainerTag summary = div().withText(work.getSummary()).withClass("regularText");
+                    ContainerTag summary = div().withText(work.getSummary()).withClass("noSpacing regularText");
                     content.with(summary);
                 }
 
                 if (work.getHighlights() != null && work.getHighlights().size() > 0) {
-                    ContainerTag highlightHeading = h4("Highlights").withClass("ui header");
+                    ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("ui bulleted list");
+                    ContainerTag highlights = div().withClass("noSpacing ui horizontal bulleted list");
                     for (String highlight : work.getHighlights()) {
                         ContainerTag item = div().withText(highlight).withClass("ui item regularText");
                         highlights.with(item);
@@ -289,35 +291,35 @@ public class DefaultTheme extends BaseTheme {
     }
 
     public ContainerTag generateSkills() {
-        ContainerTag skills = div().withId("skills").withClass("ui very padded text  container");
+        ContainerTag skills = div().withId("skills").withClass("noSpacing ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         ValueConverters converter = ValueConverters.ENGLISH_INTEGER;
         String numberOfSkillColumns = converter.asWords(resumeBeingOperatedOn.getNumSkillColumns());
-        ContainerTag list = div().withClass("ui " + numberOfSkillColumns + " column grid  container relaxed centered");
+        ContainerTag list = div().withClass("noSpacing ui " + numberOfSkillColumns + " column grid  container relaxed centered");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getSkillsHeading())){
-                children.add(h2(resumeBeingOperatedOn.getSkillsHeading()).withClass("ui header centered"));
+                children.add(h3(resumeBeingOperatedOn.getSkillsHeading()).withClass("noSpacing ui header centered"));
             }  else{
-                children.add(h2("Skills").withClass("ui header centered"));
+                children.add(h3("Skills").withClass("noSpacing ui header centered"));
             }
 
         }
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
-            ContainerTag skillItem = div().withClass("ui center aligned column");
+            ContainerTag skillItem = div().withClass("noSpacing ui center aligned column");
             list.with(skill.checkForAndGeneratePrecedingLineBreaks());
             if (skill.getName() != null) {
                 String text = skill.getName();
                 if (skill.getCompetence() != null) {
                     text += " - " + skill.getCompetence();
                 }
-                ContainerTag skillContent = div().withText(text).withClass("content centered");
+                ContainerTag skillContent = div().withText(text).withClass("noSpacing content centered");
                 skillItem.with(skillContent);
             }
 
             if (skill.getCompetence() != null) {
-                ContainerTag skillRating = div().withClass("ui rating").attr("data-max-rating", "5");
+                ContainerTag skillRating = div().withClass("noSpacing ui rating").attr("data-max-rating", "5");
 
                 String competence = skill.getCompetence();
 
@@ -350,42 +352,42 @@ public class DefaultTheme extends BaseTheme {
     }
 
     public ContainerTag generateProjects() {
-        ContainerTag projects = div().withId("projects").withClass("ui very padded text  container");
+        ContainerTag projects = div().withId("projects").withClass("noSpacing ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
 
         if (resumeBeingOperatedOn.getProjects().size() > 0) {
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getProjectsHeading())){
-                children.add(h2(resumeBeingOperatedOn.getProjectsHeading()).withClass("ui header centered"));
+                children.add(h3(resumeBeingOperatedOn.getProjectsHeading()).withClass("noSpacing ui header centered"));
             }   else {
-                children.add(h2("Projects").withClass("ui header centered"));
+                children.add(h3("Projects").withClass("noSpacing ui header centered"));
             }
         }
 
         for (Project project : resumeBeingOperatedOn.getProjects()) {
             children.add(project.checkForAndGeneratePrecedingLineBreaks());
-            ContainerTag content = div().withClass("ui content");
+            ContainerTag content = div().withClass("noSpacing ui content");
 
             if (project.getName() != null) {
-                ContainerTag projectName = div().withClass("ui header").withText(project.getName());
+                ContainerTag projectName = div().withClass("noSpacing ui header").withText(project.getName());
                 content.with(projectName);
             }
 
             if (project.getUrl() != null) {
-                ContainerTag projectURL = a(project.getUrl()).withClass("ui").withHref(project.getUrl());
+                ContainerTag projectURL = a(project.getUrl()).withClass("noSpacing regularText ui").withHref(project.getUrl());
                 content.with(projectURL);
             }
 
 
             if (project.getDescription() != null) {
-                ContainerTag description = div().withText(project.getDescription()).withClass("regularText");
+                ContainerTag description = div().withText(project.getDescription()).withClass("noSpacing regularText");
                 content.with(description);
             }
 
             if (project.getHighlights() != null && project.getHighlights().size() > 0) {
-                ContainerTag highlightHeading = h4("Highlights").withClass("ui header");
+                ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
                 content.with(highlightHeading);
 
-                ContainerTag highlights = div().withClass("ui bulleted list");
+                ContainerTag highlights = div().withClass("noSpacing ui horizontal bulleted list");
                 for (String highlight : project.getHighlights()) {
                     ContainerTag item = div().withText(highlight).withClass("ui item regularText");
                     highlights.with(item);
@@ -413,23 +415,23 @@ public class DefaultTheme extends BaseTheme {
 
     @Override
     protected ContainerTag generateEducation() {
-        ContainerTag educationDiv = div().withId("education").withClass("ui very padded text  container");
+        ContainerTag educationDiv = div().withId("education").withClass("noSpacing ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         Education education = resumeBeingOperatedOn.getEducation();
         children.add(education.checkForAndGeneratePrecedingLineBreaks());
 
         if(education.getExaminations() != null || education.getSchools() != null){
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getEducationHeading())){
-                children.add(h2(resumeBeingOperatedOn.getEducationHeading()).withClass("ui header centered"));
+                children.add(h3(resumeBeingOperatedOn.getEducationHeading()).withClass("noSpacing ui header centered"));
             }   else {
-                children.add(h2("Education").withClass("ui header centered"));
+                children.add(h3("Education").withClass("noSpacing ui header centered"));
             }
         }
         for(School school : education.getSchools()){
             children.add(school.checkForAndGeneratePrecedingLineBreaks());
-            ContainerTag schoolDiv = div().withClass("ui  container");
+            ContainerTag schoolDiv = div().withClass("noSpacing ui  container");
             if (school.getName() != null) {
-                ContainerTag schoolName = div().withClass("ui header").withText(school.getName());
+                ContainerTag schoolName = div().withClass("noSpacing ui header").withText(school.getName());
                 schoolDiv.with(schoolName);
             }
             if (school.getStartDate() != null || school.getEndDate() != null) {
@@ -455,8 +457,7 @@ public class DefaultTheme extends BaseTheme {
                 schoolDiv.with(gpa);
             }
             if(school.getSummary() != null){
-                schoolDiv.with(br()).with(br());
-                ContainerTag summary = div().withClass("regularText").withText(school.getSummary());
+                ContainerTag summary = div().withClass("noSpacing regularText").withText(school.getSummary());
                 schoolDiv.with(summary);
             }
             schoolDiv.with(generateExaminations(school.getExaminations()));
@@ -470,13 +471,13 @@ public class DefaultTheme extends BaseTheme {
     }
 
     private ContainerTag generateExaminations(ArrayList<Examination> examinations) {
-        ContainerTag examinationDiv = div().withClass("ui  container");
+        ContainerTag examinationDiv = div().withClass("noSpacing ui  container");
         if (examinations != null) {
             for (Examination examination : examinations) {
                 examinationDiv.with(examination.checkForAndGeneratePrecedingLineBreaks());
                 if (examination.getName() != null) {
                     examinationDiv.with(br());
-                    ContainerTag examinationName = div().withClass("ui header").withText(examination.getName());
+                    ContainerTag examinationName = div().withClass("noSpacing ui header").withText(examination.getName());
                     examinationDiv.with(examinationName);
                 }
                 if (examination.getStartDate() != null || examination.getEndDate() != null) {
@@ -497,15 +498,15 @@ public class DefaultTheme extends BaseTheme {
                     timeLine = timeLine.withText(text);
                     examinationDiv.with(timeLine);
 
-                    ContainerTag subjectDiv = div().withClass("ui two column grid centered");
+                    ContainerTag subjectDiv = div().withClass("noSpacing ui two column grid centered");
                     if (examination.getSubjects() != null) {
-                        examinationDiv.with(h4().withClass("ui header").withText("Results"));
+                        examinationDiv.with(h5().withClass("noSpacing ui header").withText("Results"));
                     }
                     for (ExaminationSubject subject : examination.getSubjects()) {
                         subjectDiv.with(subject.checkForAndGeneratePrecedingLineBreaks());
-                        ContainerTag row = div().withClass("ui row");
-                        ContainerTag subjectName = div().withClass("ui column regularText");
-                        ContainerTag subjectResult = div().withClass("ui column regularText");
+                        ContainerTag row = div().withClass("noSpacing ui row");
+                        ContainerTag subjectName = div().withClass("noSpacing ui column regularText");
+                        ContainerTag subjectResult = div().withClass("noSpacing ui column regularText");
 
                         if (subject.getName() != null) {
                             subjectName.withText(subject.getName());
