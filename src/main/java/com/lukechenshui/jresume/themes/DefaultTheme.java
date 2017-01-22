@@ -313,13 +313,13 @@ public class DefaultTheme extends BaseTheme {
         String numberOfSkillColumns = "";
 
         if(numberOfSkills % 3 == 0){
-            numberOfSkillColumns = converter.asWords(3);
+            numberOfSkillColumns = converter.asWords(6);
         }
         else if (numberOfSkills % 2 == 0) {
-            numberOfSkillColumns = converter.asWords(2);
+            numberOfSkillColumns = converter.asWords(4);
         }
         else if(numberOfSkills > 1){
-            numberOfSkillColumns = converter.asWords(3);
+            numberOfSkillColumns = converter.asWords(6);
         }
         else{
             numberOfSkillColumns = converter.asWords(1);
