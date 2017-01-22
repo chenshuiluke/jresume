@@ -553,7 +553,7 @@ public class DefaultTheme extends BaseTheme {
 
             for(String accomplishment : accomplishments){
                 ContainerTag bullet = i().withClass("ui stop icon noSpacing");
-                grid.with(div().with(bullet).withText(accomplishment).withClass("ui column content left aligned regularText noSpacing"));
+                grid.with(div().with(bullet).withText(accomplishment).withClass("ui row content left aligned regularText noSpacing"));
             }
         }
         accomplishmentsSection.with(grid);
@@ -570,7 +570,7 @@ public class DefaultTheme extends BaseTheme {
 
             for(String accomplishment : hobbies){
                 ContainerTag bullet = i().withClass("ui stop icon noSpacing");
-                grid.with(div().with(bullet).withText(accomplishment).withClass("ui column content left aligned regularText noSpacing"));
+                grid.with(div().with(bullet).withText(accomplishment).withClass("ui row content left aligned regularText noSpacing"));
             }
         }
         hobbiesSection.with(grid);
