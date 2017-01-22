@@ -20,9 +20,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import static spark.Spark.port;
-import static spark.Spark.post;
-import static spark.Spark.get;
+import static spark.Spark.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -85,6 +84,7 @@ public class Main {
     }
 
     private static void startListeningAsServer() {
+        threadPool(1);
         port(Config.getServerPort());
         post("/webresume", (request, response) -> {
             return "Hello";
