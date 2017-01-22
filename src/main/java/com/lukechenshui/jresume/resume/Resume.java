@@ -24,6 +24,8 @@ public class Resume {
     ArrayList<Project> projects;
     String projectsHeading;
     ArrayList<Skill> skills;
+    ArrayList<String> accomplishments;
+    ArrayList<String> hobbies;
     String skillsHeading;
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
@@ -154,4 +156,19 @@ public class Resume {
         this.educationHeading = educationHeading;
     }
 
+    public ArrayList<String> getAccomplishments() {
+        return accomplishments;
+    }
+
+    public void setAccomplishments(ArrayList<String> accomplishments) {
+        this.accomplishments = accomplishments;
+    }
+
+    public ArrayList<String> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(ArrayList<String> hobbies) {
+        this.hobbies = hobbies;
+    }
 }

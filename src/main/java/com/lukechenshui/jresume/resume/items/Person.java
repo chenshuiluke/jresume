@@ -10,7 +10,7 @@ public class Person extends BaseResumeItem {
     String phoneNumber;
     String email;
     String website;
-
+    String objective;
     public Person() {
     }
 
@@ -69,5 +69,13 @@ public class Person extends BaseResumeItem {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getObjective() {
+        return objective;
+    }
+
+    public void setObjective(String objective) {
+        this.objective = objective;
     }
 }

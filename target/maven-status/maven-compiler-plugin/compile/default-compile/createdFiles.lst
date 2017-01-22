@@ -12,7 +12,6 @@ com/lukechenshui/jresume/Config.class
 com/lukechenshui/jresume/resume/items/Person.class
 com/lukechenshui/jresume/resume/items/education/Education.class
 com/lukechenshui/jresume/resume/items/education/Examination.class
-com/lukechenshui/jresume/resume/items/Skill$1.class
 com/lukechenshui/jresume/resume/Resume.class
 com/lukechenshui/jresume/resume/items/Skill.class
 com/lukechenshui/jresume/resume/items/work/VolunteerWork.class
