@@ -185,9 +185,9 @@ public class DefaultTheme extends BaseTheme {
                     ContainerTag highlightHeading = h6("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("noSpacing ui equal width grid");
+                    ContainerTag highlights = div().withClass("noSpacing equal width column grid");
                     for (String highlight : work.getHighlights()) {
-                        ContainerTag bullet = i().withClass("ui stop icon");
+                        ContainerTag bullet = i().withClass("ui stop icon noSpacing");
                         ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                         highlights.with(item);
                     }
@@ -277,7 +277,7 @@ public class DefaultTheme extends BaseTheme {
 
                     ContainerTag highlights = div().withClass("noSpacing equal width column grid");
                     for (String highlight : work.getHighlights()) {
-                        ContainerTag bullet = i().withClass("ui stop icon");
+                        ContainerTag bullet = i().withClass("ui stop icon noSpacing");
                         ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                         highlights.with(item);
                     }
@@ -340,7 +340,7 @@ public class DefaultTheme extends BaseTheme {
             ContainerTag skillItem = div().withClass("noSpacing ui left aligned column");
             if (skill.getName() != null) {
                 String text = skill.getName();
-                ContainerTag bullet = i().withClass("ui stop icon");
+                ContainerTag bullet = i().withClass("ui stop icon noSpacing");
                 ContainerTag skillContent = div().with(bullet).withText(text).withClass("noSpacing content centered regularText");
                 skillItem.with(skillContent);
             }
@@ -390,8 +390,8 @@ public class DefaultTheme extends BaseTheme {
 
                 ContainerTag highlights = div().withClass("noSpacing ui equal width grid");
                 for (String highlight : project.getHighlights()) {
-                    ContainerTag bullet = i().withClass("ui stop icon");
-                    ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
+                    ContainerTag bullet = i().withClass("ui stop icon noSpacing");
+                    ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText noSpacing");
                     highlights.with(item);
                 }
                 content.with(highlights);
@@ -549,10 +549,10 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag grid = div().withClass("noSpacing ui container equal width grid");
         if(resumeBeingOperatedOn.getAccomplishments() != null && resumeBeingOperatedOn.getAccomplishments().size() > 0){
             ArrayList<String> accomplishments = resumeBeingOperatedOn.getAccomplishments();
-            accomplishmentsSection.with(h5().withClass("ui centered header").withText("Accomplishments"));
+            accomplishmentsSection.with(h5().withClass("ui centered header noSpacing").withText("Accomplishments"));
 
             for(String accomplishment : accomplishments){
-                ContainerTag bullet = i().withClass("ui stop icon");
+                ContainerTag bullet = i().withClass("ui stop icon noSpacing");
                 grid.with(div().with(bullet).withText(accomplishment).withClass("ui column content left aligned regularText noSpacing"));
             }
         }
@@ -566,10 +566,10 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag grid = div().withClass("noSpacing ui container equal width grid");
         if(resumeBeingOperatedOn.getHobbies() != null && resumeBeingOperatedOn.getHobbies().size() > 0){
             ArrayList<String> hobbies = resumeBeingOperatedOn.getHobbies();
-            hobbiesSection.with(h5().withClass("ui centered header").withText("Hobbies"));
+            hobbiesSection.with(h5().withClass("ui centered header noSpacing").withText("Hobbies"));
 
             for(String accomplishment : hobbies){
-                ContainerTag bullet = i().withClass("ui stop icon");
+                ContainerTag bullet = i().withClass("ui stop icon noSpacing");
                 grid.with(div().with(bullet).withText(accomplishment).withClass("ui column content left aligned regularText noSpacing"));
             }
         }
