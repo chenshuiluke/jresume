@@ -20,6 +20,7 @@
     <orderEntry type="library" name="tradukisto-0.5.2-SNAPSHOT-all" level="project" />
     <orderEntry type="library" name="ant-1.8.2" level="project" />
     <orderEntry type="library" name="jtidy-r938" level="project" />
+    <orderEntry type="library" name="com.sparkjava:spark-core:2.5.4" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
@@ -55,6 +56,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty.websocket:websocket-client:9.3.6.v20151106" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty.websocket:websocket-servlet:9.3.6.v20151106" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty.websocket:websocket-api:9.3.6.v20151106" level="project" />
-    <orderEntry type="library" name="com.sparkjava:spark-core:2.5.4" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.21" level="project" />
   </component>
 </module>
