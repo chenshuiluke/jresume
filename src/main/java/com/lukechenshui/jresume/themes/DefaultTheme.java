@@ -70,10 +70,10 @@ public class DefaultTheme extends BaseTheme {
         children.add(person.checkForAndGeneratePrecedingLineBreaks());
         if (person != null) {
             if (person.getName() != null) {
-                children.add(h2(person.getName()).withClass("ui header centered noSpacing"));
+                children.add(h3(person.getName()).withClass("ui header centered noSpacing"));
             }
             if (person.getJobTitle() != null) {
-                children.add(h4(person.getJobTitle()).withClass("ui header centered noSpacing"));
+                children.add(h5(person.getJobTitle()).withClass("ui header centered noSpacing"));
                 //children.add(br());
             }
 
@@ -104,6 +104,18 @@ public class DefaultTheme extends BaseTheme {
                 centeredGrid.with(address);
             }
             children.add(centeredGrid);
+
+            children.add(br());
+
+            if(person.getObjective() != null){
+                ContainerTag objectiveSection = div().withId("objective").withClass("ui text container");
+                String objective = person.getObjective();
+                if(objective != null){
+                    objectiveSection.with(h5().withClass("ui centered header").withText("Objective"));
+                    objectiveSection.with(p(objective).withClass("regularText noSpacing"));
+                }
+                children.add(objectiveSection);
+            }
         }
         children.add(person.checkForAndGenerateFollowingLineBreaks());
 
@@ -122,9 +134,9 @@ public class DefaultTheme extends BaseTheme {
         if (resumeBeingOperatedOn != null && jobWork != null) {
             if (jobWork.size() > 0) {
                 if (StringUtils.isNotBlank(resumeBeingOperatedOn.getJobWorkHeading())) {
-                    workChildren.add(h3(resumeBeingOperatedOn.getJobWorkHeading()).withClass("noSpacing ui header centered"));
+                    workChildren.add(h4(resumeBeingOperatedOn.getJobWorkHeading()).withClass("noSpacing ui header centered"));
                 } else {
-                    workChildren.add(h3("Work Experience").withClass("noSpacing ui header centered"));
+                    workChildren.add(h4("Work Experience").withClass("noSpacing ui header centered"));
                 }
 
             }
@@ -136,7 +148,7 @@ public class DefaultTheme extends BaseTheme {
                 ContainerTag content = div().withClass("noSpacing ui content");
 
                 if (work.getCompany() != null) {
-                    ContainerTag companyName = div().withClass("noSpacing ui header").withText(work.getCompany());
+                    ContainerTag companyName = h5().withClass("noSpacing ui header").withText(work.getCompany());
                     content.with(companyName);
                 }
 
@@ -170,10 +182,10 @@ public class DefaultTheme extends BaseTheme {
                 }
 
                 if (work.getHighlights() != null && work.getHighlights().size() > 0) {
-                    ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
+                    ContainerTag highlightHeading = h6("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("noSpacing ui two column grid");
+                    ContainerTag highlights = div().withClass("noSpacing ui equal width grid");
                     for (String highlight : work.getHighlights()) {
                         ContainerTag bullet = i().withClass("ui stop icon");
                         ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
@@ -213,9 +225,9 @@ public class DefaultTheme extends BaseTheme {
         if (resumeBeingOperatedOn != null && volunteerWork != null) {
             if (volunteerWork.size() > 0) {
                 if (StringUtils.isNoneEmpty(resumeBeingOperatedOn.getVolunteerWorkHeading())) {
-                    workChildren.add(h3(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("noSpacing ui header centered"));
+                    workChildren.add(h4(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("noSpacing ui header centered"));
                 } else {
-                    workChildren.add(h3("Volunteer Work Experience").withClass("noSpacing ui header centered"));
+                    workChildren.add(h4("Volunteer Work Experience").withClass("noSpacing ui header centered"));
                 }
             }
 
@@ -226,7 +238,7 @@ public class DefaultTheme extends BaseTheme {
                 ContainerTag content = div().withClass("noSpacing ui content");
 
                 if (work.getCompany() != null) {
-                    ContainerTag companyName = div().withClass("noSpacing ui header").withText(work.getCompany());
+                    ContainerTag companyName = h5().withClass("noSpacing ui header").withText(work.getCompany());
                     content.with(companyName);
                 }
 
@@ -260,10 +272,10 @@ public class DefaultTheme extends BaseTheme {
                 }
 
                 if (work.getHighlights() != null && work.getHighlights().size() > 0) {
-                    ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
+                    ContainerTag highlightHeading = h6("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("noSpacing ui two column grid");
+                    ContainerTag highlights = div().withClass("noSpacing equal width column grid");
                     for (String highlight : work.getHighlights()) {
                         ContainerTag bullet = i().withClass("ui stop icon");
                         ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
@@ -300,34 +312,40 @@ public class DefaultTheme extends BaseTheme {
 
         String numberOfSkillColumns = "";
 
-        if (numberOfSkills % 2 == 0) {
-            numberOfSkillColumns = converter.asWords(2);
-        } else {
+        if(numberOfSkills % 3 == 0){
             numberOfSkillColumns = converter.asWords(3);
         }
+        else if (numberOfSkills % 2 == 0) {
+            numberOfSkillColumns = converter.asWords(2);
+        }
+        else if(numberOfSkills > 1){
+            numberOfSkillColumns = converter.asWords(3);
+        }
+        else{
+            numberOfSkillColumns = converter.asWords(1);
+        }
 
-        ContainerTag list = div().withClass("noSpacing ui equal width grid  container centered");
+        ContainerTag list = div().withClass("noSpacing ui " +numberOfSkillColumns + " column grid  container centered");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getSkillsHeading())){
-                children.add(h3(resumeBeingOperatedOn.getSkillsHeading()).withClass("noSpacing ui header centered"));
+                children.add(h4(resumeBeingOperatedOn.getSkillsHeading()).withClass("noSpacing ui header centered"));
             }  else{
-                children.add(h3("Skills").withClass("noSpacing ui header centered"));
+                children.add(h4("Skills").withClass("noSpacing ui header centered"));
             }
 
         }
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
-            ContainerTag skillItem = div().withClass("noSpacing ui center aligned column");
-            list.with(skill.checkForAndGeneratePrecedingLineBreaks());
+            ContainerTag skillItem = div().withClass("noSpacing ui left aligned column");
             if (skill.getName() != null) {
                 String text = skill.getName();
-                ContainerTag skillContent = div().withText(text).withClass("noSpacing content centered regularText");
+                ContainerTag bullet = i().withClass("ui stop icon");
+                ContainerTag skillContent = div().with(bullet).withText(text).withClass("noSpacing content centered regularText");
                 skillItem.with(skillContent);
             }
 
             list.with(skillItem);
-            list.with(skill.checkForAndGenerateFollowingLineBreaks());
         }
         children.add(list);
         skills.with(children);
@@ -340,9 +358,9 @@ public class DefaultTheme extends BaseTheme {
 
         if (resumeBeingOperatedOn.getProjects().size() > 0) {
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getProjectsHeading())){
-                children.add(h3(resumeBeingOperatedOn.getProjectsHeading()).withClass("noSpacing ui header centered"));
+                children.add(h4(resumeBeingOperatedOn.getProjectsHeading()).withClass("noSpacing ui header centered"));
             }   else {
-                children.add(h3("Projects").withClass("noSpacing ui header centered"));
+                children.add(h4("Projects").withClass("noSpacing ui header centered"));
             }
         }
 
@@ -351,7 +369,7 @@ public class DefaultTheme extends BaseTheme {
             ContainerTag content = div().withClass("noSpacing ui content");
 
             if (project.getName() != null) {
-                ContainerTag projectName = div().withClass("noSpacing ui header").withText(project.getName());
+                ContainerTag projectName = h5().withClass("noSpacing ui header").withText(project.getName());
                 content.with(projectName);
             }
 
@@ -367,10 +385,10 @@ public class DefaultTheme extends BaseTheme {
             }
 
             if (project.getHighlights() != null && project.getHighlights().size() > 0) {
-                ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
+                ContainerTag highlightHeading = h6("Highlights").withClass("noSpacing ui header");
                 content.with(highlightHeading);
 
-                ContainerTag highlights = div().withClass("noSpacing ui two column grid");
+                ContainerTag highlights = div().withClass("noSpacing ui equal width grid");
                 for (String highlight : project.getHighlights()) {
                     ContainerTag bullet = i().withClass("ui stop icon");
                     ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
@@ -406,16 +424,16 @@ public class DefaultTheme extends BaseTheme {
 
         if(education.getExaminations() != null || education.getSchools() != null){
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getEducationHeading())){
-                children.add(h3(resumeBeingOperatedOn.getEducationHeading()).withClass("noSpacing ui header centered"));
+                children.add(h4(resumeBeingOperatedOn.getEducationHeading()).withClass("noSpacing ui header centered"));
             }   else {
-                children.add(h3("Education").withClass("noSpacing ui header centered"));
+                children.add(h4("Education").withClass("noSpacing ui header centered"));
             }
         }
         for(School school : education.getSchools()){
             children.add(school.checkForAndGeneratePrecedingLineBreaks());
             ContainerTag schoolDiv = div().withClass("noSpacing ui  container");
             if (school.getName() != null) {
-                ContainerTag schoolName = div().withClass("noSpacing ui header").withText(school.getName());
+                ContainerTag schoolName = h5().withClass("noSpacing ui header").withText(school.getName());
                 schoolDiv.with(schoolName);
             }
             if (school.getStartDate() != null || school.getEndDate() != null) {
@@ -461,7 +479,7 @@ public class DefaultTheme extends BaseTheme {
                 examinationDiv.with(examination.checkForAndGeneratePrecedingLineBreaks());
                 if (examination.getName() != null) {
                     examinationDiv.with(br());
-                    ContainerTag examinationName = div().withClass("noSpacing ui header").withText(examination.getName());
+                    ContainerTag examinationName = h5().withClass("noSpacing ui header").withText(examination.getName());
                     examinationDiv.with(examinationName);
                 }
                 if (examination.getStartDate() != null || examination.getEndDate() != null) {
@@ -482,9 +500,9 @@ public class DefaultTheme extends BaseTheme {
                     timeLine = timeLine.withText(text);
                     examinationDiv.with(timeLine);
 
-                    ContainerTag subjectDiv = div().withClass("noSpacing ui two column grid centered");
+                    ContainerTag subjectDiv = div().withClass("noSpacing ui equal width grid centered");
                     if (examination.getSubjects() != null) {
-                        examinationDiv.with(h5().withClass("noSpacing ui header").withText("Results"));
+                        examinationDiv.with(h6().withClass("noSpacing ui header").withText("Results"));
                     }
                     for (ExaminationSubject subject : examination.getSubjects()) {
                         subjectDiv.with(subject.checkForAndGeneratePrecedingLineBreaks());
@@ -525,5 +543,37 @@ public class DefaultTheme extends BaseTheme {
         return htmlString;
     }
 
+    @Override
+    protected ContainerTag generateAccomplishments() {
+        ContainerTag accomplishmentsSection = div().withId("accomplishments").withClass("ui container centered text");
+        ContainerTag grid = div().withClass("noSpacing ui container equal width grid");
+        if(resumeBeingOperatedOn.getAccomplishments() != null && resumeBeingOperatedOn.getAccomplishments().size() > 0){
+            ArrayList<String> accomplishments = resumeBeingOperatedOn.getAccomplishments();
+            accomplishmentsSection.with(h5().withClass("ui centered header").withText("Accomplishments"));
 
+            for(String accomplishment : accomplishments){
+                ContainerTag bullet = i().withClass("ui stop icon");
+                grid.with(div().with(bullet).withText(accomplishment).withClass("ui column content left aligned regularText noSpacing"));
+            }
+        }
+        accomplishmentsSection.with(grid);
+        return accomplishmentsSection;
+    }
+
+    @Override
+    protected ContainerTag generateHobbies() {
+        ContainerTag hobbiesSection = div().withId("hobbies").withClass("ui container centered text");
+        ContainerTag grid = div().withClass("noSpacing ui container equal width grid");
+        if(resumeBeingOperatedOn.getHobbies() != null && resumeBeingOperatedOn.getHobbies().size() > 0){
+            ArrayList<String> hobbies = resumeBeingOperatedOn.getHobbies();
+            hobbiesSection.with(h5().withClass("ui centered header").withText("Hobbies"));
+
+            for(String accomplishment : hobbies){
+                ContainerTag bullet = i().withClass("ui stop icon");
+                grid.with(div().with(bullet).withText(accomplishment).withClass("ui column content left aligned regularText noSpacing"));
+            }
+        }
+        hobbiesSection.with(grid);
+        return hobbiesSection;
+    }
 }

@@ -162,4 +162,14 @@ public class BasicExampleTheme extends BaseTheme {
         education.with(children);
         return education;
     }
+
+    @Override
+    protected ContainerTag generateAccomplishments() {
+        return div().withId("accomplishments");
+    }
+
+    @Override
+    protected ContainerTag generateHobbies() {
+        return div().withId("hobbies");
+    }
 }
