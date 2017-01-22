@@ -16,6 +16,8 @@ public class Config {
     static String themeName = "default";
     @Parameter(names = {"--server-mode", "-s"}, description = "Launches JResume in server mode.")
     static boolean serverMode = false;
+    @Parameter(names = {"--server-port", "-sp"}, description = "The port that JResume will listen to when in server mode.")
+    static int serverPort = 8080;
     /*If the serverMode parameter is present then --input can be set to anything as it's only important if
       JResume is not running as a server
     */
@@ -66,5 +68,21 @@ public class Config {
 
     public static void setInputFileName(String inputFileName) {
         Config.inputFileName = inputFileName;
+    }
+
+    public static boolean isServerMode() {
+        return serverMode;
+    }
+
+    public static void setServerMode(boolean serverMode) {
+        Config.serverMode = serverMode;
+    }
+
+    public static int getServerPort() {
+        return serverPort;
+    }
+
+    public static void setServerPort(int serverPort) {
+        Config.serverPort = serverPort;
     }
 }
