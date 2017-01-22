@@ -20,6 +20,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import static spark.Spark.port;
+import static spark.Spark.post;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -27,51 +30,11 @@ public class Main {
         Config config = new Config();
         new JCommander(config, args);
         //createExample();
-        String jsonResumePath = Config.getInputFileName();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = "";
 
-        try {
-            copyResourcesZip();
-            if (!Files.exists(Paths.get("output"))) {
-                Files.createDirectory(Paths.get("output"));
-            }
-
-            Scanner reader = new Scanner(new File(jsonResumePath));
-            FileWriter writer = new FileWriter(Runtime.getOutputHtmlFile(), false);
-            while (reader.hasNextLine()) {
-                json += reader.nextLine();
-                json += "\n";
-            }
-            reader.close();
-            //System.out.println(json);
-            Resume resume = gson.fromJson(json, Resume.class);
-
-            JsonParser parser = new JsonParser();
-            JsonObject obj = parser.parse(json).getAsJsonObject();
-            resume.setJsonObject(obj);
-
-            BaseTheme theme = Config.getThemeHashMap().get(Config.getThemeName());
-            String html = theme.generate(resume);
-
-            Tidy tidy = new Tidy();
-            tidy.setIndentContent(true);
-            tidy.setShowWarnings(false);
-            tidy.setQuiet(true);
-            tidy.setTrimEmptyElements(false);
-
-            StringReader htmlStringReader = new StringReader(html);
-            StringWriter htmlStringWriter = new StringWriter();
-            tidy.parseDOM(htmlStringReader, htmlStringWriter);
-            html = htmlStringWriter.toString();
-            writer.write(html);
-
-            //System.out.println(html);
-
-            System.out.println("Success! You can find your resume at " + Runtime.getOutputHtmlFile().getAbsolutePath());
-            writer.close();
-        } catch (Exception exc) {
-            exc.printStackTrace();
+        if (Config.serverMode) {
+            startListeningAsServer();
+        } else {
+            generateWebResumeFromJSONFile();
         }
         //createExample();
     }
@@ -119,5 +82,61 @@ public class Main {
             InputStream inputStream = url.openStream();
             Files.copy(inputStream, tempFile.toPath());
             Runtime.unzipResourceZip(tempFile.getAbsolutePath());
+    }
+
+    private static void startListeningAsServer() {
+        port(8080);
+        post("/webresume", (request, response) -> {
+            return "Hello";
+        });
+    }
+
+    private static void generateWebResumeFromJSONFile() {
+        String jsonResumePath = Config.getInputFileName();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = "";
+
+        try {
+            copyResourcesZip();
+            if (!Files.exists(Paths.get("output"))) {
+                Files.createDirectory(Paths.get("output"));
+            }
+
+            Scanner reader = new Scanner(new File(jsonResumePath));
+            FileWriter writer = new FileWriter(Runtime.getOutputHtmlFile(), false);
+            while (reader.hasNextLine()) {
+                json += reader.nextLine();
+                json += "\n";
+            }
+            reader.close();
+            //System.out.println(json);
+            Resume resume = gson.fromJson(json, Resume.class);
+
+            JsonParser parser = new JsonParser();
+            JsonObject obj = parser.parse(json).getAsJsonObject();
+            resume.setJsonObject(obj);
+
+            BaseTheme theme = Config.getThemeHashMap().get(Config.getThemeName());
+            String html = theme.generate(resume);
+
+            Tidy tidy = new Tidy();
+            tidy.setIndentContent(true);
+            tidy.setShowWarnings(false);
+            tidy.setQuiet(true);
+            tidy.setTrimEmptyElements(false);
+
+            StringReader htmlStringReader = new StringReader(html);
+            StringWriter htmlStringWriter = new StringWriter();
+            tidy.parseDOM(htmlStringReader, htmlStringWriter);
+            html = htmlStringWriter.toString();
+            writer.write(html);
+
+            //System.out.println(html);
+
+            System.out.println("Success! You can find your resume at " + Runtime.getOutputHtmlFile().getAbsolutePath());
+            writer.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
     }
 }

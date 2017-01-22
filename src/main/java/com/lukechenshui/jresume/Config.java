@@ -14,8 +14,14 @@ public class Config {
     static String outputDirectory = "output";
     @Parameter(names = {"--theme", "-t"}, description = "The theme to use.", validateWith = ThemeNameValidator.class)
     static String themeName = "default";
+    @Parameter(names = {"--server-mode", "-s"}, description = "Launches JResume in server mode.")
+    static boolean serverMode = false;
+    /*If the serverMode parameter is present then --input can be set to anything as it's only important if
+      JResume is not running as a server
+    */
     @Parameter(names = {"--input", "-i"}, description = "The location of the input file.", required = true)
     static String inputFileName;
+
 
     private static HashMap<String, BaseTheme> themeHashMap = new HashMap<String, BaseTheme>();
 
