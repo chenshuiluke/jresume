@@ -5,8 +5,7 @@ node {
         archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
     }
     stage('Deploy'){
-        sh 'pkill jresume-1.0-SNAPSHOT-jar-with-dependencies.jar'
-        sh 'cd target'
-        sh 'java -jar jresume-1.0-SNAPSHOT-jar-with-dependencies.jar &'
+        sh 'chmod +x jenkins_redeploy_script.sh'
+        sh './jenkins_redeploy_script.sh'
     }
 }
