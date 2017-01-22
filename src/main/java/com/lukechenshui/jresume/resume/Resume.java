@@ -25,7 +25,6 @@ public class Resume {
     String projectsHeading;
     ArrayList<Skill> skills;
     String skillsHeading;
-    int numSkillColumns = 2;
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
     public Resume() {
@@ -129,14 +128,6 @@ public class Resume {
 
     public void setJsonObject(JsonObject jsonObject) {
         this.jsonObject = jsonObject;
-    }
-
-    public int getNumSkillColumns() {
-        return numSkillColumns;
-    }
-
-    public void setNumSkillColumns(int numSkillColumns) {
-        this.numSkillColumns = numSkillColumns;
     }
 
     public int getNumPersonalDetailsColumns() {
