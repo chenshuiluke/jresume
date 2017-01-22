@@ -22,7 +22,7 @@ import java.util.Scanner;
 
 import static spark.Spark.port;
 import static spark.Spark.post;
-
+import static spark.Spark.get;
 public class Main {
 
     public static void main(String[] args) {
@@ -85,9 +85,12 @@ public class Main {
     }
 
     private static void startListeningAsServer() {
-        port(8080);
+        port(Config.getServerPort());
         post("/webresume", (request, response) -> {
             return "Hello";
+        });
+        get("/", (request, response) -> {
+            return "Welcome to JResume!";
         });
     }
 
