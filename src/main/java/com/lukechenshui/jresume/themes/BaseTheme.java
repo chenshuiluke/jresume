@@ -83,6 +83,12 @@ public abstract class BaseTheme {
                     body.with(generateEducation());
                     //body.with(div().withClass("ui divider"));
                     break;
+                case "accomplishments":
+                    body.with(generateAccomplishments());
+                    break;
+                case "hobbies":
+                    body.with(generateHobbies());
+                    break;
             }
         }
         body.with(br());
@@ -112,6 +118,10 @@ public abstract class BaseTheme {
     protected abstract ContainerTag generateProjects();
 
     protected abstract ContainerTag generateEducation();
+
+    protected abstract ContainerTag generateAccomplishments();
+
+    protected abstract ContainerTag generateHobbies();
 
     protected String getResource(String fileName) {
         String dirToRemove = new File(Config.getOutputDirectory()).getAbsolutePath();
