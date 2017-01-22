@@ -84,7 +84,7 @@ public class Main {
     }
 
     private static void startListeningAsServer() {
-        threadPool(1);
+        threadPool(3);
         port(Config.getServerPort());
         post("/webresume", (request, response) -> {
             return "Hello";
