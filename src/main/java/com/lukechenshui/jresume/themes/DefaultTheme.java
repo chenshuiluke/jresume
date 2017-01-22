@@ -175,7 +175,7 @@ public class DefaultTheme extends BaseTheme {
 
                     ContainerTag highlights = div().withClass("noSpacing ui two column grid");
                     for (String highlight : work.getHighlights()) {
-                        ContainerTag bullet = i().withClass("ui radio icon");
+                        ContainerTag bullet = i().withClass("ui stop icon");
                         ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                         highlights.with(item);
                     }
@@ -265,7 +265,7 @@ public class DefaultTheme extends BaseTheme {
 
                     ContainerTag highlights = div().withClass("noSpacing ui two column grid");
                     for (String highlight : work.getHighlights()) {
-                        ContainerTag bullet = i().withClass("ui radio icon");
+                        ContainerTag bullet = i().withClass("ui stop icon");
                         ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                         highlights.with(item);
                     }
@@ -296,8 +296,17 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag skills = div().withId("skills").withClass("noSpacing ui very padded text  container");
         ArrayList<Tag> children = new ArrayList<>();
         ValueConverters converter = ValueConverters.ENGLISH_INTEGER;
-        String numberOfSkillColumns = converter.asWords(resumeBeingOperatedOn.getNumSkillColumns());
-        ContainerTag list = div().withClass("noSpacing ui " + numberOfSkillColumns + " column grid  container relaxed centered");
+        int numberOfSkills = resumeBeingOperatedOn.getSkills().size();
+
+        String numberOfSkillColumns = "";
+
+        if (numberOfSkills % 2 == 0) {
+            numberOfSkillColumns = converter.asWords(2);
+        } else {
+            numberOfSkillColumns = converter.asWords(3);
+        }
+
+        ContainerTag list = div().withClass("noSpacing ui equal width grid  container centered");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             if (StringUtils.isNotBlank(resumeBeingOperatedOn.getSkillsHeading())){
@@ -313,36 +322,8 @@ public class DefaultTheme extends BaseTheme {
             list.with(skill.checkForAndGeneratePrecedingLineBreaks());
             if (skill.getName() != null) {
                 String text = skill.getName();
-                if (skill.getCompetence() != null) {
-                    text += " - " + skill.getCompetence();
-                }
-                ContainerTag skillContent = div().withText(text).withClass("noSpacing content centered");
+                ContainerTag skillContent = div().withText(text).withClass("noSpacing content centered regularText");
                 skillItem.with(skillContent);
-            }
-
-            if (skill.getCompetence() != null) {
-                ContainerTag skillRating = div().withClass("noSpacing ui rating").attr("data-max-rating", "5");
-
-                String competence = skill.getCompetence();
-
-                switch (competence.toLowerCase()) {
-                    case "beginner":
-                        skillRating.attr("data-rating", String.valueOf(Skill.competenceToStarHashMap.get("beginner")));
-                        break;
-                    case "intermediate":
-                        skillRating.attr("data-rating", String.valueOf(Skill.competenceToStarHashMap.get("intermediate")));
-                        break;
-                    case "advanced":
-                        skillRating.attr("data-rating", String.valueOf(Skill.competenceToStarHashMap.get("advanced")));
-                        break;
-                    default:
-                        System.out.println("Skill " + skill.getName() + " has invalid competence - " +
-                                skill.getCompetence() + ". Valid competence levels" +
-                                " are beginner, intermediate and advanced.");
-                        break;
-                }
-                skillItem.with(skillRating);
-
             }
 
             list.with(skillItem);
@@ -391,7 +372,7 @@ public class DefaultTheme extends BaseTheme {
 
                 ContainerTag highlights = div().withClass("noSpacing ui two column grid");
                 for (String highlight : project.getHighlights()) {
-                    ContainerTag bullet = i().withClass("ui radio icon");
+                    ContainerTag bullet = i().withClass("ui stop icon");
                     ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                     highlights.with(item);
                 }
