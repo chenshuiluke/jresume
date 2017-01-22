@@ -173,9 +173,10 @@ public class DefaultTheme extends BaseTheme {
                     ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("noSpacing ui horizontal bulleted list");
+                    ContainerTag highlights = div().withClass("noSpacing ui two column grid");
                     for (String highlight : work.getHighlights()) {
-                        ContainerTag item = div().withText(highlight).withClass("ui item regularText");
+                        ContainerTag bullet = i().withClass("ui radio icon");
+                        ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                         highlights.with(item);
                     }
                     content.with(highlights);
@@ -262,9 +263,10 @@ public class DefaultTheme extends BaseTheme {
                     ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
                     content.with(highlightHeading);
 
-                    ContainerTag highlights = div().withClass("noSpacing ui horizontal bulleted list");
+                    ContainerTag highlights = div().withClass("noSpacing ui two column grid");
                     for (String highlight : work.getHighlights()) {
-                        ContainerTag item = div().withText(highlight).withClass("ui item regularText");
+                        ContainerTag bullet = i().withClass("ui radio icon");
+                        ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                         highlights.with(item);
                     }
                     content.with(highlights);
@@ -387,9 +389,10 @@ public class DefaultTheme extends BaseTheme {
                 ContainerTag highlightHeading = h5("Highlights").withClass("noSpacing ui header");
                 content.with(highlightHeading);
 
-                ContainerTag highlights = div().withClass("noSpacing ui horizontal bulleted list");
+                ContainerTag highlights = div().withClass("noSpacing ui two column grid");
                 for (String highlight : project.getHighlights()) {
-                    ContainerTag item = div().withText(highlight).withClass("ui item regularText");
+                    ContainerTag bullet = i().withClass("ui radio icon");
+                    ContainerTag item = div().with(bullet).withText(highlight).withClass("ui column left aligned regularText");
                     highlights.with(item);
                 }
                 content.with(highlights);
