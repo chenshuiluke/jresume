@@ -25,6 +25,10 @@
       "competence": "Intermediate"
     }
   ],
+  "accomplishments": [
+    "Team made it to the ACM-ICPC Programming Caribbean National Finals 2015.",
+    "Was the only student to complete all three phases of the Calico 2016 project."
+  ],
   "jobWork": [
     {
       "company": "Example Ltd.",
@@ -190,6 +194,9 @@
     ]
 
   },
-  "numSkillColumns": 3,
-  "numPersonalDetailsColumns": 3
+  "hobbies": [
+    "Programming",
+    "Video editing",
+    "Gaming"
+  ]
 }

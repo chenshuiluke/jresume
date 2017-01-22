@@ -1,6 +1,6 @@
 #JResume - The best JSON to HTML resume generator.
 
-![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/default_theme_at_commit_9fe766ad23a192d2f4b833eb8623d558bd4443b1.png)
+![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
 ##Example usage
 
@@ -15,7 +15,8 @@
         "address": "7 Java Drive, OOP City",
         "phoneNumber": "+1(334)567-2346",
         "jobTitle": "Software Engineer",
-        "website": "https://www.google.com"
+        "website": "https://www.google.com",
+        "objective": "Bleh bleh bleh bleh bleh bleh bleh bleh"
       },
       "skills": [
         {
@@ -32,6 +33,10 @@
           "competence": "Intermediate"
         }
       ],
+      "accomplishments": [
+        "Team made it to the ACM-ICPC Programming Caribbean National Finals 2015.",
+        "Was the only student to complete all three phases of the Calico 2016 project."
+      ],
       "jobWork": [
         {
           "company": "Example Ltd.",
@@ -41,6 +46,7 @@
           "endDate": "August 19, 2001",
           "highlights": [
             "Worked on such and such",
+            "I did such and such and such and such and such and such and such and such and such. I did such and such and such and such and such and such and such and such and such.",
             "Also worked on this"
           ],
           "keywords": [
@@ -196,10 +202,12 @@
         ]
 
       },
-      "numSkillColumns": 3,
-      "numPersonalDetailsColumns": 3
+      "hobbies": [
+        "Programming",
+        "Video editing",
+        "Gaming"
+      ]
     }
-
 ###Usage:
 
     java -jar jresume.jar --input example.json --output output --theme default
