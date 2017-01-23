@@ -14,18 +14,22 @@ import java.nio.file.Paths;
 public class Runtime {
     private  File tempDirectory;
     private File outputDirectory;
+    private int id;
 
-    public Runtime(File outputDirectory) {
+    public Runtime(File outputDirectory, int id) {
         this.outputDirectory = outputDirectory;
+        this.id = id;
     }
 
-    public Runtime(String outputDirectoryStr) {
+    public Runtime(String outputDirectoryStr, int id) {
         this.outputDirectory = new File(outputDirectoryStr);
+        this.id = id;
     }
 
     public  void unzipResourceZip(String file) {
         try {
-            tempDirectory = Files.createTempDirectory("jresume").toFile();
+            tempDirectory = new File("data/jresume-tempresource-zip-dir-" + id);
+            tempDirectory.mkdir();
             ZipFile zipFile = new ZipFile(file);
             zipFile.extractAll(tempDirectory.getPath());
 
@@ -58,5 +62,13 @@ public class Runtime {
 
     public void setOutputDirectory(File outputDirectory) {
         this.outputDirectory = outputDirectory;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
