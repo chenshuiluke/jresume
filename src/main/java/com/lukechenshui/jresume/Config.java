@@ -18,6 +18,8 @@ public class Config {
     static boolean serverMode = false;
     @Parameter(names = {"--server-port", "-sp"}, description = "The port that JResume will listen to when in server mode.")
     static int serverPort = 8080;
+    @Parameter(names = {"--max-threads", "-mt"}, description = "The maximum number of spark threads allowed.")
+    static int maxThreads = 5;
     /*If the serverMode parameter is present then --input can be set to anything as it's only important if
       JResume is not running as a server
     */
@@ -84,5 +86,13 @@ public class Config {
 
     public static void setServerPort(int serverPort) {
         Config.serverPort = serverPort;
+    }
+
+    public static int getMaxThreads() {
+        return maxThreads;
+    }
+
+    public static void setMaxThreads(int maxThreads) {
+        Config.maxThreads = maxThreads;
     }
 }
