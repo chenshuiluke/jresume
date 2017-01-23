@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.lukechenshui.jresume.exceptions.InvalidJSONException;
 import com.lukechenshui.jresume.exceptions.InvalidThemeNameException;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.Person;
@@ -15,10 +16,13 @@ import com.lukechenshui.jresume.themes.BasicExampleTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.tidy.Tidy;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -114,6 +118,7 @@ public class Main {
         port(Config.getServerPort());
         post("/webresume", (request, response) -> {
             outputPrefixNumber++;
+            String json = request.body();
 
             File outputDirectory = Files.createTempDirectory("jresume" + outputPrefixNumber + ".tmp").toFile();
             outputDirectory.deleteOnExit();
@@ -131,7 +136,8 @@ public class Main {
             rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
             OutputStream out = rawResponse.getOutputStream();
             writeFiletoOutputStreamByteByByte(outputZipFile, out);
-
+            outputZipFile.delete();
+            outputDirectory.delete();
             return rawResponse;
         });
         get("/", (request, response) -> {
@@ -140,7 +146,7 @@ public class Main {
 
         exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
-            if(!(exception instanceof InvalidThemeNameException)){
+            if (!(exception instanceof InvalidThemeNameException || exception instanceof InvalidJSONException)) {
                 stop();
                 System.exit(1);
             }
@@ -148,31 +154,38 @@ public class Main {
     }
 
     private static String generateWebResumeFromJSON(String json, Runtime runtime) throws Exception {
+        if (!isValidJSON(json)) {
+            throw new InvalidJSONException();
+        }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            copyResourcesZip(runtime);
-            if (!Files.exists(Paths.get("output"))) {
-                Files.createDirectory(Paths.get("output"));
-            }
+        copyResourcesZip(runtime);
+        if (!Files.exists(Paths.get("output"))) {
+            Files.createDirectory(Paths.get("output"));
+        }
 
 
-            //System.out.println(json);
-            Resume resume = gson.fromJson(json, Resume.class);
+        //System.out.println(json);
+        Resume resume = gson.fromJson(json, Resume.class);
 
-            JsonParser parser = new JsonParser();
-            JsonObject obj = parser.parse(json).getAsJsonObject();
-            resume.setJsonObject(obj);
+        JsonParser parser = new JsonParser();
+        JsonObject obj = parser.parse(json).getAsJsonObject();
+        resume.setJsonObject(obj);
 
-            BaseTheme theme;
-            if(resume.getThemeName() != null){
-                theme = Config.getThemeHashMap().get(resume.getThemeName());
-            }
-            else{
-                theme = Config.getThemeHashMap().get(Config.getThemeName());
-            }
-            if(theme == null){
-                throw new InvalidThemeNameException();
-            }
-            String html = theme.generate(resume);
+        BaseTheme theme;
+        if (resume.getThemeName() != null) {
+            theme = Config.getThemeHashMap().get(resume.getThemeName());
+        } else {
+            theme = Config.getThemeHashMap().get(Config.getThemeName());
+        }
+        if (theme == null) {
+            throw new InvalidThemeNameException();
+        }
+        //Duplicates the theme found so that all requests will use their own instance of each theme.
+        Class themeClass = theme.getClass();
+        Constructor themeConstructor = themeClass.getConstructor(String.class);
+        theme = (BaseTheme) themeConstructor.newInstance(theme.getThemeName());
+
+        String html = theme.generate(resume);
 
         html = prettyPrintHTML(html);
         return html;
@@ -211,6 +224,17 @@ public class Main {
         int c;
         while((c = input.read()) != -1){
             out.write(c);
+        }
+    }
+
+    private static boolean isValidJSON(String json) {
+        try {
+            JSONObject obj = new JSONObject(json);
+            return true;
+        } catch (JSONException exc) {
+            exc.printStackTrace();
+            System.out.println("Invalid JSON:" + json);
+            return false;
         }
     }
 }
