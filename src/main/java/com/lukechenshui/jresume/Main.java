@@ -227,6 +227,8 @@ public class Main {
         while((c = input.read()) != -1){
             out.write(c);
         }
+        input.close();
+        out.close();
     }
 
     private static boolean isValidJSON(String json) {
