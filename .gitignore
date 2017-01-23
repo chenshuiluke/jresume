@@ -74,3 +74,7 @@ resources/semantic.json
 !resources/semantic/dist/*
 output.html
 output/*
+
+
+*.swp
+*.swo
