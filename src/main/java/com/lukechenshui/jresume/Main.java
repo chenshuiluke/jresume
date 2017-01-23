@@ -146,10 +146,6 @@ public class Main {
 
         exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
-            if (!(exception instanceof InvalidThemeNameException || exception instanceof InvalidJSONException)) {
-                stop();
-                System.exit(1);
-            }
         });
     }
 
