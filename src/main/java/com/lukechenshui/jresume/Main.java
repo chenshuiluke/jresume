@@ -144,7 +144,7 @@ public class Main {
         get("/", (request, response) -> {
             return "Welcome to JResume!";
         });
-
+        /*
         exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
             try {
@@ -154,6 +154,7 @@ public class Main {
             }
 
         });
+        */
     }
 
     private static String generateWebResumeFromJSON(String json, Runtime runtime) throws Exception {
