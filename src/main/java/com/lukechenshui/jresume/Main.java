@@ -16,6 +16,7 @@ import com.lukechenshui.jresume.themes.BasicExampleTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
+import org.apache.commons.io.FileDeleteStrategy;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.tidy.Tidy;
@@ -112,7 +113,7 @@ public class Main {
             InputStream inputStream = url.openStream();
             Files.copy(inputStream, tempFile.toPath());
             runtime.unzipResourceZip(tempFile.getAbsolutePath());
-        tempFile.delete();
+        FileDeleteStrategy.FORCE.delete(tempFile);
     }
 
     private static void startListeningAsServer() throws Exception {
@@ -136,8 +137,8 @@ public class Main {
             rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
             OutputStream out = rawResponse.getOutputStream();
             writeFiletoOutputStreamByteByByte(outputZipFile, out);
-            outputZipFile.delete();
-            outputDirectory.delete();
+            FileDeleteStrategy.FORCE.delete(outputZipFile);
+            FileDeleteStrategy.FORCE.delete(outputDirectory);
             return rawResponse;
         });
         get("/", (request, response) -> {
