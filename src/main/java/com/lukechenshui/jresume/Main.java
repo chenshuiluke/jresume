@@ -16,6 +16,7 @@ import com.lukechenshui.jresume.themes.BasicExampleTheme;
 import com.lukechenshui.jresume.themes.DefaultTheme;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.util.Zip4jConstants;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -138,7 +139,9 @@ public class Main {
             }
             outputZipFile.deleteOnExit();
             ZipFile zipFile = new ZipFile(outputZipFile);
-            zipFile.createZipFileFromFolder(location, new ZipParameters(), false, 0);
+            ZipParameters parameters = new ZipParameters();
+            parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_ULTRA);
+            zipFile.createZipFileFromFolder(location, parameters, false, 0);
             HttpServletResponse rawResponse = response.raw();
             rawResponse.setContentType("application/octet-stream");
             rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
