@@ -111,7 +111,6 @@ public class Main {
     }
 
     private static void startListeningAsServer() throws Exception {
-        threadPool(4);
         port(Config.getServerPort());
         post("/webresume", (request, response) -> {
             outputPrefixNumber++;
