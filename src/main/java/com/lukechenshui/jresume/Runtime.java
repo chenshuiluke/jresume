@@ -29,7 +29,6 @@ public class Runtime {
             }
             FileUtils.copyDirectory(tempDirectory, resourceDirectory);
         } catch (Exception exc) {
-
             exc.printStackTrace();
         }
     }
