@@ -1,6 +1,7 @@
 package com.lukechenshui.jresume;
 
 import net.lingala.zip4j.core.ZipFile;
+import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -37,8 +38,7 @@ public class Runtime {
                 resourceDirectory.mkdirs();
             }
             FileUtils.copyDirectory(tempDirectory, resourceDirectory);
-            tempDirectory.delete();
-            new File(file).delete();
+            FileDeleteStrategy.FORCE.delete(tempDirectory);
         } catch (Exception exc) {
             exc.printStackTrace();
         }
