@@ -146,6 +146,12 @@ public class Main {
 
         exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
+            try {
+                startListeningAsServer();
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+
         });
     }
 
