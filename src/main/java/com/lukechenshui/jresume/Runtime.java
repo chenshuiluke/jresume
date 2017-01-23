@@ -12,6 +12,15 @@ import java.nio.file.Paths;
  */
 public class Runtime {
     private  File tempDirectory;
+    private File outputDirectory;
+
+    public Runtime(File outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
+
+    public Runtime(String outputDirectoryStr) {
+        this.outputDirectory = new File(outputDirectoryStr);
+    }
 
     public  void unzipResourceZip(String file) {
         try {
@@ -23,23 +32,31 @@ public class Runtime {
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
             }
-            File resourceDirectory = Paths.get(Config.getOutputDirectory(), "/resources").toFile();
+            File resourceDirectory = Paths.get(outputDirectory.getAbsolutePath(), "/resources").toFile();
             if (!resourceDirectory.exists()) {
                 resourceDirectory.mkdirs();
             }
             FileUtils.copyDirectory(tempDirectory, resourceDirectory);
             tempDirectory.delete();
+            new File(file).delete();
         } catch (Exception exc) {
             exc.printStackTrace();
         }
     }
 
     public  File getResourceDirectory() {
-        return Paths.get(Config.getOutputDirectory(), "/resources").toFile();
+        return Paths.get(outputDirectory.getAbsolutePath(), "/resources").toFile();
     }
 
     public  File getOutputHtmlFile() {
-        return Paths.get(Config.getOutputDirectory(), "resume.html").toFile();
+        return Paths.get(outputDirectory.getAbsolutePath(), "resume.html").toFile();
     }
 
+    public File getOutputDirectory() {
+        return outputDirectory;
+    }
+
+    public void setOutputDirectory(File outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
 }

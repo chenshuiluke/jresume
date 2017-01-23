@@ -44,7 +44,7 @@ public class Main {
             if (Config.serverMode) {
                 startListeningAsServer();
             } else {
-                generateWebResumeAndWriteIt(null, new Runtime());
+                generateWebResumeAndWriteIt(null, new Runtime(Config.getOutputDirectory()));
             }
         } catch (Exception exc) {
             exc.printStackTrace();
@@ -121,9 +121,8 @@ public class Main {
             String json = request.body();
 
             File outputDirectory = Files.createTempDirectory("jresume" + outputPrefixNumber + ".tmp").toFile();
-            outputDirectory.deleteOnExit();
-            Config.setOutputDirectory(outputDirectory.getAbsolutePath());
-            File location = generateWebResumeAndWriteIt(request.body(), new Runtime());
+            Runtime runtime = new Runtime(outputDirectory);
+            File location = generateWebResumeAndWriteIt(request.body(), runtime);
             File outputZipFile = File.createTempFile("jresume", ".tmp");
             if (outputZipFile.exists()) {
                 outputZipFile.delete();
