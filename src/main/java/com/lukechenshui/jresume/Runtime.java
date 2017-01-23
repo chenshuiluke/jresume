@@ -28,6 +28,7 @@ public class Runtime {
                 resourceDirectory.mkdirs();
             }
             FileUtils.copyDirectory(tempDirectory, resourceDirectory);
+            tempDirectory.delete();
         } catch (Exception exc) {
             exc.printStackTrace();
         }
