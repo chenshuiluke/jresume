@@ -27,6 +27,7 @@ public class Resume {
     ArrayList<String> accomplishments;
     ArrayList<String> hobbies;
     String skillsHeading;
+    String themeName;
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
     public Resume() {
@@ -170,5 +171,13 @@ public class Resume {
 
     public void setHobbies(ArrayList<String> hobbies) {
         this.hobbies = hobbies;
+    }
+
+    public String getThemeName() {
+        return themeName;
+    }
+
+    public void setThemeName(String themeName) {
+        this.themeName = themeName;
     }
 }

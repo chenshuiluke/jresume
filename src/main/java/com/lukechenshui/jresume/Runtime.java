@@ -11,9 +11,9 @@ import java.nio.file.Paths;
  * Created by luke on 1/1/17.
  */
 public class Runtime {
-    private static File tempDirectory;
+    private  File tempDirectory;
 
-    public static void unzipResourceZip(String file) {
+    public  void unzipResourceZip(String file) {
         try {
             tempDirectory = Files.createTempDirectory("jresume").toFile();
             ZipFile zipFile = new ZipFile(file);
@@ -34,11 +34,11 @@ public class Runtime {
         }
     }
 
-    public static File getResourceDirectory() {
+    public  File getResourceDirectory() {
         return Paths.get(Config.getOutputDirectory(), "/resources").toFile();
     }
 
-    public static File getOutputHtmlFile() {
+    public  File getOutputHtmlFile() {
         return Paths.get(Config.getOutputDirectory(), "resume.html").toFile();
     }
 
