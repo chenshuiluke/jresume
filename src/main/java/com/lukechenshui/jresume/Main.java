@@ -18,6 +18,7 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.Zip4jConstants;
 import org.apache.commons.io.FileDeleteStrategy;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.tidy.Tidy;
@@ -28,6 +29,7 @@ import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -153,6 +155,18 @@ public class Main {
         });
         get("/", (request, response) -> {
             return "Welcome to JResume!";
+        });
+
+        get("/themes", (request, response) -> {
+            HashMap<String, BaseTheme> themeHashMap = Config.getThemeHashMap();
+            response.type("application/json");
+            JSONObject responseObj = new JSONObject();
+            JSONArray themeArr = new JSONArray();
+            for (String themeName : themeHashMap.keySet()) {
+                themeArr.put(themeName);
+            }
+            responseObj.put("themes", themeArr);
+            return responseObj.toString();
         });
         exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
