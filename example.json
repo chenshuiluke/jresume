@@ -122,34 +122,6 @@
       "url": "https://www.github.com"
     }
   ],
-  "projects": [
-    {
-      "name": "AwesomeProject",
-      "description": "This awesome project is awesome!",
-      "highlights": [
-        "Does such and such.",
-        "And it does such and such."
-      ],
-      "keywords": [
-        "java",
-        "c++"
-      ],
-      "url": "https://www.github.com"
-    },
-    {
-      "name": "AwesomeProject2",
-      "description": "This awesome project2 is awesome!",
-      "highlights": [
-        "Does such and such.",
-        "And it does such and such."
-      ],
-      "keywords": [
-        "java",
-        "c++"
-      ],
-      "url": "https://www.github.com"
-    }
-  ],
   "education": {
     "schools": [
       {
