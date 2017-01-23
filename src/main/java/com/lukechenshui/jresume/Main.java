@@ -125,6 +125,7 @@ public class Main {
     }
 
     private static void startListeningAsServer() throws Exception {
+        threadPool(Config.getMaxThreads());
         port(Config.getServerPort());
         post("/webresume", (request, response) -> {
             int currentReqId = outputPrefixNumber.incrementAndGet();
@@ -152,11 +153,6 @@ public class Main {
         });
         exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
-            try {
-                startListeningAsServer();
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
         });
     }
 
