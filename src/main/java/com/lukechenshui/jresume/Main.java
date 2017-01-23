@@ -112,6 +112,7 @@ public class Main {
             InputStream inputStream = url.openStream();
             Files.copy(inputStream, tempFile.toPath());
             runtime.unzipResourceZip(tempFile.getAbsolutePath());
+        tempFile.delete();
     }
 
     private static void startListeningAsServer() throws Exception {
