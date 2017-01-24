@@ -1,5 +1,5 @@
 ![JResume logo](https://raw.githubusercontent.com/chenshuiluke/jresume/master/logo/logo.jpg)
-#JResume - The best JSON to HTML resume generator.
+The best JSON to HTML resume generator.
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
