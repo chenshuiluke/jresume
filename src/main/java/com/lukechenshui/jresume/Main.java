@@ -154,9 +154,10 @@ public class Main {
     }
 
     private static void startListeningAsServer() throws Exception {
-        enableCORS("*", "POST, GET, OPTIONS, DELETE, PUT", "*");
         threadPool(Config.getMaxThreads());
         port(Config.getServerPort());
+        enableCORS("*", "POST, GET, OPTIONS, DELETE, PUT", "*");
+
         post("/webresume", (request, response) -> {
             int currentReqId = outputPrefixNumber.incrementAndGet();
             File outputDirectory = new File("data/jresume" + currentReqId + ".tmp");
