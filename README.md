@@ -10,6 +10,8 @@ The best JSON to HTML resume generator.
     {
       "skillsHeading": "Custom Skills Heading",
       "jobWorkHeading": "Custom Work Heading",
+      "accomplishmentsHeading": "Custom Accomplishments Heading",
+      "projectsHeading": "Custom Projects Heading",
       "person": {
         "name": "Bob",
         "email": "johndoe@gmail.com",
@@ -131,34 +133,6 @@ The best JSON to HTML resume generator.
           "url": "https://www.github.com"
         }
       ],
-      "projects": [
-        {
-          "name": "AwesomeProject",
-          "description": "This awesome project is awesome!",
-          "highlights": [
-            "Does such and such.",
-            "And it does such and such."
-          ],
-          "keywords": [
-            "java",
-            "c++"
-          ],
-          "url": "https://www.github.com"
-        },
-        {
-          "name": "AwesomeProject2",
-          "description": "This awesome project2 is awesome!",
-          "highlights": [
-            "Does such and such.",
-            "And it does such and such."
-          ],
-          "keywords": [
-            "java",
-            "c++"
-          ],
-          "url": "https://www.github.com"
-        }
-      ],
       "education": {
         "schools": [
           {
@@ -209,6 +183,7 @@ The best JSON to HTML resume generator.
         "Gaming"
       ]
     }
+
 ###Usage:
 
     java -jar jresume.jar --input example.json --output output --theme default
@@ -263,20 +238,26 @@ You can customize the various headings by adding the following to your resume JS
 3. volunteerWorkHeading
 4. projectHeading
 5. educationHeading
+6. accomplishmentsHeading
+7. hobbiesHeading
 
 Example:
 
     {
       "skillsHeading": "Custom Skills Heading",
       "jobWorkHeading": "Custom Work Heading",
+      "accomplishmentsHeading": "Custom Accomplishments Heading",
+      "projectsHeading": "Custom Projects Heading",
       "person": {
         "name": "Bob",
         "email": "johndoe@gmail.com",
         "address": "7 Java Drive, OOP City",
         "phoneNumber": "+1(334)567-2346",
         "jobTitle": "Software Engineer",
-        "website": "https://www.google.com"
+        "website": "https://www.google.com",
+        "objective": "Bleh bleh bleh bleh bleh bleh bleh bleh"
       },
+      ...
 
 
 Output:
@@ -284,6 +265,13 @@ Output:
 ![custom_headings](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/custom_theme_heading_example.png)
 
 ###Converting to PDF
+
+####Converting to PDF With Browser
+You can just open the webresume HTML file in your browser, press Ctrl+p and then follow your browser's instructions.
+I personally prefer Chrome's PDF creation capabilities.
+
+
+####Converting to PDF Without Browser (Experimental)
 
 If you don't want to use your browser to save the web resume as a pdf, you can install phantomjs and do the following:
 
