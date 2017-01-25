@@ -1,6 +1,17 @@
 ![JResume logo](https://raw.githubusercontent.com/chenshuiluke/jresume/master/logo/logo.jpg)
 The best JSON to HTML resume generator.
 
+#Features:
+
+1. You can keep all your resume information separate from it's layout in a JSON file.
+2. Once you give JResume your resume JSON file and the desired theme, it will output an HTML resume for you.
+3. Dont like the layout of your resume? You can simply choose a different theme. This has advantages over using Word because:
+    * If you wanted to completely change the look of your resume in Word, you may need to redo your resume from scratch because the content is intertwined with the presentation
+    * JResume allows you to keep the content of your resume separate from its presentation.
+    * You can easily upload your resume to your website because it's really just another webpage (although you will need to upload the generated `resources` folder in addition to the HTML file).
+4. You can simply use your browser's print-to-pdf feature to save the resume as a PDF file.
+5. A web frontend is being developed :)
+
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
 ##Example usage
