@@ -1,5 +1,6 @@
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/items/education/School.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/items/work/Work.java
+/home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/exceptions/InvalidJSONException.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/themes/BasicExampleTheme.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/items/education/Examination.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/Main.java
@@ -8,6 +9,7 @@
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/themes/BaseTheme.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/items/Person.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/Resume.java
+/home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/exceptions/InvalidThemeNameException.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/items/Project.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/resume/items/education/Education.java
 /home/luke/Documents/git/jresume/src/main/java/com/lukechenshui/jresume/themes/DefaultTheme.java

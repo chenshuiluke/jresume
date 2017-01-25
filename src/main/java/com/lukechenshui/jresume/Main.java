@@ -113,6 +113,32 @@ public class Main {
         }
     }
 
+    private static void enableCORS(final String origin, final String methods, final String headers) {
+
+        options("/*", (request, response) -> {
+
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+
+            return "OK";
+        });
+
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", origin);
+            response.header("Access-Control-Request-Method", methods);
+            response.header("Access-Control-Allow-Headers", headers);
+            // Note: this may or may not be necessary in your particular application
+            response.type("application/json");
+        });
+    }
+
     private static void copyResourcesZip(Runtime runtime) throws Exception{
             String classUrl = Main.class.getResource("Main.class").toString();
         File tempFile = new File("data/jresume-data-zip-" + runtime.getId());
@@ -128,6 +154,7 @@ public class Main {
     }
 
     private static void startListeningAsServer() throws Exception {
+        enableCORS("*", "POST, GET, OPTIONS, DELETE, PUT", "*");
         threadPool(Config.getMaxThreads());
         port(Config.getServerPort());
         post("/webresume", (request, response) -> {
