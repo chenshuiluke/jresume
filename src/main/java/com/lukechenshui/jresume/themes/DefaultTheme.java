@@ -133,12 +133,14 @@ public class DefaultTheme extends BaseTheme {
 
         if (resumeBeingOperatedOn != null && jobWork != null) {
             if (jobWork.size() > 0) {
+                ContainerTag divider = div().withClass("ui horizontal divider");
                 if (StringUtils.isNotBlank(resumeBeingOperatedOn.getJobWorkHeading())) {
-                    workChildren.add(h4(resumeBeingOperatedOn.getJobWorkHeading()).withClass("noSpacing ui header centered"));
-                } else {
-                    workChildren.add(h4("Work Experience").withClass("noSpacing ui header centered"));
-                }
+                    divider.with(h4(resumeBeingOperatedOn.getJobWorkHeading()).withClass("noSpacing ui header centered"));
 
+                } else {
+                    divider.with(h4("Work Experience").withClass("noSpacing ui header centered"));
+                }
+                workChildren.add(divider);
             }
 
 
@@ -224,11 +226,14 @@ public class DefaultTheme extends BaseTheme {
 
         if (resumeBeingOperatedOn != null && volunteerWork != null) {
             if (volunteerWork.size() > 0) {
-                if (StringUtils.isNoneEmpty(resumeBeingOperatedOn.getVolunteerWorkHeading())) {
-                    workChildren.add(h4(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("noSpacing ui header centered"));
+                ContainerTag divider = div().withClass("ui horizontal divider");
+                if (StringUtils.isNotBlank(resumeBeingOperatedOn.getVolunteerWorkHeading())) {
+                    divider.with(h4(resumeBeingOperatedOn.getVolunteerWorkHeading()).withClass("noSpacing ui header centered"));
+
                 } else {
-                    workChildren.add(h4("Volunteer Work Experience").withClass("noSpacing ui header centered"));
+                    divider.with(h4("Volunteer Work Experience").withClass("noSpacing ui header centered"));
                 }
+                workChildren.add(divider);
             }
 
 
@@ -328,12 +333,14 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag list = div().withClass("noSpacing ui " +numberOfSkillColumns + " column grid  container centered");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
-            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getSkillsHeading())){
-                children.add(h4(resumeBeingOperatedOn.getSkillsHeading()).withClass("noSpacing ui header centered"));
-            }  else{
-                children.add(h4("Skills").withClass("noSpacing ui header centered"));
-            }
+            ContainerTag divider = div().withClass("ui horizontal divider");
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getSkillsHeading())) {
+                divider.with(h4(resumeBeingOperatedOn.getSkillsHeading()).withClass("noSpacing ui header centered"));
 
+            } else {
+                divider.with(h4("Skills").withClass("noSpacing ui header centered"));
+            }
+            children.add(divider);
         }
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
@@ -357,11 +364,14 @@ public class DefaultTheme extends BaseTheme {
         ArrayList<Tag> children = new ArrayList<>();
 
         if (resumeBeingOperatedOn.getProjects().size() > 0) {
-            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getProjectsHeading())){
-                children.add(h4(resumeBeingOperatedOn.getProjectsHeading()).withClass("noSpacing ui header centered"));
-            }   else {
-                children.add(h4("Projects").withClass("noSpacing ui header centered"));
+            ContainerTag divider = div().withClass("ui horizontal divider");
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getProjectsHeading())) {
+                divider.with(h4(resumeBeingOperatedOn.getProjectsHeading()).withClass("noSpacing ui header centered"));
+
+            } else {
+                divider.with(h4("Projects").withClass("noSpacing ui header centered"));
             }
+            children.add(divider);
         }
 
         for (Project project : resumeBeingOperatedOn.getProjects()) {
@@ -423,11 +433,14 @@ public class DefaultTheme extends BaseTheme {
         children.add(education.checkForAndGeneratePrecedingLineBreaks());
 
         if(education.getExaminations() != null || education.getSchools() != null){
-            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getEducationHeading())){
-                children.add(h4(resumeBeingOperatedOn.getEducationHeading()).withClass("noSpacing ui header centered"));
-            }   else {
-                children.add(h4("Education").withClass("noSpacing ui header centered"));
+            ContainerTag divider = div().withClass("ui horizontal divider");
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getEducationHeading())) {
+                divider.with(h4(resumeBeingOperatedOn.getEducationHeading()).withClass("noSpacing ui header centered"));
+
+            } else {
+                divider.with(h4("Education").withClass("noSpacing ui header centered"));
             }
+            children.add(divider);
         }
         for(School school : education.getSchools()){
             children.add(school.checkForAndGeneratePrecedingLineBreaks());
@@ -549,7 +562,14 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag grid = div().withClass("noSpacing ui container equal width grid");
         if(resumeBeingOperatedOn.getAccomplishments() != null && resumeBeingOperatedOn.getAccomplishments().size() > 0){
             ArrayList<String> accomplishments = resumeBeingOperatedOn.getAccomplishments();
-            accomplishmentsSection.with(h5().withClass("ui centered header noSpacing").withText("Accomplishments"));
+            ContainerTag divider = div().withClass("ui horizontal divider");
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getAccomplishmentsHeading())) {
+                divider.with(h4(resumeBeingOperatedOn.getAccomplishmentsHeading()).withClass("noSpacing ui header centered"));
+
+            } else {
+                divider.with(h4("Accomplishments").withClass("noSpacing ui header centered"));
+            }
+            accomplishmentsSection.with(divider);
 
             for(String accomplishment : accomplishments){
                 ContainerTag bullet = i().withClass("ui stop icon noSpacing");
@@ -566,7 +586,14 @@ public class DefaultTheme extends BaseTheme {
         ContainerTag grid = div().withClass("noSpacing ui container equal width grid");
         if(resumeBeingOperatedOn.getHobbies() != null && resumeBeingOperatedOn.getHobbies().size() > 0){
             ArrayList<String> hobbies = resumeBeingOperatedOn.getHobbies();
-            hobbiesSection.with(h5().withClass("ui centered header noSpacing").withText("Hobbies"));
+            ContainerTag divider = div().withClass("ui horizontal divider");
+            if (StringUtils.isNotBlank(resumeBeingOperatedOn.getHobbiesHeading())) {
+                divider.with(h4(resumeBeingOperatedOn.getHobbiesHeading()).withClass("noSpacing ui header centered"));
+
+            } else {
+                divider.with(h4("Hobbies").withClass("noSpacing ui header centered"));
+            }
+            hobbiesSection.with(divider);
 
             for(String accomplishment : hobbies){
                 ContainerTag bullet = i().withClass("ui stop icon noSpacing");

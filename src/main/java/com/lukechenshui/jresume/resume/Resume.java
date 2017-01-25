@@ -25,7 +25,9 @@ public class Resume {
     String projectsHeading;
     ArrayList<Skill> skills;
     ArrayList<String> accomplishments;
+    String accomplishmentsHeading;
     ArrayList<String> hobbies;
+    String hobbiesHeading;
     String skillsHeading;
     String themeName;
     int numPersonalDetailsColumns = 3;
@@ -179,5 +181,21 @@ public class Resume {
 
     public void setThemeName(String themeName) {
         this.themeName = themeName;
+    }
+
+    public String getAccomplishmentsHeading() {
+        return accomplishmentsHeading;
+    }
+
+    public void setAccomplishmentsHeading(String accomplishmentsHeading) {
+        this.accomplishmentsHeading = accomplishmentsHeading;
+    }
+
+    public String getHobbiesHeading() {
+        return hobbiesHeading;
+    }
+
+    public void setHobbiesHeading(String hobbiesHeading) {
+        this.hobbiesHeading = hobbiesHeading;
     }
 }
