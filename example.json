@@ -1,6 +1,8 @@
 {
   "skillsHeading": "Custom Skills Heading",
   "jobWorkHeading": "Custom Work Heading",
+  "accomplishmentsHeading": "Custom Accomplishments Heading",
+  "projectsHeading": "Custom Projects Heading",
   "person": {
     "name": "Bob",
     "email": "johndoe@gmail.com",
