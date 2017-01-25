@@ -11,6 +11,9 @@ The best JSON to HTML resume generator.
     * You can easily upload your resume to your website because it's really just another webpage (although you will need to upload the generated `resources` folder in addition to the HTML file).
 4. You can simply use your browser's print-to-pdf feature to save the resume as a PDF file.
 5. A web frontend is being developed :)
+6. Can run as a server.
+    * You can send your JSON resume as a POST request to /webresume and get a full zip containing the HTML file and its resources. 
+    * You can currently test it out by posting the `example.json` found below to `http://lukechenshui.com:8080/webresume`.
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
@@ -194,6 +197,14 @@ The best JSON to HTML resume generator.
         "Gaming"
       ]
     }
+
+###Server Usage:
+
+    java -jar jresume.jar --input whatever --server-mode --server-port optional_server_port
+
+*The server will listen to port 8080 by default*
+
+Then send send a POST request to `localhost:8080/webresume`
 
 ###Usage:
 
