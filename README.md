@@ -214,6 +214,18 @@ Then send send a POST request to `localhost:8080/webresume`
 
 ![default_theme_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
+###Compiling
+
+You can either compile it using Intellij IDEA or Maven.
+
+####Compiling using Maven
+
+1. Clone the repository.
+2. `cd` into the repository.
+3. Install `maven`.
+4. Run `mvn package`.
+5. You can then utilize the jarfiles in the `target` subdirectory.
+
 ###Customizing the Output:
 
 ####Customizing space between sections
