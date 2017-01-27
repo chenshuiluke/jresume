@@ -139,21 +139,34 @@ public class Main {
         });
     }
 
-    private static void copyResourcesZip(Runtime runtime) throws Exception{
-            String classUrl = Main.class.getResource("Main.class").toString();
-        File tempFile = new File("data/jresume-data-zip-" + runtime.getId());
-            URL url = Main.class.getResource("/resources.zip");
-            //System.out.println("JAR Resource Zip URL: " + url.toString());
-            InputStream inputStream = url.openStream();
-        if (tempFile.exists()) {
-            FileDeleteStrategy.FORCE.delete(tempFile);
-        }
+    private static void copyResourcesZip(Runtime runtime, File destination) throws Exception {
+        String classUrl = Main.class.getResource("Main.class").toString();
+
+        URL url = Main.class.getResource("/resources.zip");
+        //System.out.println("JAR Resource Zip URL: " + url.toString());
+        InputStream inputStream = url.openStream();
+
+        if (destination == null) {
+            File tempFile = new File("data/jresume-data-zip-" + runtime.getId());
+
+            if (tempFile.exists()) {
+                FileDeleteStrategy.FORCE.delete(tempFile);
+            }
             Files.copy(inputStream, tempFile.toPath());
             runtime.unzipResourceZip(tempFile.getAbsolutePath());
-        FileDeleteStrategy.FORCE.delete(tempFile);
+            FileDeleteStrategy.FORCE.delete(tempFile);
+        } else {
+            if (!destination.exists()) {
+                Files.copy(inputStream, destination.toPath());
+            }
+
+        }
+
+
     }
 
     private static void startListeningAsServer() throws Exception {
+        copyResourcesZip(new Runtime(new File("."), -1), Config.serverInitialResourceZip);
         threadPool(Config.getMaxThreads());
         port(Config.getServerPort());
         enableCORS("*", "POST, GET, OPTIONS, DELETE, PUT", "*");
@@ -168,17 +181,19 @@ public class Main {
                 outputZipFile.delete();
             }
             outputZipFile.deleteOnExit();
+
+            Files.copy(Config.serverInitialResourceZip.toPath(), outputZipFile.toPath());
             ZipFile zipFile = new ZipFile(outputZipFile);
             ZipParameters parameters = new ZipParameters();
             parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_ULTRA);
-            zipFile.createZipFileFromFolder(location, parameters, false, 0);
+            zipFile.addFile(runtime.getOutputHtmlFile(), parameters);
             HttpServletResponse rawResponse = response.raw();
             rawResponse.setContentType("application/octet-stream");
             rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
             OutputStream out = rawResponse.getOutputStream();
             writeFiletoOutputStreamByteByByte(outputZipFile, out);
-            FileDeleteStrategy.FORCE.delete(outputZipFile);
-            FileDeleteStrategy.FORCE.delete(outputDirectory);
+            //FileDeleteStrategy.FORCE.delete(outputZipFile);
+            //FileDeleteStrategy.FORCE.delete(outputDirectory);
             return rawResponse;
         });
         get("/", (request, response) -> {
@@ -206,7 +221,9 @@ public class Main {
             throw new InvalidJSONException();
         }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        copyResourcesZip(runtime);
+
+
+        copyResourcesZip(runtime, null);
         if (!Files.exists(Paths.get("output"))) {
             Files.createDirectory(Paths.get("output"));
         }
