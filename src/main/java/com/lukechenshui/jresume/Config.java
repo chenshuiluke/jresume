@@ -26,7 +26,7 @@ public class Config {
             "from a letsencrypt certificate.")
     static boolean sslMode = false;
     @Parameter(names = {"--max-threads", "-mt"}, description = "The maximum number of spark threads allowed.")
-    static int maxThreads = 100;
+    static int maxThreads = Integer.MAX_VALUE;
     /*If the serverMode parameter is present then --input can be set to anything as it's only important if
       JResume is not running as a server
     */
