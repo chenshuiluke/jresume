@@ -208,8 +208,8 @@ public class Main {
             rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
             OutputStream out = rawResponse.getOutputStream();
             writeFiletoOutputStreamByteByByte(outputZipFile, out);
-            //FileDeleteStrategy.FORCE.delete(outputZipFile);
-            //FileDeleteStrategy.FORCE.delete(outputDirectory);
+            FileDeleteStrategy.FORCE.delete(outputZipFile);
+            FileDeleteStrategy.FORCE.delete(outputDirectory);
             return rawResponse;
         });
         get("/", (request, response) -> {
