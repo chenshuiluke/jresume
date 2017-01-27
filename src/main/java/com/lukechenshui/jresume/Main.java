@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.lukechenshui.jresume.exceptions.InvalidEnvironmentVariableException;
 import com.lukechenshui.jresume.exceptions.InvalidJSONException;
 import com.lukechenshui.jresume.exceptions.InvalidThemeNameException;
 import com.lukechenshui.jresume.resume.Resume;
@@ -30,6 +31,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -51,6 +53,20 @@ public class Main {
             //createExample();
 
             if (Config.serverMode) {
+                if (Config.sslMode) {
+                    String keystoreLocation = Optional.ofNullable(System.getenv("jresume_keystore_location")).orElseThrow(
+                            () -> new InvalidEnvironmentVariableException("jresume_keystore_location is not set in the environment"));
+
+                    String keystorePassword = Optional.ofNullable(System.getenv("jresume_keystore_password")).orElseThrow(
+                            () -> new InvalidEnvironmentVariableException("jresume_keystore_password is not set in the environment"));
+                    File keystore = new File(keystoreLocation);
+                    System.out.println("Keystore location:" + keystore.getAbsolutePath());
+                    System.out.println("Keystore exists: " + keystore.exists());
+                    System.out.println("Keystore can be read: " + keystore.canRead());
+                    System.out.println("Keystore can write: " + keystore.canWrite());
+                    System.out.println("Keystore can execute: " + keystore.canExecute());
+                    secure(keystoreLocation, keystorePassword, null, null);
+                }
                 startListeningAsServer();
             } else {
                 generateWebResumeAndWriteIt(null, new Runtime(Config.getOutputDirectory(), outputPrefixNumber.incrementAndGet()));

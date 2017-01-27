@@ -19,6 +19,11 @@ public class Config {
     static boolean serverMode = false;
     @Parameter(names = {"--server-port", "-sp"}, description = "The port that JResume will listen to when in server mode.")
     static int serverPort = 8080;
+    @Parameter(names = {"--ssl-mode", "-sm"}, description = "Makes JResume use ssl while in server mode. " +
+            "Uses the jresume_keystore_location and jresume_keystore_password for configuring which keystore and password to use." +
+            "See https://maximilian-boehm.com/hp2121/Create-a-Java-Keystore-JKS-from-Let-s-Encrypt-Certificates.htm for information on how to generate a keystore" +
+            "from a letsencrypt certificate.")
+    static boolean sslMode = false;
     @Parameter(names = {"--max-threads", "-mt"}, description = "The maximum number of spark threads allowed.")
     static int maxThreads = 5;
     /*If the serverMode parameter is present then --input can be set to anything as it's only important if
