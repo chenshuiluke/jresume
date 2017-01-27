@@ -4,6 +4,7 @@ import com.beust.jcommander.Parameter;
 import com.lukechenshui.jresume.themes.BaseTheme;
 import com.lukechenshui.jresume.validators.ThemeNameValidator;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -26,6 +27,12 @@ public class Config {
     @Parameter(names = {"--input", "-i"}, description = "The location of the input file.", required = true)
     static String inputFileName;
 
+    /*
+    This zipfile will be created at startup when the jresume is running in server mode. Then, it will
+    be copied to each request's output directory and the generated web resume will be added to the copy and
+    served to the user.
+     */
+    static File serverInitialResourceZip = new File("data/webresume-resources.zip");
 
     private static HashMap<String, BaseTheme> themeHashMap = new HashMap<String, BaseTheme>();
 
