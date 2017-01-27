@@ -210,7 +210,7 @@ public class Main {
             Files.copy(Config.serverInitialResourceZip.toPath(), outputZipFile.toPath());
             ZipFile zipFile = new ZipFile(outputZipFile);
             ZipParameters parameters = new ZipParameters();
-            parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_ULTRA);
+            parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_FASTEST);
             zipFile.addFile(runtime.getOutputHtmlFile(), parameters);
             HttpServletResponse rawResponse = response.raw();
             rawResponse.setContentType("application/octet-stream");
