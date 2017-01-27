@@ -49,6 +49,7 @@ public class Main {
             if (Files.exists(Paths.get("data"))) {
                 FileDeleteStrategy.FORCE.delete(new File("data"));
             }
+            setupLogging();
             Files.createDirectory(Paths.get("data"));
             //createExample();
 
@@ -76,6 +77,14 @@ public class Main {
         }
 
         //createExample();
+    }
+
+    private static void setupLogging() throws FileNotFoundException {
+        if (Config.logFile != null) {
+            PrintStream printStream = new PrintStream(new File(Config.logFile));
+            System.setErr(printStream);
+            System.setOut(printStream);
+        }
     }
 
     private static File generateWebResumeAndWriteIt(String json, Runtime runtime) throws Exception {

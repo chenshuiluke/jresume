@@ -2,6 +2,7 @@ package com.lukechenshui.jresume;
 
 import com.beust.jcommander.Parameter;
 import com.lukechenshui.jresume.themes.BaseTheme;
+import com.lukechenshui.jresume.validators.FileLocationValidator;
 import com.lukechenshui.jresume.validators.ThemeNameValidator;
 
 import java.io.File;
@@ -31,6 +32,9 @@ public class Config {
     */
     @Parameter(names = {"--input", "-i"}, description = "The location of the input file.", required = true)
     static String inputFileName;
+
+    @Parameter(names = {"--log-file", "-l"}, description = "The location of the log file", validateWith = FileLocationValidator.class)
+    static String logFile;
 
     /*
     This zipfile will be created at startup when the jresume is running in server mode. Then, it will
