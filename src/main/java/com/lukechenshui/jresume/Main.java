@@ -201,7 +201,7 @@ public class Main {
             File outputDirectory = new File("data/jresume" + currentReqId + ".tmp");
             Runtime runtime = new Runtime(outputDirectory, currentReqId);
             File location = generateWebResumeAndWriteIt(request.body(), runtime);
-            File outputZipFile = new File("data/jresume -" + runtime.getId() + ".tmp");
+            File outputZipFile = new File("data/jresume-" + runtime.getId() + ".tmp.zip");
             if (outputZipFile.exists()) {
                 outputZipFile.delete();
             }
