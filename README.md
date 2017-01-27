@@ -205,6 +205,16 @@ The best JSON to HTML resume generator.
 *The server will listen to port 8080 by default*
 
 Then send send a POST request to `localhost:8080/webresume`
+####Configuring SSL in the Server:
+To make jresume use ssl, you need to set the `jresume_keystore_location` and `jresume_keystore_password` environment variables.
+To create a keystore from an existing letsencrypt certificate, run the following:
+
+    openssl pkcs12 -export -out keystore.p12 -inkey privkey.pem -in fullchain.pem
+    keytool -importkeystore -destkeystore MyDSKeyStore.jks -srcstoretype PKCS12 -srckeystore keystore.p12
+
+Set the jresume_keystore_location and jresume_keystore_password variables to the location and password of the new keystore respectively.
+
+Then finally to load JResume in SSL mode, pass `--server-mode --ssl-mode` to the jarfile.
 
 ###Usage:
 
