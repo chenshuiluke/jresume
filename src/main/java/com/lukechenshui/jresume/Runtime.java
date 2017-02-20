@@ -37,7 +37,7 @@ public class Runtime {
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
             }
-            File resourceDirectory = Paths.get(outputDirectory.getAbsolutePath(), "/resources").toFile();
+            File resourceDirectory = Paths.get(outputDirectory.getAbsolutePath(), Config.getResourceDirectory()).toFile();
             if (!resourceDirectory.exists()) {
                 resourceDirectory.mkdirs();
             }

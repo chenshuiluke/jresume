@@ -126,7 +126,7 @@ public abstract class BaseTheme {
     protected String getResource(String fileName) {
         String dirToRemove = new File(Config.getOutputDirectory()).getAbsolutePath();
         //System.out.println(dirToRemove);
-        String resourceDirectory = Paths.get(new File(Config.getOutputDirectory()).getAbsolutePath(), "resources", fileName).toString();
+        String resourceDirectory = Paths.get(new File(Config.getOutputDirectory()).getAbsolutePath(), Config.getResourceDirectory(), fileName).toString();
         resourceDirectory = resourceDirectory.replace(dirToRemove + File.separator, "");
         return resourceDirectory;
     }
