@@ -330,7 +330,7 @@ public class DefaultTheme extends BaseTheme {
             numberOfSkillColumns = converter.asWords(1);
         }
 
-        ContainerTag list = div().withClass("noSpacing ui " +numberOfSkillColumns + " column grid  container centered");
+        ContainerTag list = div().withClass("noSpacing ui list container");
 
         if (resumeBeingOperatedOn.getSkills().size() > 0) {
             ContainerTag divider = div().withClass("ui horizontal divider");
@@ -344,7 +344,7 @@ public class DefaultTheme extends BaseTheme {
         }
 
         for (Skill skill : resumeBeingOperatedOn.getSkills()) {
-            ContainerTag skillItem = div().withClass("noSpacing ui left aligned column");
+            ContainerTag skillItem = div().withClass("noSpacing ui item centered");
             if (skill.getName() != null) {
                 String text = skill.getName();
                 ContainerTag bullet = i().withClass("ui stop icon noSpacing");
