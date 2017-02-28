@@ -15,15 +15,17 @@ public class Runtime {
     private  File tempDirectory;
     private File outputDirectory;
     private int id;
-
-    public Runtime(File outputDirectory, int id) {
+    private Config config;
+    public Runtime(File outputDirectory, int id, Config config) {
         this.outputDirectory = outputDirectory;
         this.id = id;
+        this.config = config;
     }
 
-    public Runtime(String outputDirectoryStr, int id) {
+    public Runtime(String outputDirectoryStr, int id, Config config) {
         this.outputDirectory = new File(outputDirectoryStr);
         this.id = id;
+        this.config = config;
     }
 
     public  void unzipResourceZip(String file) {
@@ -37,7 +39,7 @@ public class Runtime {
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
             }
-            File resourceDirectory = Paths.get(outputDirectory.getAbsolutePath(), Config.getResourceDirectory()).toFile();
+            File resourceDirectory = Paths.get(outputDirectory.getAbsolutePath(), config.getResourceDirectory()).toFile();
             if (!resourceDirectory.exists()) {
                 resourceDirectory.mkdirs();
             }

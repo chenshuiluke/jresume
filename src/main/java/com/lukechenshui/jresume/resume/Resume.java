@@ -1,6 +1,7 @@
 package com.lukechenshui.jresume.resume;
 
 import com.google.gson.JsonObject;
+import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
 import com.lukechenshui.jresume.resume.items.Skill;
@@ -30,10 +31,11 @@ public class Resume {
     String hobbiesHeading;
     String skillsHeading;
     String themeName;
+    Config config = new Config();
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
     public Resume() {
-
+        config = new Config();
     }
 
     public Person getPerson() {
@@ -197,5 +199,13 @@ public class Resume {
 
     public void setHobbiesHeading(String hobbiesHeading) {
         this.hobbiesHeading = hobbiesHeading;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
+    }
+
+    public Config getConfig() {
+        return config;
     }
 }
