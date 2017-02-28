@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href=
+                "${config.resourceDirectory}/semantic/dist/semantic.min.css">
+        <link type="text/css" rel="stylesheet" href=
+                "${config.resourceDirectory}/semantic/dist/components/rating.min.css">
+    </head>
+    <body>
+        <h1>${person.name}</h1>
+        <h3>${person.jobTitle}</h3>
+        <#if config.showTrackable>
+            <p>${person.address}</p>
+            <p>${person.phoneNumber}</p>
+        </#if>
+        <p>${person.email}</p>
+        <#if jobWork??>
+            <h3>
+                <#if jobWorkHeading??>
+                    ${jobWorkHeading}
+                <#else>
+                    Work Experience
+                </#if>
+            </h3>
+            <ul>
+                <#list jobWork as work>
+                    <li>
+                        ${work.company}
+
+                        <#if work.startDate?? && work.endDate??>
+                            from
+                            ${work.startDate}
+
+                            to
+
+                            ${work.endDate}
+                            <#elseif work.startDate??>
+                                ${work.startDate}
+                            <#elseif work.endDate??>
+                                ${work.endDate}
+                        </#if>
+                        <#if work.summary??>
+                            - <b>${work.summary}</b>
+                        </#if>
+                        <#if work.highlights??>
+                            <ul>
+                                <#list work.highlights as highlight>
+                                    <li><i>${highlight}</i></li>
+                                </#list>
+                            </ul>
+                        </#if>
+
+                        <#if work.keywords??>
+                            <ul>
+                            <li><b>Keywords:</b></li>
+                                <ul>
+                                    <#list work.keywords as keyword>
+                                        <li><i><b>${keyword}</b></i></li>
+                                    </#list>
+                                </ul>
+                            </ul>
+                        </#if>
+                    </li>
+                </#list>
+            </ul>
+        </#if>
+    </body>
+</html>
