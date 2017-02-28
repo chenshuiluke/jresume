@@ -1,5 +1,6 @@
 package com.lukechenshui.jresume.themes;
 
+import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
@@ -83,7 +84,7 @@ public class DefaultTheme extends BaseTheme {
             ContainerTag centeredGrid = div().withClass("ui grid " + numberOfPersonalDetailsColumns + " column centered noSpacing");
 
 
-            if (person.getAddress() != null) {
+            if (person.getAddress() != null && Config.isShowTrackable()) {
                 ContainerTag address = div().withText(person.getAddress()).withClass("ui center aligned column regularText noSpacing");
                 centeredGrid.with(address);
             }
@@ -93,7 +94,7 @@ public class DefaultTheme extends BaseTheme {
                 centeredGrid.with(email);
             }
 
-            if (person.getPhoneNumber() != null) {
+            if (person.getPhoneNumber() != null && Config.isShowTrackable()) {
                 ContainerTag phoneNumber = div().withText(person.getPhoneNumber()).withClass("ui center aligned column regularText noSpacing");
                 centeredGrid.with(phoneNumber);
             }

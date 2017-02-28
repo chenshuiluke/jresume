@@ -39,6 +39,8 @@ public class Config {
     @Parameter(names = {"--resource-directory", "-rd"}, description = "The subdirectory where the CSS/JS etc resources will be within the zip file.")
     static String resourceDirectory = "resources";
 
+    @Parameter(names = {"--show-trackable-information", "-st"}, description = "Shows trackable information such as your address, phone number, etc.")
+    static boolean showTrackable = false;
     /*
     This zipfile will be created at startup when the jresume is running in server mode. Then, it will
     be copied to each request's output directory and the generated web resume will be added to the copy and
@@ -121,5 +123,13 @@ public class Config {
 
     public static void setResourceDirectory(String resourceDirectory) {
         Config.resourceDirectory = resourceDirectory;
+    }
+
+    public static boolean isShowTrackable() {
+        return showTrackable;
+    }
+
+    public static void setShowTrackable(boolean showTrackable) {
+        Config.showTrackable = showTrackable;
     }
 }
