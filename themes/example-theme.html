@@ -7,16 +7,14 @@
                 "${config.resourceDirectory}/semantic/dist/components/rating.min.css">
         <link type="text/css" rel="stylesheet" href=
                 "${config.resourceDirectory}/fonts.css">
-        <style>
-            html *{
-                font-family: LibreBaskerville-Regular !important;
-            }
-        </style>
+
+        <link type="text/css" rel="stylesheet" href=
+                "${config.resourceDirectory}/LibreBaskerville.css">
 
         <link type="text/css" rel="stylesheet" href=
                 "${config.resourceDirectory}/styles.css">
     </head>
-    <body class="ui text container smallTextForParagraphsAndLists">
+    <body class="ui text container noSpacing ordinaryText">
         <h1>${person.name}</h1>
         <h3>${person.jobTitle}</h3>
         <#if config.showTrackable>
