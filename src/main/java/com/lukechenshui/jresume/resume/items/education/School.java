@@ -1,7 +1,5 @@
 package com.lukechenshui.jresume.resume.items.education;
 
-import java.util.ArrayList;
-
 /**
  * Created by luke on 1/4/17.
  */
@@ -13,7 +11,6 @@ public class School extends BaseEducationItem {
 
     String gpa;
     String summary;
-    ArrayList<Examination> examinations;
 
     public String getGpa() {
         return gpa;
@@ -29,13 +26,5 @@ public class School extends BaseEducationItem {
 
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    public ArrayList<Examination> getExaminations() {
-        return examinations;
-    }
-
-    public void setExaminations(ArrayList<Examination> examinations) {
-        this.examinations = examinations;
     }
 }
