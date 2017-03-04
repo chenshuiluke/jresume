@@ -1,11 +1,19 @@
-<h1>${person.name}</h1>
-<h3>${person.jobTitle}</h3>
-<#if config.showTrackable>
-    <p>${person.address}</p>
-    <p>${person.phoneNumber}</p>
-</#if>
-<p>${person.email}</p>
-<p>${person.website}</p>
+<div class="ui two column grid vertical segment">
+    <div class="ui column">
+        <h1>${person.name}</h1>
+        <h3>${person.jobTitle}</h3>
+    </div>
+    <#if config.showTrackable>
+        <div class="ui column" style="padding-top:30px;">
+            <p>${person.address}</p>
+            <p>${person.phoneNumber}</p>
+            <p>${person.email}</p>
+            <p>${person.website}</p>
+        </div>
+    </#if>
+</div>
+
+
 <#if person.objective??>
     <h3>Objective</h3>
     <p>${person.objective}</p>
@@ -46,47 +54,44 @@
                 Work Experience
         </#if>
     </h3>
-    <ul>
-        <#list jobWork as work>
-            <li>
-                ${work.company}
+    <#list jobWork as work>
 
-                <#if work.startDate?? && work.endDate??>
-                    from
+        <div>
+            ${work.company}
+
+            <#if work.startDate?? && work.endDate??>
+                from
+                ${work.startDate}
+
+                to
+
+                ${work.endDate}
+                <#elseif work.startDate??>
                     ${work.startDate}
+                    <#elseif work.endDate??>
+                        ${work.endDate}
+            </#if>
+            <#if work.summary??>
+                - <b>${work.summary}</b>
+            </#if>
+            <#if work.highlights??>
+                <ul>
+                    <#list work.highlights as highlight>
+                        <li><i>${highlight}</i></li>
+                    </#list>
+                </ul>
+            </#if>
 
-                    to
-
-                    ${work.endDate}
-                    <#elseif work.startDate??>
-                        ${work.startDate}
-                        <#elseif work.endDate??>
-                            ${work.endDate}
-                </#if>
-                <#if work.summary??>
-                    - <b>${work.summary}</b>
-                </#if>
-                <#if work.highlights??>
-                    <ul>
-                        <#list work.highlights as highlight>
-                            <li><i>${highlight}</i></li>
-                        </#list>
-                    </ul>
-                </#if>
-
-                <#if work.keywords??>
-                    <ul>
-                        <li><b>Keywords:</b></li>
-                        <ul>
-                            <#list work.keywords as keyword>
-                                <li><i><b>${keyword}</b></i></li>
-                            </#list>
-                        </ul>
-                    </ul>
-                </#if>
-            </li>
-        </#list>
-    </ul>
+            <#if work.keywords??>
+                <#list work.keywords as keyword>
+                    <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                </#list>
+            </#if>
+        </div>
+        <#sep>
+            <div class="ui fitted divider"></div>
+        </#sep>
+    </#list>
 </#if>
 <#if volunteerWork??>
     <h3>
@@ -96,9 +101,8 @@
                 Volunteer Work Experience
         </#if>
     </h3>
-    <ul>
         <#list volunteerWork as work>
-            <li>
+            <div>
                 ${work.company}
 
                 <#if work.startDate?? && work.endDate??>
@@ -125,16 +129,15 @@
                 </#if>
 
                 <#if work.keywords??>
-                    <ul>
-                        <li><b>Keywords:</b></li>
-                        <ul>
-                            <#list work.keywords as keyword>
-                                <li><i><b>${keyword}</b></i></li>
-                            </#list>
-                        </ul>
-                    </ul>
+                    <#list work.keywords as keyword>
+                        <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                    </#list>
                 </#if>
-            </li>
+
+            </div>
+            <#sep>
+                <div class="ui fitted divider"></div>
+            </#sep>
         </#list>
     </ul>
 </#if>
@@ -147,30 +150,64 @@
         </#if>
     </h3>
     <#if education.schools??>
-        <ul>
-            <#list education.schools as school>
-                <li>
-                    ${school.name}
+        <#list education.schools as school>
+            <div>
+                ${school.name}
 
-                    <#if school.startDate?? && school.endDate??>
-                        from
+                <#if school.startDate?? && school.endDate??>
+                    from
+                    ${school.startDate}
+
+                    to
+
+                    ${school.endDate}
+                    <#elseif school.startDate??>
                         ${school.startDate}
+                        <#elseif school.endDate??>
+                            ${school.endDate}
+                </#if>
 
-                        to
+                <#if school.gpa??>
+                    - GPA: ${school.gpa}
+                </#if>
+            </div>
+        </#list>
+    </#if>
+    <#if education.examinations??>
+        <#list education.examinations as examination>
+            <div>
+                ${examination.name}
 
-                        ${school.endDate}
-                        <#elseif school.startDate??>
-                            ${school.startDate}
-                            <#elseif school.endDate??>
-                                ${school.endDate}
-                    </#if>
+                <#if examination.startDate?? && examination.endDate??>
+                    from
+                    ${examination.startDate}
 
-                    <#if school.gpa??>
-                        GPA: ${school.gpa}
-                    </#if>
-                </li>
-            </#list>
-        </ul>
+                    to
+
+                    ${examination.endDate}
+                    <#elseif examination.startDate??>
+                        ${examination.startDate}
+                        <#elseif examination.endDate??>
+                            ${examination.endDate}
+                </#if>
+
+                <#if examination.subjects??>
+                    :
+                    <ul>
+                        <#list examination.subjects as subject>
+                            <div class="ui two column grid">
+                                <div class="ui column noSpacingText" style="padding: 0px">
+                                    ${subject.name}
+                                </div>
+                                <div class="ui column noSpacingText" style="padding: 0px">
+                                    ${subject.result}
+                                </div>
+                            </div>
+                        </#list>
+                    </ul>
+                </#if>
+            </div>
+        </#list>
     </#if>
     </h3>
 </#if>
