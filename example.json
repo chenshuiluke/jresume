@@ -27,8 +27,8 @@
     }
   ],
   "accomplishments": [
-    "Team made it to the ACM-ICPC Programming Caribbean National Finals 2015.",
-    "Was the only student to complete all three phases of the Calico 2016 project."
+    "I did something remarkable.",
+    "I did something else remarkable."
   ],
   "jobWork": [
     {
@@ -127,32 +127,16 @@
     "schools": [
       {
         "name": "Ardenne High School",
-        "startDate": "2009",
-        "endDate": "2014",
+        "startDate": "100AD",
+        "endDate": "104AD",
         "summary": "Some summary!",
-        "gpa": "5.0",
-        "examinations": [
-          {
-            "name": "CSEC",
-            "startDate": "2014",
-            "subjects": [
-              {
-                "name": "Math",
-                "result": "100"
-              },
-              {
-                "name": "English",
-                "result": "100"
-              }
-            ]
-          }
-        ]
+        "gpa": "5.0"
       }
     ],
     "examinations": [
       {
         "name": "CSEC",
-        "startDate": "2014",
+        "startDate": "104AD",
         "subjects": [
           {
             "name": "Math",
