@@ -1,14 +1,23 @@
-<div class="ui two column grid vertical segment">
+<div class="ui ${config.showTrackable?then('two column', '')} grid vertical segment">
     <div class="ui column">
         <h1>${person.name}</h1>
         <h3>${person.jobTitle}</h3>
+        <#if !config.showTrackable>
+            <div>
+                <a href="${person.website}" class="ui link">${person.website}</a>
+            </div>
+            <div>
+                <a class="ui link">${person.email}</a>
+            </div>
+
+        </#if>
     </div>
     <#if config.showTrackable>
         <div class="ui column" style="padding-top:30px;">
             <p>${person.address}</p>
             <p>${person.phoneNumber}</p>
-            <p>${person.email}</p>
-            <p>${person.website}</p>
+            <a class="ui link">${person.email}</a>
+            <a href="${person.website}" class="ui link">${person.website}</a>
         </div>
     </#if>
 </div>
@@ -40,11 +49,13 @@
                 Skills
         </#if>
     </h3>
-    <ul>
+    <div class="ui horizontal list">
         <#list skills as skill>
-            <li>${skill.name}</li>
+            <div class="ui item">
+                    ${skill.name}
+            </div>
         </#list>
-    </ul>
+    </div>
 </#if>
 <#if jobWork??>
     <h3>
@@ -56,8 +67,13 @@
     </h3>
     <#list jobWork as work>
 
-        <div>
+        <p>
+            <i>
             ${work.company}
+
+            <#if work.company?? && (work.startDate?? || work.endDate??)>
+                |
+            </#if>
 
             <#if work.startDate?? && work.endDate??>
                 from
@@ -71,13 +87,14 @@
                     <#elseif work.endDate??>
                         ${work.endDate}
             </#if>
+            </i>
             <#if work.summary??>
-                - <b>${work.summary}</b>
+                <p>${work.summary}</p>
             </#if>
             <#if work.highlights??>
                 <ul>
                     <#list work.highlights as highlight>
-                        <li><i>${highlight}</i></li>
+                        <li>${highlight}</li>
                     </#list>
                 </ul>
             </#if>
@@ -87,7 +104,7 @@
                     <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
                 </#list>
             </#if>
-        </div>
+        </p>
         <#sep>
             <div class="ui fitted divider"></div>
         </#sep>
@@ -102,8 +119,14 @@
         </#if>
     </h3>
         <#list volunteerWork as work>
-            <div>
+            <p>
+                <i>
                 ${work.company}
+
+                <#if work.company?? && (work.startDate?? || work.endDate??)>
+                    |
+                </#if>
+
 
                 <#if work.startDate?? && work.endDate??>
                     from
@@ -117,13 +140,14 @@
                         <#elseif work.endDate??>
                             ${work.endDate}
                 </#if>
+                </i>
                 <#if work.summary??>
-                    - <b>${work.summary}</b>
+                    <p>${work.summary}</p>
                 </#if>
                 <#if work.highlights??>
                     <ul>
                         <#list work.highlights as highlight>
-                            <li><i>${highlight}</i></li>
+                            <li>${highlight}</li>
                         </#list>
                     </ul>
                 </#if>
@@ -134,7 +158,7 @@
                     </#list>
                 </#if>
 
-            </div>
+            </p>
             <#sep>
                 <div class="ui fitted divider"></div>
             </#sep>
@@ -171,6 +195,9 @@
                     - GPA: ${school.gpa}
                 </#if>
             </div>
+            <#sep>
+                <div class="ui fitted divider"></div>
+            </#sep>
         </#list>
     </#if>
     <#if education.examinations??>
@@ -196,10 +223,10 @@
                     <ul>
                         <#list examination.subjects as subject>
                             <div class="ui two column grid">
-                                <div class="ui column noSpacingText" style="padding: 0px">
+                                <div class="ui column noSpacingText left aligned" style="padding: 0px">
                                     ${subject.name}
                                 </div>
-                                <div class="ui column noSpacingText" style="padding: 0px">
+                                <div class="ui column noSpacingText right aligned" style="padding: 0px">
                                     ${subject.result}
                                 </div>
                             </div>
@@ -207,7 +234,51 @@
                     </ul>
                 </#if>
             </div>
+            <#sep>
+                <div class="ui fitted divider"></div>
+            </#sep>
         </#list>
     </#if>
     </h3>
+</#if>
+
+<#if projects??>
+    <h3>
+        <#if customProjectHeading??>
+            ${customProjectHeading}
+        <#else>
+            Projects
+        </#if>
+    </h3>
+    <#list projects as project>
+        <#if project.name??>
+            <p>${project.name}</p>
+        </#if>
+        <#if project.url??>
+            <a class="ui link" href="${project.url}">${project.url}</a>
+        </#if>
+        <#if project.description??>
+            <p>
+                ${project.description}
+            </p>
+        </#if>
+
+        <#if project.highlights??>
+            <ul>
+                <#list project.highlights as highlight>
+                    <li>${highlight}</li>
+                </#list>
+            </ul>
+        </#if>
+
+        <#if project.keywords??>
+            <#list project.keywords as keyword>
+                <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+            </#list>
+        </#if>
+        
+        <#sep>
+            <div class="ui fitted divider"></div>
+        </#sep>
+    </#list>
 </#if>
