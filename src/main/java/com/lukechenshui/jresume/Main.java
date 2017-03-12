@@ -17,12 +17,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.tidy.Tidy;
+import spark.Request;
+import spark.Response;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -62,7 +65,7 @@ public class Main {
                 }
                 startListeningAsServer();
             } else {
-                generateWebResumeAndWriteIt(null, new Runtime(config.getOutputDirectory(), outputPrefixNumber.incrementAndGet(), config));
+                generateWebResumeAndWriteIt(null, new Runtime(config.getOutputDirectory(), outputPrefixNumber.incrementAndGet(), config), config.themeName);
             }
         } catch (Exception exc) {
             exc.printStackTrace();
@@ -79,11 +82,11 @@ public class Main {
         }
     }
 
-    private static File generateWebResumeAndWriteIt(String json, Runtime runtime) throws Exception {
+    private static File generateWebResumeAndWriteIt(String json, Runtime runtime, String theme) throws Exception {
         if (json == null) {
             json = readJSONFromFile();
         }
-        String html = generateWebResumeFromJSON(json, runtime);
+        String html = generateWebResumeFromJSON(json, runtime, theme);
         File location = runtime.getOutputHtmlFile();
         FileWriter writer = new FileWriter(location, false);
         writer.write(html);
@@ -195,18 +198,25 @@ public class Main {
         });
 
         post("/webresume", (request, response) -> {
-            int currentReqId = outputPrefixNumber.incrementAndGet();
-            File outputDirectory = new File("data/jresume" + currentReqId + ".tmp");
-            Runtime runtime = new Runtime(outputDirectory, currentReqId, config);
-            File location = generateWebResumeAndWriteIt(request.body(), runtime);
-            HttpServletResponse rawResponse = response.raw();
-            rawResponse.setContentType("application/octet-stream");
-            rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
-            OutputStream out = rawResponse.getOutputStream();
-            writeFiletoOutputStreamByteByByte(location, out);
-            FileDeleteStrategy.FORCE.delete(outputDirectory);
-            return rawResponse;
+            return generateWebResumeInRoute("default", request, response);
         });
+
+        post("/webresume/:theme", (request, response) -> {
+            String desiredTheme = request.params(":theme");
+            ArrayList<String> themes = getListOfThemes();
+            if (themes.contains(desiredTheme)) {
+                return generateWebResumeInRoute(desiredTheme, request, response);
+            } else {
+                response.type("application/json");
+                response.status(400);
+
+                JSONObject responseObj = new JSONObject();
+                responseObj.put("error", "The theme you have selected does not exist");
+
+                return responseObj.toString();
+            }
+        });
+
         get("/", (request, response) -> {
             return "Welcome to JResume!";
         });
@@ -228,11 +238,35 @@ public class Main {
         });
     }
 
-    private static String generateWebResumeFromJSON(String json, Runtime runtime) throws Exception {
+    private static Object generateWebResumeInRoute(String theme, Request request, Response response) throws Exception {
+        int currentReqId = outputPrefixNumber.incrementAndGet();
+        File outputDirectory = new File("data/jresume" + currentReqId + ".tmp");
+        Runtime runtime = new Runtime(outputDirectory, currentReqId, config);
+        File location = generateWebResumeAndWriteIt(request.body(), runtime, theme);
+        HttpServletResponse rawResponse = response.raw();
+        rawResponse.setContentType("application/octet-stream");
+        rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
+        OutputStream out = rawResponse.getOutputStream();
+        writeFiletoOutputStreamByteByByte(location, out);
+        FileDeleteStrategy.FORCE.delete(outputDirectory);
+        return rawResponse;
+    }
+
+    public static ArrayList<String> getListOfThemes() {
+        ArrayList<String> themes = new ArrayList<>();
+        File themeFolder = new File("themes");
+        for (String themeName : themeFolder.list()) {
+            themes.add(FilenameUtils.getBaseName(themeName));
+        }
+        return themes;
+    }
+
+    private static String generateWebResumeFromJSON(String json, Runtime runtime, String theme) throws Exception {
         if (!isValidJSON(json)) {
             throw new InvalidJSONException();
         }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
 
 
         copyResourcesZip(runtime, null);
@@ -243,7 +277,7 @@ public class Main {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
         cfg.setDirectoryForTemplateLoading(new File("themes"));
         cfg.setDefaultEncoding("UTF-8");
-        Template temp = cfg.getTemplate("example-theme.html");
+        Template temp = cfg.getTemplate(theme + ".html");
         //System.out.println(json);
         Resume resume = gson.fromJson(json, Resume.class);
         resume.setConfig(config);

@@ -2,6 +2,7 @@ package com.lukechenshui.jresume;
 
 import com.beust.jcommander.Parameter;
 import com.lukechenshui.jresume.validators.FileLocationValidator;
+import com.lukechenshui.jresume.validators.ThemeNameValidator;
 
 import java.io.File;
 
@@ -9,12 +10,9 @@ import java.io.File;
  * Created by luke on 1/1/17.
  */
 public class Config {
-    public Config() {
-    }
-
     @Parameter(names = {"--output", "-o"}, description = "The output directory for the generated resume.")
     String outputDirectory = "output";
-    @Parameter(names = {"--theme", "-t"}, description = "The theme to use.")
+    @Parameter(names = {"--theme", "-t"}, description = "The theme to use.", validateWith = ThemeNameValidator.class)
     String themeName = "default";
     @Parameter(names = {"--server-mode", "-s"}, description = "Launches JResume in server mode.")
     boolean serverMode = false;
@@ -32,13 +30,10 @@ public class Config {
     */
     @Parameter(names = {"--input", "-i"}, description = "The location of the input file.", required = true)
     String inputFileName;
-
     @Parameter(names = {"--log-file", "-l"}, description = "The location of the log file", validateWith = FileLocationValidator.class)
     String logFile;
-
     @Parameter(names = {"--resource-directory", "-rd"}, description = "The subdirectory where the CSS/JS etc resources will be within the zip file.")
     String resourceDirectory = "resources";
-
     @Parameter(names = {"--show-trackable-information", "-st"}, description = "Shows trackable information such as your address, phone number, etc.")
     boolean showTrackable = false;
     /*
@@ -48,7 +43,8 @@ public class Config {
      */
     File serverInitialResourceZip = new File("data/webresume-resources.zip");
 
-
+    public Config() {
+    }
 
     public String getOutputDirectory() {
         return outputDirectory;
