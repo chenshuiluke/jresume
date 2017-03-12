@@ -239,6 +239,7 @@ You can customize the various headings by adding the following to your resume JS
 7. hobbiesHeading
 
 Example:
+
     {
       "skillsHeading": "Custom Skills Heading",
       "jobWorkHeading": "Custom Work Heading",
@@ -283,4 +284,6 @@ pdf.js is in the root directory of the jresume directory.
 3. Put any resources you may want to use in the resources/resources.zip .
 4. Link your resources properly by using `config.resourceDirectory`. For example, the following links to a file that is in the root directory of `resources/resources.zip`:
 
-    <link type="text/css" rel="stylesheet" href="${config.resourceDirectory}/fonts.css">
+`<link type="text/css" rel="stylesheet" href="${config.resourceDirectory}/fonts.css">`
+
+=D
