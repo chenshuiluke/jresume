@@ -26,6 +26,7 @@ The best JSON to HTML resume generator.
       "jobWorkHeading": "Custom Work Heading",
       "accomplishmentsHeading": "Custom Accomplishments Heading",
       "projectsHeading": "Custom Projects Heading",
+      "hobbiesHeading": "Custom Hobbies Heading",
       "person": {
         "name": "Bob",
         "email": "johndoe@gmail.com",
@@ -41,7 +42,6 @@ The best JSON to HTML resume generator.
           "competence": "Advanced"
         },
         {
-
           "name": "C++",
           "competence": "Beginner"
         },
@@ -51,8 +51,8 @@ The best JSON to HTML resume generator.
         }
       ],
       "accomplishments": [
-        "Team made it to the ACM-ICPC Programming Caribbean National Finals 2015.",
-        "Was the only student to complete all three phases of the Calico 2016 project."
+        "I did something remarkable.",
+        "I did something else remarkable."
       ],
       "jobWork": [
         {
@@ -151,32 +151,16 @@ The best JSON to HTML resume generator.
         "schools": [
           {
             "name": "Ardenne High School",
-            "startDate": "2009",
-            "endDate": "2014",
+            "startDate": "100AD",
+            "endDate": "104AD",
             "summary": "Some summary!",
-            "gpa": "5.0",
-            "examinations": [
-              {
-                "name": "CSEC",
-                "startDate": "2014",
-                "subjects": [
-                  {
-                    "name": "Math",
-                    "result": "100"
-                  },
-                  {
-                    "name": "English",
-                    "result": "100"
-                  }
-                ]
-              }
-            ]
+            "gpa": "5.0"
           }
         ],
         "examinations": [
           {
             "name": "CSEC",
-            "startDate": "2014",
+            "startDate": "104AD",
             "subjects": [
               {
                 "name": "Math",
@@ -189,7 +173,6 @@ The best JSON to HTML resume generator.
             ]
           }
         ]
-
       },
       "hobbies": [
         "Programming",
@@ -204,7 +187,11 @@ The best JSON to HTML resume generator.
 
 *The server will listen to port 8080 by default*
 
-Then send send a POST request to `localhost:8080/webresume`
+Then send send a POST request to `localhost:8080/webresume`. That will return the html file for your resume. Then send a GET request to `localhost:8080/resources` to get a zip file containing the css/js/etc used to make the resume look pretty.
+
+In the same folder where you downloaded the html file, create a directory called "resources" and extract the contents of the resources zip file to the new resources folder. Then simply open up your web resume html file in your browser.
+
+
 ####Configuring SSL in the Server:
 To make jresume use ssl, you need to set the `jresume_keystore_location` and `jresume_keystore_password` environment variables.
 To create a keystore from an existing letsencrypt certificate, run the following:
