@@ -13,7 +13,7 @@ The best JSON to HTML resume generator.
 5. A web frontend is being developed :)
 6. Can run as a server.
     * You can send your JSON resume as a POST request to /webresume and get a full zip containing the HTML file and its resources. 
-    * You can currently test it out by posting the `example.json` found below to `http://lukechenshui.com:8080/webresume`.
+    * You can currently test it out by posting the `example.json` found below to `https://lukechenshui.com:8080/webresume`.
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
