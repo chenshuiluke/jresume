@@ -3,22 +3,15 @@ package com.lukechenshui.jresume;
 import com.beust.jcommander.JCommander;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.lukechenshui.jresume.exceptions.InvalidEnvironmentVariableException;
 import com.lukechenshui.jresume.exceptions.InvalidJSONException;
-import com.lukechenshui.jresume.exceptions.InvalidThemeNameException;
 import com.lukechenshui.jresume.resume.Resume;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import net.lingala.zip4j.core.ZipFile;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jConstants;
 import org.apache.commons.io.FileDeleteStrategy;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,11 +20,9 @@ import org.w3c.tidy.Tidy;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -100,7 +91,7 @@ public class Main {
 
         System.out.println("Success! You can find your resume at " + runtime.getOutputHtmlFile().getAbsolutePath());
         writer.close();
-        return location.getParentFile();
+        return location;
     }
 
 
@@ -193,28 +184,26 @@ public class Main {
         port(config.getServerPort());
         enableCORS("*", "POST, GET, OPTIONS, DELETE, PUT", "*");
 
+        get("resources", (request, response) -> {
+            HttpServletResponse rawResponse = response.raw();
+            rawResponse.setContentType("application/octet-stream");
+            rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
+            OutputStream out = rawResponse.getOutputStream();
+
+            writeFiletoOutputStreamByteByByte(config.serverInitialResourceZip, out);
+            return rawResponse;
+        });
+
         post("/webresume", (request, response) -> {
             int currentReqId = outputPrefixNumber.incrementAndGet();
             File outputDirectory = new File("data/jresume" + currentReqId + ".tmp");
             Runtime runtime = new Runtime(outputDirectory, currentReqId, config);
             File location = generateWebResumeAndWriteIt(request.body(), runtime);
-            File outputZipFile = new File("data/jresume-" + runtime.getId() + ".tmp.zip");
-            if (outputZipFile.exists()) {
-                outputZipFile.delete();
-            }
-            outputZipFile.deleteOnExit();
-
-            Files.copy(config.serverInitialResourceZip.toPath(), outputZipFile.toPath());
-            ZipFile zipFile = new ZipFile(outputZipFile);
-            ZipParameters parameters = new ZipParameters();
-            parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_FASTEST);
-            zipFile.addFile(runtime.getOutputHtmlFile(), parameters);
             HttpServletResponse rawResponse = response.raw();
             rawResponse.setContentType("application/octet-stream");
             rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
             OutputStream out = rawResponse.getOutputStream();
-            writeFiletoOutputStreamByteByByte(outputZipFile, out);
-            FileDeleteStrategy.FORCE.delete(outputZipFile);
+            writeFiletoOutputStreamByteByByte(location, out);
             FileDeleteStrategy.FORCE.delete(outputDirectory);
             return rawResponse;
         });
@@ -260,25 +249,6 @@ public class Main {
         resume.setConfig(config);
         StringWriter htmlStringWriter = new StringWriter();
         temp.process(resume, htmlStringWriter);
-//        JsonParser parser = new JsonParser();
-//        JsonObject obj = parser.parse(json).getAsJsonObject();
-//        resume.setJsonObject(obj);
-//
-//        BaseTheme theme;
-//        if (resume.getThemeName() != null) {
-//            theme = config.getThemeHashMap().get(resume.getThemeName());
-//        } else {
-//            theme = config.getThemeHashMap().get(config.getThemeName());
-//        }
-//        if (theme == null) {
-//            throw new InvalidThemeNameException();
-//        }
-//        //Duplicates the theme found so that all requests will use their own instance of each theme.
-//        Class themeClass = theme.getClass();
-//        Constructor themeConstructor = themeClass.getConstructor(String.class);
-//        theme = (BaseTheme) themeConstructor.newInstance(theme.getThemeName());
-//
-//        //String html = theme.generate(resume);
         String html = htmlStringWriter.toString();
         return html;
     }
