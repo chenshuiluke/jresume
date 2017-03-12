@@ -32,9 +32,11 @@ public class Runtime {
         try {
             tempDirectory = new File("data/jresume-tempresource-zip-dir-" + id);
             tempDirectory.mkdir();
-            ZipFile zipFile = new ZipFile(file);
-            zipFile.extractAll(tempDirectory.getPath());
 
+            if (!config.isServerMode()) {
+                ZipFile zipFile = new ZipFile(file);
+                zipFile.extractAll(tempDirectory.getPath());
+            }
             String[] files = tempDirectory.list();
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
@@ -43,8 +45,11 @@ public class Runtime {
             if (!resourceDirectory.exists()) {
                 resourceDirectory.mkdirs();
             }
-            FileUtils.copyDirectory(tempDirectory, resourceDirectory);
-            FileDeleteStrategy.FORCE.delete(tempDirectory);
+
+            if (!config.isServerMode()) {
+                FileUtils.copyDirectory(tempDirectory, resourceDirectory);
+                FileDeleteStrategy.FORCE.delete(tempDirectory);
+            }
         } catch (Exception exc) {
             exc.printStackTrace();
         }

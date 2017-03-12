@@ -3,6 +3,7 @@
   "jobWorkHeading": "Custom Work Heading",
   "accomplishmentsHeading": "Custom Accomplishments Heading",
   "projectsHeading": "Custom Projects Heading",
+  "hobbiesHeading": "Custom Hobbies Heading",
   "person": {
     "name": "Bob",
     "email": "johndoe@gmail.com",
