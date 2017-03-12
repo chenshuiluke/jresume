@@ -205,7 +205,7 @@ Then finally to load JResume in SSL mode, pass `--server-mode --ssl-mode` to the
 
 ###Usage:
 
-    java -jar jresume.jar --input example.json --output output --theme default
+    java -jar jresume.jar --input example.json --output output
 
 ###Output:
 
@@ -225,40 +225,6 @@ You can either compile it using Intellij IDEA or Maven.
 
 ###Customizing the Output:
 
-####Customizing space between sections
-
-You may use `numPrecedingLineBreaks` or `numFollowingLineBreaks` to add space before or after each section respectively.
-
-#####Spacing examples:
-
-Without Spacing:
-
-      "person": {
-        "name": "Bob",
-        "email": "johndoe@gmail.com",
-        "address": "7 Java Drive, OOP City",
-        "phoneNumber": "+1(334)567-2346",
-        "jobTitle": "Software Engineer",
-        "website": "https://www.google.com"
-      },
-      ...
-
-![spacing_before_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_before.png)
-
-With Spacing:
-
-      "person": {
-        "name": "Bob",
-        "email": "johndoe@gmail.com",
-        "address": "7 Java Drive, OOP City",
-        "phoneNumber": "+1(334)567-2346",
-        "jobTitle": "Software Engineer",
-        "website": "https://www.google.com",
-        "numFollowingLineBreaks": 10
-      },
-      ...
-
-![spacing_after_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/spacing_example_after.png)
 
 
 ####Customizing Section Headings
@@ -273,12 +239,12 @@ You can customize the various headings by adding the following to your resume JS
 7. hobbiesHeading
 
 Example:
-
     {
       "skillsHeading": "Custom Skills Heading",
       "jobWorkHeading": "Custom Work Heading",
       "accomplishmentsHeading": "Custom Accomplishments Heading",
       "projectsHeading": "Custom Projects Heading",
+      "hobbiesHeading": "Custom Hobbies Heading",
       "person": {
         "name": "Bob",
         "email": "johndoe@gmail.com",
