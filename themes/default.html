@@ -16,35 +16,36 @@
                 "${config.resourceDirectory}/styles.css">
     </head>
     <body class="ui text container noSpacing ordinaryText">
+    <#if person??>
+        <div class="ui ${config.showTrackable?then('two column', '')} grid vertical segment">
+            <div class="ui column">
+                <h1>${person.name}</h1>
+                <h3>${person.jobTitle}</h3>
+                <#if !config.showTrackable>
+                    <div>
+                        <a href="${person.website}" class="ui link">${person.website}</a>
+                    </div>
+                    <div>
+                        <a class="ui link">${person.email}</a>
+                    </div>
 
-    <div class="ui ${config.showTrackable?then('two column', '')} grid vertical segment">
-        <div class="ui column">
-            <h1>${person.name}</h1>
-            <h3>${person.jobTitle}</h3>
-            <#if !config.showTrackable>
-                <div>
+                </#if>
+            </div>
+            <#if config.showTrackable>
+                <div class="ui column" style="padding-top:30px;">
+                    <p>${person.address}</p>
+                    <p>${person.phoneNumber}</p>
+                    <a class="ui link">${person.email}</a>
                     <a href="${person.website}" class="ui link">${person.website}</a>
                 </div>
-                <div>
-                    <a class="ui link">${person.email}</a>
-                </div>
-
             </#if>
         </div>
-        <#if config.showTrackable>
-            <div class="ui column" style="padding-top:30px;">
-                <p>${person.address}</p>
-                <p>${person.phoneNumber}</p>
-                <a class="ui link">${person.email}</a>
-                <a href="${person.website}" class="ui link">${person.website}</a>
-            </div>
+
+
+        <#if person.objective??>
+            <h3>Objective</h3>
+            <p>${person.objective}</p>
         </#if>
-    </div>
-
-
-    <#if person.objective??>
-        <h3>Objective</h3>
-        <p>${person.objective}</p>
     </#if>
     <#if accomplishments??>
         <h3>

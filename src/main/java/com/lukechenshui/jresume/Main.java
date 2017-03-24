@@ -197,7 +197,7 @@ public class Main {
             return rawResponse;
         });
 
-        post("/webresume", (request, response) -> {
+        post("/webresume", "application/json", (request, response) -> {
             return generateWebResumeInRoute("default", request, response);
         });
 
@@ -244,11 +244,11 @@ public class Main {
         Runtime runtime = new Runtime(outputDirectory, currentReqId, config);
         File location = generateWebResumeAndWriteIt(request.body(), runtime, theme);
         HttpServletResponse rawResponse = response.raw();
-        rawResponse.setContentType("application/octet-stream");
-        rawResponse.setHeader("Content-Disposition", "attachment; filename=resume.zip");
+        rawResponse.setContentType("text/html");
         OutputStream out = rawResponse.getOutputStream();
         writeFiletoOutputStreamByteByByte(location, out);
         FileDeleteStrategy.FORCE.delete(outputDirectory);
+
         return rawResponse;
     }
 
