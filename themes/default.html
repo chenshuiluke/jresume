@@ -19,24 +19,40 @@
     <#if person??>
         <div class="ui ${config.showTrackable?then('two column', '')} grid vertical segment">
             <div class="ui column">
-                <h1>${person.name}</h1>
-                <h3>${person.jobTitle}</h3>
+                <#if person.name??>
+                    <h1>${person.name}</h1>
+                </#if>
+                <#if person.jobTitle??>
+                    <h3>${person.jobTitle}</h3>
+                </#if>
                 <#if !config.showTrackable>
                     <div>
-                        <a href="${person.website}" class="ui link">${person.website}</a>
+                        <#if person.website??>
+                            <p><a href="${person.website}" class="ui link">${person.website}</a></p>
+                        </#if>
                     </div>
                     <div>
-                        <a class="ui link">${person.email}</a>
+                        <#if person.email??>
+                            <p><a class="ui link">${person.email}</a></p>
+                        </#if>
                     </div>
 
                 </#if>
             </div>
             <#if config.showTrackable>
                 <div class="ui column" style="padding-top:30px;">
-                    <p>${person.address}</p>
-                    <p>${person.phoneNumber}</p>
-                    <p><a class="ui link">${person.email}</a></p>
-                    <p><a href="${person.website}" class="ui link">${person.website}</a></p>
+                    <#if person.address??>
+                        <p>${person.address}</p>
+                    </#if>
+                    <#if person.phoneNumber??>
+                        <p>${person.phoneNumber}</p>
+                    </#if>
+                    <#if person.email??>
+                        <p><a class="ui link">${person.email}</a></p>
+                    </#if>
+                    <#if person.website??>
+                        <p><a href="${person.website}" class="ui link">${person.website}</a></p>
+                    </#if>
                 </div>
             </#if>
         </div>
