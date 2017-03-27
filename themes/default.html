@@ -19,20 +19,20 @@
     <#if person??>
         <div class="ui ${config.showTrackable?then('two column', '')} grid vertical segment">
             <div class="ui column">
-                <#if person.name??>
+                <#if person.name?? && person.name != "">
                     <h1>${person.name}</h1>
                 </#if>
-                <#if person.jobTitle??>
+                <#if person.jobTitle?? && person.jobTitle != "">
                     <h3>${person.jobTitle}</h3>
                 </#if>
                 <#if !config.showTrackable>
                     <div>
-                        <#if person.website??>
+                        <#if person.website?? && person.website != "">
                             <p><a href="${person.website}" class="ui link">${person.website}</a></p>
                         </#if>
                     </div>
                     <div>
-                        <#if person.email??>
+                        <#if person.email?? && person.email != "">
                             <p><a class="ui link">${person.email}</a></p>
                         </#if>
                     </div>
@@ -41,16 +41,16 @@
             </div>
             <#if config.showTrackable>
                 <div class="ui column" style="padding-top:30px;">
-                    <#if person.address??>
+                    <#if person.address?? && person.address != "">
                         <p>${person.address}</p>
                     </#if>
-                    <#if person.phoneNumber??>
+                    <#if person.phoneNumber?? && person.phoneNumber != "">
                         <p>${person.phoneNumber}</p>
                     </#if>
-                    <#if person.email??>
+                    <#if person.email?? && person.email != "">
                         <p><a class="ui link">${person.email}</a></p>
                     </#if>
-                    <#if person.website??>
+                    <#if person.website?? && person.email != "">
                         <p><a href="${person.website}" class="ui link">${person.website}</a></p>
                     </#if>
                 </div>
@@ -58,7 +58,7 @@
         </div>
 
 
-        <#if person.objective??>
+        <#if person.objective?? && person.objective != "">
             <h3>Objective</h3>
             <p>${person.objective}</p>
         </#if>
