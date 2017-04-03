@@ -50,7 +50,7 @@ public class Resume {
         if (list != null) {
             for (String element : list) {
                 String whiteSpaceStripped = element.replaceAll("\\s+", "");
-                if (element.equals(whiteSpaceStripped)) {
+                if (element.equals(whiteSpaceStripped) && element.length() > 0) {
                     return list;
                 }
             }
