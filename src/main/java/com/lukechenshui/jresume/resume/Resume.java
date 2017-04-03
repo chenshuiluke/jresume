@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.lukechenshui.jresume.Config;
 import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
-import com.lukechenshui.jresume.resume.items.Skill;
 import com.lukechenshui.jresume.resume.items.education.Education;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
@@ -24,7 +23,7 @@ public class Resume {
     String volunteerWorkHeading;
     ArrayList<Project> projects;
     String projectsHeading;
-    ArrayList<Skill> skills;
+    ArrayList<String> skills;
     ArrayList<String> accomplishments;
     String accomplishmentsHeading;
     ArrayList<String> hobbies;
@@ -36,6 +35,28 @@ public class Resume {
     transient JsonObject jsonObject;
     public Resume() {
         config = new Config();
+    }
+
+    public void getRidOfArraysWithEmptyElements() {
+        accomplishments = setArraysWithEmptyStringElementsToNull(accomplishments);
+        hobbies = setArraysWithEmptyStringElementsToNull(hobbies);
+        skills = setArraysWithEmptyStringElementsToNull(skills);
+        if (education != null) {
+            education.getRidOfArraysWithEmptyElements();
+        }
+    }
+
+    private ArrayList<String> setArraysWithEmptyStringElementsToNull(ArrayList<String> list) {
+        if (list != null) {
+            for (String element : list) {
+                String whiteSpaceStripped = element.replaceAll("\\s+", "");
+                if (element.equals(whiteSpaceStripped)) {
+                    return list;
+                }
+            }
+            return null;
+        }
+        return null;
     }
 
     public Person getPerson() {
@@ -113,11 +134,11 @@ public class Resume {
         this.projects.add(project);
     }
 
-    public ArrayList<Skill> getSkills() {
+    public ArrayList<String> getSkills() {
         return skills;
     }
 
-    public void setSkills(ArrayList<Skill> skills) {
+    public void setSkills(ArrayList<String> skills) {
         this.skills = skills;
     }
 
@@ -201,11 +222,11 @@ public class Resume {
         this.hobbiesHeading = hobbiesHeading;
     }
 
-    public void setConfig(Config config) {
-        this.config = config;
-    }
-
     public Config getConfig() {
         return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
     }
 }

@@ -24,4 +24,21 @@ public class Education extends BaseEducationItem {
     public void setExaminations(ArrayList<Examination> examinations) {
         this.examinations = examinations;
     }
+
+    public void getRidOfArraysWithEmptyElements() {
+        examinations = setArraysWithEmptyElementsToNull(examinations);
+        schools = setArraysWithEmptyElementsToNull(schools);
+    }
+
+    private <T extends Object> ArrayList<T> setArraysWithEmptyElementsToNull(ArrayList<T> list) {
+        if (list != null) {
+            for (Object element : list) {
+                if (element != null) {
+                    return list;
+                }
+            }
+            return null;
+        }
+        return null;
+    }
 }
