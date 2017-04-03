@@ -280,6 +280,7 @@ public class Main {
         Template temp = cfg.getTemplate(theme + ".html");
         //System.out.println(json);
         Resume resume = gson.fromJson(json, Resume.class);
+        resume.getRidOfArraysWithEmptyElements();
         resume.setConfig(config);
         StringWriter htmlStringWriter = new StringWriter();
         temp.process(resume, htmlStringWriter);

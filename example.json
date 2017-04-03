@@ -14,18 +14,9 @@
     "objective": "Bleh bleh bleh bleh bleh bleh bleh bleh"
   },
   "skills": [
-    {
-      "name": "Java",
-      "competence": "Advanced"
-    },
-    {
-      "name": "C++",
-      "competence": "Beginner"
-    },
-    {
-      "name": "Android",
-      "competence": "Intermediate"
-    }
+    "Java",
+    "C++",
+    "Android"
   ],
   "accomplishments": [
     "I did something remarkable.",
