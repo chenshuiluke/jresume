@@ -17,23 +17,23 @@
     </head>
     <div class="resume">
         <body class="ui text container noSpacing ordinaryText">
-        <#if person??>
+        <#if person?has_content>
             <div class="ui ${config.showTrackable?then('two column', '')} grid vertical segment">
                 <div class="ui column">
-                    <#if person.name?? && person.name != "">
+                    <#if person.name?has_content && person.name != "">
                         <h1>${person.name}</h1>
                     </#if>
-                    <#if person.jobTitle?? && person.jobTitle != "">
+                    <#if person.jobTitle?has_content && person.jobTitle != "">
                         <h3>${person.jobTitle}</h3>
                     </#if>
                     <#if !config.showTrackable>
                         <div>
-                            <#if person.website?? && person.website != "">
+                            <#if person.website?has_content && person.website != "">
                                 <p><a href="${person.website}" class="ui link" target="_blank">${person.website}</a></p>
                             </#if>
                         </div>
                         <div>
-                            <#if person.email?? && person.email != "">
+                            <#if person.email?has_content && person.email != "">
                                 <p><a class="ui link">${person.email}</a></p>
                             </#if>
                         </div>
@@ -42,16 +42,16 @@
                 </div>
                 <#if config.showTrackable>
                     <div class="ui column" style="padding-top:30px;">
-                        <#if person.address?? && person.address != "">
+                        <#if person.address?has_content && person.address != "">
                             <p>${person.address}</p>
                         </#if>
-                        <#if person.phoneNumber?? && person.phoneNumber != "">
+                        <#if person.phoneNumber?has_content && person.phoneNumber != "">
                             <p>${person.phoneNumber}</p>
                         </#if>
-                        <#if person.email?? && person.email != "">
+                        <#if person.email?has_content && person.email != "">
                             <p><a class="ui link">${person.email}</a></p>
                         </#if>
-                        <#if person.website?? && person.website != "">
+                        <#if person.website?has_content && person.website != "">
                             <p><a href="${person.website}" class="ui link" target="_blank">${person.website}</a></p>
                         </#if>
                     </div>
@@ -59,14 +59,14 @@
             </div>
 
 
-            <#if person.objective?? && person.objective != "">
+            <#if person.objective?has_content && person.objective != "">
                 <h3>Objective</h3>
                 <p>${person.objective}</p>
             </#if>
         </#if>
-        <#if accomplishments??>
+        <#if accomplishments?has_content>
             <h3>
-                <#if accomplishmentsHeading??>
+                <#if accomplishmentsHeading?has_content>
                     ${accomplishmentsHeading}
                     <#else>
                         Accomplishments
@@ -78,9 +78,9 @@
                 </#list>
             </ul>
         </#if>
-        <#if skills??>
+        <#if skills?has_content>
             <h3>
-                <#if skillsHeading??>
+                <#if skillsHeading?has_content>
                     ${skillsHeading}
                     <#else>
                         Skills
@@ -94,9 +94,9 @@
                 </#list>
             </div>
         </#if>
-        <#if jobWork??>
+        <#if jobWork?has_content>
             <h3>
-                <#if jobWorkHeading??>
+                <#if jobWorkHeading?has_content>
                     ${jobWorkHeading}
                     <#else>
                         Work Experience
@@ -108,37 +108,41 @@
                     <i>
                         ${work.company}
 
-                        <#if work.company?? && (work.startDate?? || work.endDate??)>
+                        <#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
                             |
                         </#if>
 
-                        <#if work.startDate?? && work.endDate??>
+                        <#if work.startDate?has_content && work.endDate?has_content>
                             from
                             ${work.startDate}
 
                             to
 
                             ${work.endDate}
-                            <#elseif work.startDate??>
+                            <#elseif work.startDate?has_content>
                                 ${work.startDate}
-                                <#elseif work.endDate??>
+                                <#elseif work.endDate?has_content>
                                     ${work.endDate}
                         </#if>
                     </i>
-                    <#if work.summary??>
+                    <#if work.summary?has_content>
                 <p>${work.summary}</p>
         </#if>
-        <#if work.highlights??>
+        <#if work.highlights?has_content>
             <ul>
                 <#list work.highlights as highlight>
-                    <li>${highlight}</li>
+                    <#if highlight?has_content>
+                        <li>${highlight}</li>
+                    </#if>
                 </#list>
             </ul>
         </#if>
 
-        <#if work.keywords??>
+        <#if work.keywords?has_content>
             <#list work.keywords as keyword>
-                <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                <#if keyword?has_content>
+                    <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                </#if>
             </#list>
         </#if>
         </p>
@@ -147,9 +151,9 @@
         </#sep>
         </#list>
         </#if>
-        <#if volunteerWork??>
+        <#if volunteerWork?has_content>
             <h3>
-                <#if volunteerWorkHeading??>
+                <#if volunteerWorkHeading?has_content>
                     ${volunteerWorkHeading}
                     <#else>
                         Volunteer Work Experience
@@ -160,38 +164,42 @@
                     <i>
                         ${work.company}
 
-                        <#if work.company?? && (work.startDate?? || work.endDate??)>
+                        <#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
                             |
                         </#if>
 
 
-                        <#if work.startDate?? && work.endDate??>
+                        <#if work.startDate?has_content && work.endDate?has_content>
                             from
                             ${work.startDate}
 
                             to
 
                             ${work.endDate}
-                            <#elseif work.startDate??>
+                            <#elseif work.startDate?has_content>
                                 ${work.startDate}
-                                <#elseif work.endDate??>
+                                <#elseif work.endDate?has_content>
                                     ${work.endDate}
                         </#if>
                     </i>
-                    <#if work.summary??>
+                    <#if work.summary?has_content>
                 <p>${work.summary}</p>
         </#if>
-        <#if work.highlights??>
+        <#if work.highlights?has_content>
             <ul>
                 <#list work.highlights as highlight>
-                    <li>${highlight}</li>
+                    <#if highlight?has_content>
+                        <li>${highlight}</li>
+                    </#if>
                 </#list>
             </ul>
         </#if>
 
-        <#if work.keywords??>
+        <#if work.keywords?has_content>
             <#list work.keywords as keyword>
-                <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                <#if keyword?has_content>
+                    <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                </#if>
             </#list>
         </#if>
 
@@ -202,33 +210,33 @@
         </#list>
         </ul>
         </#if>
-        <#if education??>
+        <#if education?has_content>
             <h3>
-                <#if educationHeading??>
+                <#if educationHeading?has_content>
                     ${educationHeading}
                     <#else>
                         Education
                 </#if>
             </h3>
-            <#if education.schools??>
+            <#if education.schools?has_content>
                 <#list education.schools as school>
                     <p>
                         ${school.name}
 
-                        <#if school.startDate?? && school.endDate??>
+                        <#if school.startDate?has_content && school.endDate?has_content>
                             from
                             ${school.startDate}
 
                             to
 
                             ${school.endDate}
-                            <#elseif school.startDate??>
+                            <#elseif school.startDate?has_content>
                                 ${school.startDate}
-                                <#elseif school.endDate??>
+                                <#elseif school.endDate?has_content>
                                     ${school.endDate}
                         </#if>
 
-                        <#if school.gpa??>
+                        <#if school.gpa?has_content>
                             - GPA: ${school.gpa}
                         </#if>
                     </p>
@@ -237,29 +245,29 @@
                     </#sep>
                 </#list>
             </#if>
-            <#if education.examinations??>
+            <#if education.examinations?has_content>
                 <#list education.examinations as examination>
                     <div>
                         <p>${examination.name}
 
-                            <#if examination.startDate?? && examination.endDate??>
+                            <#if examination.startDate?has_content && examination.endDate?has_content>
                                 from
                                 ${examination.startDate}
 
                                 to
 
                                 ${examination.endDate}
-                                <#elseif examination.startDate??>
+                                <#elseif examination.startDate?has_content>
                                     ${examination.startDate}
-                                    <#elseif examination.endDate??>
+                                    <#elseif examination.endDate?has_content>
                                         ${examination.endDate}
 
                             </#if>
-                            <#if examination.subjects??>
+                            <#if examination.subjects?has_content>
                                 :
                             </#if>
                         </p>
-                        <#if examination.subjects??>
+                        <#if examination.subjects?has_content>
                             <ul>
                                 <#list examination.subjects as subject>
                                     <div class="ui two column grid">
@@ -282,28 +290,28 @@
             </h3>
         </#if>
 
-        <#if projects??>
+        <#if projects?has_content>
             <h3>
-                <#if projectsHeading??>
+                <#if projectsHeading?has_content>
                     ${projectsHeading}
                     <#else>
                         Projects
                 </#if>
             </h3>
             <#list projects as project>
-                <#if project.name??>
+                <#if project.name?has_content>
                     <p>${project.name}</p>
                 </#if>
-                <#if project.url??>
+                <#if project.url?has_content>
                     <a class="ui link" href="${project.url}" target="_blank">${project.url}</a>
                 </#if>
-                <#if project.description??>
+                <#if project.description?has_content>
                     <p>
                         ${project.description}
                     </p>
                 </#if>
 
-                <#if project.highlights??>
+                <#if project.highlights?has_content>
                     <ul>
                         <#list project.highlights as highlight>
                             <li>${highlight}</li>
@@ -311,7 +319,7 @@
                     </ul>
                 </#if>
 
-                <#if project.keywords??>
+                <#if project.keywords?has_content>
                     <#list project.keywords as keyword>
                         <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
                     </#list>
@@ -322,9 +330,9 @@
                 </#sep>
             </#list>
         </#if>
-        <#if hobbies??>
+        <#if hobbies?has_content>
             <h3>
-                <#if hobbiesHeading??>
+                <#if hobbiesHeading?has_content>
                     ${hobbiesHeading}
                     <#else>
                         Hobbies
