@@ -107,7 +107,12 @@
                 <p>
                     <i>
                         ${work.company}
-
+                        <#if work.company?has_content && work.position?has_content>
+                            -
+                        </#if>
+                        <#if work.position?has_content>
+                            ${work.position}
+                        </#if>
                         <#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
                             |
                         </#if>
@@ -139,11 +144,11 @@
         </#if>
 
         <#if work.keywords?has_content>
-            <#list work.keywords as keyword>
-                <#if keyword?has_content>
-                    <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
-                </#if>
-            </#list>
+            <div class="ui horizontal bulleted list">
+                <#list work.keywords as keyword>
+                    <a class="ui item">${keyword}</a>
+                </#list>
+            </div>
         </#if>
         </p>
         <#sep>
@@ -163,7 +168,12 @@
                 <p>
                     <i>
                         ${work.company}
-
+                        <#if work.company?has_content && work.position?has_content>
+                            -
+                        </#if>
+                        <#if work.position?has_content>
+                            ${work.position}
+                        </#if>
                         <#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
                             |
                         </#if>
@@ -196,11 +206,11 @@
         </#if>
 
         <#if work.keywords?has_content>
-            <#list work.keywords as keyword>
-                <#if keyword?has_content>
-                    <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
-                </#if>
-            </#list>
+            <div class="ui horizontal bulleted list">
+                <#list work.keywords as keyword>
+                    <a class="ui item">${keyword}</a>
+                </#list>
+            </div>
         </#if>
 
         </p>
@@ -320,9 +330,11 @@
                 </#if>
 
                 <#if project.keywords?has_content>
+                    <div class="ui horizontal bulleted list">
                     <#list project.keywords as keyword>
-                        <a class="ui blue label" style="margin-bottom:10px;">${keyword}</a>
+                        <a class="ui item">${keyword}</a>
                     </#list>
+                    </div>
                 </#if>
 
                 <#sep>
