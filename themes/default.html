@@ -9,7 +9,14 @@
         <link type="text/css" rel="stylesheet" href=
                 "${config.resourceDirectory}/fonts.css">
 
-
+        <style>
+            * {
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+                padding-top:0px !important;
+                padding-bottom: 0px !important;
+            }
+        </style>
         <link type="text/css" rel="stylesheet" href=
                 "${config.resourceDirectory}/default_theme.css">
     </head>
@@ -18,12 +25,17 @@
         <#if person?has_content>
             <div class="ui one column grid vertical segment">
                 <div class="ui column center aligned">
+                    <h3>
                     <#if person.name?has_content && person.name != "">
-                        <h3>${person.name}</h3>
+                        ${person.name}
+                    </#if>
+                    <#if person.name?has_content && person.name != "" && person.jobTitle?has_content && person.jobTitle != "">
+                        -
                     </#if>
                     <#if person.jobTitle?has_content && person.jobTitle != "">
-                        <p>${person.jobTitle}</p>
+                        ${person.jobTitle}
                     </#if>
+                    </h3>
                     <#if !config.showTrackable>
                         <div>
                             <#if person.website?has_content && person.website != "">
@@ -39,18 +51,29 @@
                     </#if>
                     <#if config.showTrackable>
                         <div>
+                            <p>
                             <#if person.address?has_content && person.address != "">
-                                <p>${person.address}</p>
+                                ${person.address}
                             </#if>
+                                <#if person.address?has_content && person.address != "" && person.phoneNumber?has_content && person.phoneNumber != "">
+                                    |
+                                </#if>
                             <#if person.phoneNumber?has_content && person.phoneNumber != "">
-                                <p>${person.phoneNumber}</p>
+                                ${person.phoneNumber}
+                            </#if>
+                            <#if person.phoneNumber?has_content && person.phoneNumber != "" && person.email?has_content && person.email != "">
+                                |
                             </#if>
                             <#if person.email?has_content && person.email != "">
-                                <p><a class="ui link">${person.email}</a></p>
+                                <a class="ui link">${person.email}</a>
+                            </#if>
+                            <#if person.email?has_content && person.email != "" && person.website?has_content && person.website != "">
+                                |
                             </#if>
                             <#if person.website?has_content && person.website != "">
-                                <p><a href="${person.website}" class="ui link" target="_blank">${person.website}</a></p>
+                                <a href="${person.website}" class="ui link" target="_blank">${person.website}</a>
                             </#if>
+                            </p>
                         </div>
                     </#if>
                 </div>
@@ -97,7 +120,9 @@
                     <#if school.summary?has_content>
                         <p>${school.summary}</p>
                     </#if>
-
+                    <#sep>
+                        <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                    </#sep>
                 </#list>
             </#if>
             <#if education.examinations?has_content>
@@ -106,7 +131,7 @@
                         <p>${examination.name}
 
                             <#if examination.startDate?has_content && examination.endDate?has_content>
-                                from
+
                                 ${examination.startDate}
 
                                 to
@@ -137,12 +162,15 @@
                             </ul>
                         </#if>
                     </div>
+                    <#sep>
+                        <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                    </#sep>
                 </#list>
             </#if>
             </h3>
         </#if>
         <#if accomplishments?has_content>
-            <div class="ui fitted divider" style="margin-bottom: 10px; margin-top:15px;"></div>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
             <h3>
                 <#if accomplishmentsHeading?has_content>
                     ${accomplishmentsHeading}
@@ -157,7 +185,7 @@
             </ul>
         </#if>
         <#if skills?has_content>
-            <div class="ui fitted divider" style="margin-bottom: 10px; margin-top:15px;"></div>
+            <div class="ui fitted header" visibility="hidden"></div>
             <h3>
                 <#if skillsHeading?has_content>
                     ${skillsHeading}
@@ -174,7 +202,7 @@
             </div>
         </#if>
         <#if jobWork?has_content>
-            <div class="ui fitted divider" style="margin-bottom: 10px; margin-top:15px;"></div>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
             <h3>
                 <#if jobWorkHeading?has_content>
                     ${jobWorkHeading}
@@ -198,7 +226,7 @@
                         </#if>
 
                         <#if work.startDate?has_content && work.endDate?has_content>
-                            from
+
                             ${work.startDate}
 
                             to
@@ -231,11 +259,13 @@
             </div>
         </#if>
         </p>
-
+        <#sep>
+            <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+        </#sep>
         </#list>
         </#if>
         <#if volunteerWork?has_content>
-            <div class="ui fitted divider" style="margin-bottom: 10px; margin-top:15px;"></div>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
             <h3>
                 <#if volunteerWorkHeading?has_content>
                     ${volunteerWorkHeading}
@@ -259,7 +289,7 @@
 
 
                         <#if work.startDate?has_content && work.endDate?has_content>
-                            from
+
                             ${work.startDate}
 
                             to
@@ -293,12 +323,15 @@
         </#if>
 
         </p>
+                <#sep>
+                    <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                </#sep>
         </#list>
         </ul>
         </#if>
 
         <#if projects?has_content>
-            <div class="ui fitted divider" style="margin-bottom: 10px; margin-top:15px;"></div>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
             <h3>
                 <#if projectsHeading?has_content>
                     ${projectsHeading}
@@ -339,6 +372,9 @@
                         </#if>
                     </div>
                 </div>
+                <#sep>
+                    <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                </#sep>
             </#list>
         </#if>
         <#if hobbies?has_content>
