@@ -22,12 +22,12 @@ The best JSON to HTML resume generator.
 ###Example JSON resume (example.json):
 
     {
-      "skillsHeading": "Custom Skills Heading",
-      "jobWorkHeading": "Custom Work Heading",
-      "accomplishmentsHeading": "Custom Accomplishments Heading",
-      "projectsHeading": "Custom Projects Heading",
-      "hobbiesHeading": "Custom Hobbies Heading",
-      "person": {
+    "skillsHeading": "Custom Skills Heading",
+    "jobWorkHeading": "Custom Work Heading",
+    "accomplishmentsHeading": "Custom Accomplishments Heading",
+    "projectsHeading": "Custom Projects Heading",
+    "hobbiesHeading": "Custom Hobbies Heading",
+    "person": {
         "name": "Bob",
         "email": "johndoe@gmail.com",
         "address": "7 Java Drive, OOP City",
@@ -35,151 +35,144 @@ The best JSON to HTML resume generator.
         "jobTitle": "Software Engineer",
         "website": "https://www.google.com",
         "objective": "Bleh bleh bleh bleh bleh bleh bleh bleh"
-      },
-      "skills": [
-        {
-          "name": "Java",
-          "competence": "Advanced"
-        },
-        {
-          "name": "C++",
-          "competence": "Beginner"
-        },
-        {
-          "name": "Android",
-          "competence": "Intermediate"
-        }
-      ],
-      "accomplishments": [
+    },
+    "skills": [
+        "Java",
+        "C++",
+        "Android"
+    ],
+    "accomplishments": [
         "I did something remarkable.",
         "I did something else remarkable."
-      ],
-      "jobWork": [
+    ],
+    "jobWork": [
         {
-          "company": "Example Ltd.",
-          "position": "Software Engineer",
-          "summary": "At Example Ltd., I did such and such and such and such and such and such and such and such and such.",
-          "startDate": "August 19, 1997",
-          "endDate": "August 19, 2001",
-          "highlights": [
+        "company": "Example Ltd.",
+        "position": "Software Engineer",
+        "summary": "At Example Ltd., I did such and such and such and such and such and such and such and such and such.",
+        "startDate": "August 19, 1997",
+        "endDate": "August 19, 2001",
+        "highlights": [
             "Worked on such and such",
             "I did such and such and such and such and such and such and such and such and such. I did such and such and such and such and such and such and such and such and such.",
             "Also worked on this"
-          ],
-          "keywords": [
+        ],
+        "keywords": [
             "java",
             "c++"
-          ]
+        ]
         },
         {
-          "company": "Example Ltd.2",
-          "position": "Software Engineer",
-          "summary": "At Example Ltd.2, I did such and such and such and such and such and such and such and such and such.",
-          "startDate": "August 19, 1997",
-          "endDate": "August 19, 2001",
-          "highlights": [
+        "company": "Example Ltd.2",
+        "position": "Software Engineer",
+        "summary": "At Example Ltd.2, I did such and such and such and such and such and such and such and such and such.",
+        "startDate": "August 19, 1997",
+        "endDate": "August 19, 2001",
+        "highlights": [
             "Worked on such and such",
             "Also worked on this"
-          ],
-          "keywords": [
+        ],
+        "keywords": [
             "java",
             "c++"
-          ]
+        ]
         }
-      ],
-      "volunteerWork": [
+    ],
+    "volunteerWork": [
         {
-          "company": "Example Institution",
-          "position": "Volunteer",
-          "summary": "At Example Institution, I did such and such.",
-          "startDate": "August 19, 1997",
-          "endDate": "August 19, 2001",
-          "highlights": [
+        "company": "Example Institution",
+        "position": "Volunteer",
+        "summary": "At Example Institution, I did such and such.",
+        "startDate": "August 19, 1997",
+        "endDate": "August 19, 2001",
+        "highlights": [
             "Worked on such and such",
             "Also worked on this"
-          ],
-          "keywords": [
+        ],
+        "keywords": [
             "java",
             "c++"
-          ]
+        ]
         },
         {
-          "company": "Example Institution2",
-          "position": "Volunteer",
-          "summary": "At Example Institution2, I did such and such.",
-          "startDate": "August 19, 1997",
-          "endDate": "August 19, 2001",
-          "highlights": [
+        "company": "Example Institution2",
+        "position": "Volunteer",
+        "summary": "At Example Institution2, I did such and such.",
+        "startDate": "August 19, 1997",
+        "endDate": "August 19, 2001",
+        "highlights": [
             "Worked on such and such",
             "Also worked on this"
-          ],
-          "keywords": [
+        ],
+        "keywords": [
             "java",
             "c++"
-          ]
+        ]
         }
-      ],
-      "projects": [
+    ],
+    "projects": [
         {
-          "name": "AwesomeProject",
-          "description": "This awesome project is awesome!",
-          "highlights": [
+        "name": "AwesomeProject",
+        "description": "This awesome project is awesome!",
+        "highlights": [
             "Does such and such.",
             "And it does such and such."
-          ],
-          "keywords": [
+        ],
+        "keywords": [
             "java",
             "c++"
-          ],
-          "url": "https://www.github.com"
+        ],
+        "url": "https://www.github.com"
         },
         {
-          "name": "AwesomeProject2",
-          "description": "This awesome project2 is awesome!",
-          "highlights": [
+        "name": "AwesomeProject2",
+        "description": "This awesome project2 is awesome!",
+        "highlights": [
             "Does such and such.",
             "And it does such and such."
-          ],
-          "keywords": [
+        ],
+        "keywords": [
             "java",
             "c++"
-          ],
-          "url": "https://www.github.com"
+        ],
+        "url": "https://www.github.com"
         }
-      ],
-      "education": {
+    ],
+    "education": {
         "schools": [
-          {
+        {
             "name": "Ardenne High School",
             "startDate": "100AD",
             "endDate": "104AD",
             "summary": "Some summary!",
             "gpa": "5.0"
-          }
+        }
         ],
         "examinations": [
-          {
+        {
             "name": "CSEC",
             "startDate": "104AD",
             "subjects": [
-              {
+            {
                 "name": "Math",
                 "result": "100"
-              },
-              {
+            },
+            {
                 "name": "English",
                 "result": "100"
-              }
+            }
             ]
-          }
+        }
         ]
-      },
-      "hobbies": [
+    },
+    "hobbies": [
         "Programming",
         "Video editing",
         "Gaming"
-      ]
+    ]
     }
+
+
 
 ###Server Usage:
 
