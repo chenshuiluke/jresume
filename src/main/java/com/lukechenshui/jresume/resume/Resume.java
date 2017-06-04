@@ -8,6 +8,7 @@ import com.lukechenshui.jresume.resume.items.education.Education;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -33,6 +34,10 @@ public class Resume {
     Config config = new Config();
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
+
+    String referencesHeading;
+    ArrayList<Person> references;
+
     public Resume() {
         config = new Config();
     }
@@ -66,6 +71,10 @@ public class Resume {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    public ArrayList<Person> getReferences(){return references;}
+
+    public void setReferences(ArrayList<Person> references){this.references = references;}
 
     public ArrayList<JobWork> getJobWork() {
         return jobWork;
@@ -113,6 +122,14 @@ public class Resume {
 
     public void setVolunteerWorkHeading(String volunteerWorkHeading) {
         this.volunteerWorkHeading = volunteerWorkHeading;
+    }
+
+    public String getReferencesHeading() {
+        return referencesHeading;
+    }
+
+    public void setReferencesHeading(String referencesHeading) {
+        this.referencesHeading = referencesHeading;
     }
 
     public void addJobWork(JobWork jobWork){
