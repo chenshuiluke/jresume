@@ -1,6 +1,7 @@
 {
   "skillsHeading": "Custom Skills Heading",
   "jobWorkHeading": "Custom Work Heading",
+  "referencesHeading": "References",
   "accomplishmentsHeading": "Custom Accomplishments Heading",
   "projectsHeading": "Custom Projects Heading",
   "hobbiesHeading": "Custom Hobbies Heading",
@@ -146,6 +147,20 @@
     "Programming",
     "Video editing",
     "Gaming"
+  ],
+  "references": [
+    {
+      "name": "Someone",
+      "email": "Someone@email.com",
+      "phoneNumber": "111-1111",
+      "jobTitle": "Manager"
+    },
+    {
+      "name": "Someone Else",
+      "email": "SomeoneElse@email.com",
+      "phoneNumber": "111-1221",
+      "jobTitle": "CEO"
+    }
   ]
 }
 
