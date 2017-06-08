@@ -15,7 +15,8 @@ public class Work extends BaseResumeItem {
     protected String endDate;
     protected ArrayList<String> highlights;
     protected ArrayList<String> keywords;
-
+    public Work() {
+    }
     public Work(String company, String position, String summary) {
         this.company = company;
         this.position = position;
