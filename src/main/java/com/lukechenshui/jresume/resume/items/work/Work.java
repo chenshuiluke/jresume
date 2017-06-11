@@ -107,4 +107,35 @@ public class Work extends BaseResumeItem {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Work work = (Work) o;
+
+        if (getCompany() != null ? !getCompany().equals(work.getCompany()) : work.getCompany() != null) return false;
+        if (getPosition() != null ? !getPosition().equals(work.getPosition()) : work.getPosition() != null)
+            return false;
+        if (getSummary() != null ? !getSummary().equals(work.getSummary()) : work.getSummary() != null) return false;
+        if (getStartDate() != null ? !getStartDate().equals(work.getStartDate()) : work.getStartDate() != null)
+            return false;
+        if (getEndDate() != null ? !getEndDate().equals(work.getEndDate()) : work.getEndDate() != null) return false;
+        if (getHighlights() != null ? !getHighlights().equals(work.getHighlights()) : work.getHighlights() != null)
+            return false;
+        return getKeywords() != null ? getKeywords().equals(work.getKeywords()) : work.getKeywords() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCompany() != null ? getCompany().hashCode() : 0;
+        result = 31 * result + (getPosition() != null ? getPosition().hashCode() : 0);
+        result = 31 * result + (getSummary() != null ? getSummary().hashCode() : 0);
+        result = 31 * result + (getStartDate() != null ? getStartDate().hashCode() : 0);
+        result = 31 * result + (getEndDate() != null ? getEndDate().hashCode() : 0);
+        result = 31 * result + (getHighlights() != null ? getHighlights().hashCode() : 0);
+        result = 31 * result + (getKeywords() != null ? getKeywords().hashCode() : 0);
+        return result;
+    }
 }

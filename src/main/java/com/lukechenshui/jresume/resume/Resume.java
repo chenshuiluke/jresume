@@ -54,16 +54,15 @@ public class Resume {
             constructor = impl.getConstructor();
             if(arrayList != null){
                 for(T obj : arrayList){
-                    if(obj !=  constructor.newInstance()){
+                    if(!obj.equals(constructor.newInstance())){
                         return arrayList;
                     }
                 }
             }
+            return null;
         }
-        catch (NoSuchMethodException exc){
+        catch (Exception exc){
             exc.printStackTrace();
-        }
-        finally {
             return null;
         }
     }
