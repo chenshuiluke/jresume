@@ -36,6 +36,16 @@
         <configuration />
       </plugin>
       <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.lukechenshui.jresume.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.0.2</version>
         <executions>
