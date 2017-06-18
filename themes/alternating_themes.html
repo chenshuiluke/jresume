@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/semantic/dist/semantic.min.css">
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/semantic/dist/components/rating.min.css">
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/fonts.css">
+    <!--
+            <style>
+
+                .resume * {
+                    margin-top: 0px !important;
+                    margin-bottom: 0px !important;
+                    padding-top:0px !important;
+                    padding-bottom: 0px !important;
+                }
+            </style>
+    -->
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/default_theme.css">
+</head>
+<body style="padding: 0;margin: 0; height: 100%;width: 100%">
+    <div class="ui two column grid">
+        <div class ="ui column" style = "background-color: #363C47;color: #FFFFFF;word-wrap: break-word; width: 25%">
+            <#if person?has_content>
+                <#if person.name?has_content && person.name != "">
+                    <div class = "ui row" align="center">
+                        <h2>
+                            ${person.name}
+                        </h2>
+                    </div>
+                </#if>
+                <#if person.jobTitle?has_content && person.jobTitle != "">
+                    <div class = "ui row" align="center">
+                        <h3>
+                            ${person.jobTitle}
+                        </h3>
+                    </div>
+                </#if>
+                <br>
+                <div class="ui fitted divider section-header" visibility="hidden"></div>
+                <div class = "ui row">
+                    <div style="background-color: #222933;color: white" align="center">
+                        <h3>
+                            <#if personInfoHeading?has_content>
+                                    ${personInfoHeading}
+                                    <#else>
+                                            Personal Info
+                            </#if>
+                        </h3>
+                    </div>
+                </div>
+                <br>
+
+                <#if person.website?has_content && person.website != "">
+                    <div class = "ui row">
+                        <div style="color: white">
+                            <#if websiteHeading?has_content>
+                                ${websiteHeading}<br>
+                                <#else>
+                                    WWW<br>
+                            </#if>
+                        </div>
+                        <a href="${person.website}" class="ui link" target="_blank">${person.website}</a>
+                    </div>
+                    <br>
+                </#if>
+
+
+                <#if person.email?has_content && person.email != "">
+                    <div class = "ui row">
+                        <div style="color: white">
+                            <#if emailHeading?has_content>
+                                ${emailHeading}<br>
+                                <#else>
+                                    Email<br>
+                            </#if>
+                        </div>
+                        <a class="ui link">${person.email}</a>
+                    </div>
+                    <br>
+                </#if>
+
+
+                <#if person.phoneNumber?has_content && person.phoneNumber != "">
+                    <div class = "ui row">
+                        <p>
+                            <div style="color: white">
+                                <#if phoneHeading?has_content>
+                                    ${phoneHeading}
+                                    <#else>
+                                        Phone Number
+                                </#if>
+                            </div>
+                        </p>
+                        ${person.phoneNumber}
+                    </div>
+                    <br>
+                </#if>
+                <div class="ui fitted divider section-header" visibility="hidden"></div>
+                <div class = "ui row">
+                    <div style="background-color: #222933;color: white" align="center">
+                        <h3>
+                            <#if keySkillsHeading?has_content>
+                                ${keySkillsHeading}
+                                <#else>
+                                    Key Skills
+                            </#if>
+                        </h3>
+                    </div>
+                </div>
+                <br>
+                <#if skills?has_content>
+                    <div class="ui fitted divider section-header" visibility="hidden"></div>
+                    <div class = "ui row">
+                        <div style="background-color: #222933;color: white" align="center">
+                            <h3>
+                                <#if technicalSkillsHeading?has_content>
+                                    ${technicalSkillsHeading}
+                                    <#else>
+                                        Technical Skills
+                                </#if>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="ui vertical list">
+                        <#list skills as skill>
+                            <div class="ui item">
+                                ${skill}
+                            </div>
+                        </#list>
+                    </div>
+                </#if>
+                <br>
+            </#if>
+
+            <#if references?has_content>
+                <div class="ui fitted divider section-header" visibility="hidden"></div>
+                <div style="background-color: #222933;color: white" align="center"  >
+                    <h3>
+                        <#if referencesHeading?has_content>
+                            ${referencesHeading}
+                            <#else>
+                                References
+                        </#if>
+                    </h3>
+                </div>
+                <#list references as referee>
+                    <b>${referee.name} (${referee.jobTitle}) <br> ${referee.company}</b>
+                    <ul>
+                        <li>${referee.phoneNumber}</li>
+                        <li>${referee.email}</li>
+                    </ul>
+                </#list>
+            </#if>
+
+        </div>
+        <div class ="ui column" style="word-wrap: break-word;width: 75%">
+            <#if person.objective?has_content && person.objective != "">
+                <!--<div class="ui fitted divider"></div>
+                <h3>Summary</h3>
+                <div class="ui fitted divider"></div>-->
+                <div>${person.objective}</div>
+            </#if>
+
+            <#if jobWork?has_content>
+                <!--<div class="ui fitted divider section-header" visibility="hidden"></div>-->
+                <h3>
+                    <#if jobWorkHeading?has_content>
+                        <div class="ui fitted divider"></div>
+                        ${jobWorkHeading}
+                        <div class="ui fitted divider"></div>
+                        <#else>
+                            <div class="ui fitted divider"></div>
+                            Work Experience
+                            <div class="ui fitted divider"></div>
+                    </#if>
+                </h3>
+                <#list jobWork as work>
+                    <div class="ui two column grid">
+                        <div class="ui column" style="width: 15%">
+                            <#if work.startDate?has_content && work.endDate?has_content>
+
+                                ${work.startDate} - <br> ${work.endDate}
+                                <#elseif work.startDate?has_content>
+                                    ${work.startDate} <br>
+                                    <#elseif work.endDate?has_content>
+                                        ${work.endDate}
+                            </#if>
+                        </div>
+                        <div class="ui column" style="width: 85%">
+                            <h5>
+                                ${work.company}
+                                <#if work.company?has_content && work.position?has_content>
+                                    -
+                                </#if>
+                                <#if work.position?has_content>
+                                    ${work.position}
+                                </#if>
+                                <!--<#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
+                                    |
+                                </#if>-->
+
+
+                            </h5>
+                            <#if work.summary?has_content>
+                                <p>${work.summary}</p>
+                            </#if>
+                            <#if work.highlights?has_content>
+                                <ul>
+                                    <#list work.highlights as highlight>
+                                        <#if highlight?has_content>
+                                            <li>${highlight}</li>
+                                        </#if>
+                                    </#list>
+                                </ul>
+                            </#if>
+
+                            <#if work.keywords?has_content>
+                                <div class="ui horizontal bulleted list">
+                                    <#list work.keywords as keyword>
+                                        <a class="ui item">${keyword}</a>
+                                    </#list>
+                                </div>
+                            </#if>
+                        </div>
+                    </div>
+
+
+
+
+                   <!-- <#sep>
+                        <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                    </#sep>-->
+                </#list>
+            </#if>
+
+            <#if education.schools?has_content>
+                <h3>
+                    <#if educationHeading?has_content>
+                        <div class = "ui fitted divider"></div>
+                        ${educationHeading}
+                        <div class = "ui fitted divider"></div>
+                        <#else>
+                            <div class = "ui fitted divider"></div>
+                            Education
+                            <div class = "ui fitted divider"></div>
+                    </#if>
+                </h3>
+                <br>
+                <div class = "ui two column grid">
+                    <#list education.schools as school>
+                        <div class = "ui column" style="width: 15%">
+                            <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                <#if school.startDate?has_content && school.endDate?has_content>
+
+                                    ${school.startDate} - <br>
+                                    ${school.endDate}
+
+                                    <#elseif school.startDate?has_content>
+                                        ${school.startDate} <br>
+                                        <#elseif school.endDate?has_content>
+                                            ${school.endDate}
+
+                                </#if>
+                            </div>
+                        </div>
+                        <div class = "ui column" style="width: 85%">
+                            <p>
+                                <strong>
+                                    <div class="ui two column grid">
+                                        <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                            ${school.name} , ${school.address}
+                                        </div>
+
+                                    </div>
+                                </strong>
+                            </p>
+
+                            <#if school.gpa?has_content>
+                                <br>Most recent GPA: ${school.gpa}<br>
+                            </#if>
+
+                            <#if school.summary?has_content>
+                                <br><p>${school.summary}</p>
+                            </#if>
+
+                            <#sep>
+                                <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                            </#sep>
+                        </div>
+                    </#list>
+                </div>
+            </#if>
+            <#if education.examinations?has_content>
+                <#list education.examinations as examination>
+                    <div class = "ui two column grid">
+                        <div class="ui column" style="width: 15%">
+                            <#if examination.startDate?has_content && examination.endDate?has_content>
+
+                                ${examination.startDate} - <br> ${examination.endDate}
+                                <#elseif examination.startDate?has_content>
+                                    ${examination.startDate} <br>
+                                    <#elseif examination.endDate?has_content>
+                                        ${examination.endDate}
+
+                            </#if>
+                        </div>
+                        <div class="ui column" style="width: 85%">
+                            <p>${examination.name}
+
+
+                                <#if examination.subjects?has_content>
+                                    :
+                                </#if>
+                            </p>
+                            <#if examination.subjects?has_content>
+                                <ul>
+                                    <#list examination.subjects as subject>
+                                        <div class="ui two column grid">
+                                            <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                                <p>${subject.name}</p>
+                                            </div>
+                                            <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                                <p>${subject.result}</p>
+                                            </div>
+                                        </div>
+                                    </#list>
+                                </ul>
+                            </#if>
+                        </div>
+                    </div>
+                </#list>
+            </#if>
+            <#if accomplishments?has_content>
+                <h3>
+                    <#if accomplishmentsHeading?has_content>
+                        <div class = "ui fitted divider"></div>
+                        ${accomplishmentsHeading}
+                        <div class = "ui fitted divider"></div>
+                        <#else>
+                            <div class = "ui fitted divider"></div>
+                            Accomplishments
+                            <div class = "ui fitted divider"></div>
+                    </#if>
+                </h3>
+                <ul>
+                    <#list accomplishments as accomplishment>
+                        <li>${accomplishment}</li>
+                    </#list>
+                </ul>
+            </#if>
+            </h3>
+        </div>
+    </div>
+</body>
+</html>

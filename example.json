@@ -5,6 +5,12 @@
   "accomplishmentsHeading": "Custom Accomplishments Heading",
   "projectsHeading": "Custom Projects Heading",
   "hobbiesHeading": "Custom Hobbies Heading",
+  "personInfoHeading": "Personal Info",
+  "websiteHeading": "WWW",
+  "phoneHeading": "Phone Number",
+  "emailHeading": "Email",
+  "keySkillsHeading": "Key Skills",
+  "technicalSkillsHeading": "Technical Skills",
   "person": {
     "name": "Bob",
     "email": "johndoe@gmail.com",
@@ -123,7 +129,8 @@
         "startDate": "100AD",
         "endDate": "104AD",
         "summary": "Some summary!",
-        "gpa": "5.0"
+        "gpa": "5.0",
+        "address": "School Address"
       }
     ],
     "examinations": [
@@ -153,13 +160,15 @@
       "name": "Someone",
       "email": "Someone@email.com",
       "phoneNumber": "111-1111",
-      "jobTitle": "Manager"
+      "jobTitle": "Manager",
+      "company": "Some Company 1"
     },
     {
       "name": "Someone Else",
       "email": "SomeoneElse@email.com",
       "phoneNumber": "111-1221",
-      "jobTitle": "CEO"
+      "jobTitle": "CEO",
+      "company": "Some Company 2"
     }
   ]
 }
