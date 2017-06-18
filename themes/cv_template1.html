@@ -92,21 +92,46 @@
             </div>
         </#if>
 
+        <#if skills?has_content>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
+            <div align="center">
+                <h3>
+                    <#if skillsHeading?has_content>
+                        ${skillsHeading}
+                        <#else>
+                            Skills
+                    </#if>
+                </h3>
+            </div>
+            <div class="ui horizontal list">
+                <#list skills as skill>
+                    <ul>
+                        <div class="ui item">
+                            <li>${skill}</li>
+                        </div>
+                    </ul>
+                </#list>
+            </div>
+        </#if>
+
         <#if education?has_content>
-            <h3>
-                <#if educationHeading?has_content>
-                    ${educationHeading}
-                    <#else>
-                        Education
-                </#if>
-            </h3>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
+            <div align="center">
+                <h3>
+                    <#if educationHeading?has_content>
+                        ${educationHeading}
+                        <#else>
+                            Education
+                    </#if>
+                </h3>
+            </div>
             <#if education.schools?has_content>
                 <#list education.schools as school>
                     <p>
                         <strong>
                             <div class="ui two column grid">
                                 <div class="ui column noSpacingText left aligned" style="padding: 0px">
-                                    ${school.name} , //ADDRESS//
+                                    ${school.name} , ${school.address}
                                 </div>
                                 <div class="ui column noSpacingText left aligned" style="padding: 0px">
                                     <#if school.startDate?has_content && school.endDate?has_content>
@@ -185,45 +210,33 @@
         </#if>
         <#if accomplishments?has_content>
             <div class="ui fitted divider section-header" visibility="hidden"></div>
-            <h3>
-                <#if accomplishmentsHeading?has_content>
-                    ${accomplishmentsHeading}
-                    <#else>
-                        Accomplishments
-                </#if>
-            </h3>
+            <div align="center">
+                <h3>
+                    <#if accomplishmentsHeading?has_content>
+                        ${accomplishmentsHeading}
+                        <#else>
+                            Accomplishments
+                    </#if>
+                </h3>
+            </div>
             <ul>
                 <#list accomplishments as accomplishment>
                     <li>${accomplishment}</li>
                 </#list>
             </ul>
         </#if>
-        <#if skills?has_content>
-            <div class="ui fitted header" visibility="hidden"></div>
-            <h3>
-                <#if skillsHeading?has_content>
-                    ${skillsHeading}
-                    <#else>
-                        Skills
-                </#if>
-            </h3>
-            <div class="ui horizontal list">
-                <#list skills as skill>
-                    <div class="ui item">
-                        ${skill}
-                    </div>
-                </#list>
-            </div>
-        </#if>
+
         <#if jobWork?has_content>
             <div class="ui fitted divider section-header" visibility="hidden"></div>
-            <h3>
-                <#if jobWorkHeading?has_content>
-                    ${jobWorkHeading}
-                    <#else>
-                        Work Experience
-                </#if>
-            </h3>
+            <div align="center">
+                <h3>
+                    <#if jobWorkHeading?has_content>
+                        ${jobWorkHeading}
+                        <#else>
+                            Work Experience
+                    </#if>
+                </h3>
+            </div>
             <#list jobWork as work>
 
                 <p>
@@ -280,13 +293,15 @@
         </#if>
         <#if volunteerWork?has_content>
             <div class="ui fitted divider section-header" visibility="hidden"></div>
-            <h3>
-                <#if volunteerWorkHeading?has_content>
-                    ${volunteerWorkHeading}
-                    <#else>
-                        Volunteer Work Experience
-                </#if>
-            </h3>
+            <div align="center">
+                <h3>
+                    <#if volunteerWorkHeading?has_content>
+                        ${volunteerWorkHeading}
+                        <#else>
+                            Volunteer Work Experience
+                    </#if>
+                </h3>
+            </div>
             <#list volunteerWork as work>
                 <p>
                 <h5>
@@ -346,13 +361,15 @@
 
         <#if projects?has_content>
             <div class="ui fitted divider section-header" visibility="hidden"></div>
-            <h3>
-                <#if projectsHeading?has_content>
-                    ${projectsHeading}
-                    <#else>
-                        Projects
-                </#if>
-            </h3>
+            <div align="center">
+                <h3>
+                    <#if projectsHeading?has_content>
+                        ${projectsHeading}
+                        <#else>
+                            Projects
+                    </#if>
+                </h3>
+            </div>
             <#list projects as project>
                 <div class="ui two column grid">
                     <div class="ui column">
@@ -392,30 +409,36 @@
             </#list>
         </#if>
         <#if hobbies?has_content>
-            <h3>
-                <#if hobbiesHeading?has_content>
-                    ${hobbiesHeading}
-                    <#else>
-                        Hobbies
-                </#if>
-            </h3>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
+            <div align="center">
+                <h3>
+                    <#if hobbiesHeading?has_content>
+                        ${hobbiesHeading}
+                        <#else>
+                            Hobbies
+                    </#if>
+                </h3>
+            </div>
             <ul>
                 <#list hobbies as hobby>
                     <li>${hobby}</li>
                 </#list>
             </ul>
         </#if>
-        <div class="ui fitted divider section-header" visibility="hidden"></div>
+
         <#if references?has_content>
-            <h3>
-                <#if educationHeading?has_content>
-                    ${referencesHeading}
-                    <#else>
-                        References
-                </#if>
-            </h3>
+            <div class="ui fitted divider section-header" visibility="hidden"></div>
+            <div align="center">
+                <h3>
+                    <#if referencesHeading?has_content>
+                        ${referencesHeading}
+                        <#else>
+                            References
+                    </#if>
+                </h3>
+            </div>
             <#list references as referee>
-                <b>${referee.name} (${referee.jobTitle})</b>
+                <b>${referee.name} (${referee.jobTitle}) | ${referee.company}</b>
                 <br>
                 ${referee.phoneNumber}
                 <br>
