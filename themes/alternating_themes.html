@@ -56,7 +56,7 @@
                 <br>
 
                 <#if person.website?has_content && person.website != "">
-                    <div class = "ui row">
+                    <div class = "ui row" style="margin-left: 5%">
                         <div style="color: white">
                             <#if websiteHeading?has_content>
                                 ${websiteHeading}<br>
@@ -71,7 +71,7 @@
 
 
                 <#if person.email?has_content && person.email != "">
-                    <div class = "ui row">
+                    <div class = "ui row" style="margin-left: 5%">
                         <div style="color: white">
                             <#if emailHeading?has_content>
                                 ${emailHeading}<br>
@@ -86,7 +86,7 @@
 
 
                 <#if person.phoneNumber?has_content && person.phoneNumber != "">
-                    <div class = "ui row">
+                    <div class = "ui row" style="margin-left: 5%">
                         <p>
                             <div style="color: white">
                                 <#if phoneHeading?has_content>
@@ -111,7 +111,7 @@
                             </#if>
                         </h3>
                     </div>
-                    <div class="ui vertical list">
+                    <div class="ui vertical list" style="margin-left: 5%">
                         <#list skills as skill>
                             <div class="ui item">
                                 ${skill}
@@ -135,7 +135,7 @@
                     </div>
                     <div class="ui vertical list">
                         <#list skills as skill>
-                            <div class="ui item">
+                            <div class="ui item" style="margin-left: 5%">
                                 ${skill}
                             </div>
                         </#list>
@@ -156,11 +156,13 @@
                     </h3>
                 </div>
                 <#list references as referee>
-                    <b>${referee.name} (${referee.jobTitle}) <br> ${referee.company}</b>
-                    <ul>
-                        <li>${referee.phoneNumber}</li>
-                        <li>${referee.email}</li>
-                    </ul>
+                    <div class = "ui row" style="margin-left: 5%">
+                        <b>${referee.name} (${referee.jobTitle}) <br> ${referee.company}</b>
+                        <ul>
+                            <li>${referee.phoneNumber}</li>
+                            <li>${referee.email}</li>
+                        </ul>
+                    </div>
                 </#list>
             </#if>
 
