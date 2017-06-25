@@ -1,10 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/semantic/dist/semantic.min.css">
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/semantic/dist/components/rating.min.css">
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/fonts.css">
+    <!--
+            <style>
+
+                .resume * {
+                    margin-top: 0px !important;
+                    margin-bottom: 0px !important;
+                    padding-top:0px !important;
+                    padding-bottom: 0px !important;
+                }
+            </style>
+    -->
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/default_theme.css">
 </head>
+
 <body>
 
+    <h3>
+        <#if person.name?has_content && person.name != "">
+            ${person.name}
+        </#if>
+        <#if person.name?has_content && person.name != "" && person.jobTitle?has_content && person.jobTitle != "">
+            -
+        </#if>
+        <#if person.jobTitle?has_content && person.jobTitle != "">
+            ${person.jobTitle}
+        </#if>
+    </h3>
+    <#if !config.showTrackable>
+        <div>
+            <#if person.website?has_content && person.website != "">
+                <p><a href="${person.website}" class="ui link" target="_blank">${person.website}</a></p>
+            </#if>
+        </div>
+        <div>
+            <#if person.email?has_content && person.email != "">
+                <p><a class="ui link">${person.email}</a></p>
+            </#if>
+        </div>
+    </#if>
+    <#if config.showTrackable>
+        <div>
+            <p>
+                <#if person.address?has_content && person.address != "">
+                    ${person.address}
+                </#if>
+                <#if person.address?has_content && person.address != "" && person.phoneNumber?has_content && person.phoneNumber != "">
+                    <br>
+                </#if>
+                <#if person.phoneNumber?has_content && person.phoneNumber != "">
+                    ${person.phoneNumber}
+                </#if>
+                <#if person.phoneNumber?has_content && person.phoneNumber != "" && person.email?has_content && person.email != "">
+                    <br>
+                </#if>
+                <#if person.email?has_content && person.email != "">
+                    <a class="ui link">${person.email}</a>
+                </#if>
+                <#if person.email?has_content && person.email != "" && person.website?has_content && person.website != "">
+                    <br>
+                </#if>
+                <#if person.website?has_content && person.website != "">
+                    <a href="${person.website}" class="ui link" target="_blank">${person.website}</a>
+                </#if>
+            </p>
+        </div>
+    </#if>
+
+    <#if education?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <div>
+            <h3>
+                <#if educationHeading?has_content>
+                    ${educationHeading}
+                    <#else>
+                        Education
+                </#if>
+            </h3>
+        </div>
+        <br>
+        <#if education.schools?has_content>
+            <#list education.schools as school>
+                <p>
+                    <strong>
+                        <div class="ui two column grid">
+                            <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                ${school.name} , ${school.address}
+                            </div>
+                            <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                <#if school.startDate?has_content && school.endDate?has_content>
+
+                                    ${school.startDate}
+                                    -
+                                    ${school.endDate}
+
+                                    <#elseif school.startDate?has_content>
+                                        | ${school.startDate}
+                                        <#elseif school.endDate?has_content>
+                                            | ${school.endDate}
+
+                                </#if>
+                            </div>
+                        </div>
+                    </strong>
+                </p>
+
+                <#if school.gpa?has_content>
+                    <br>Most recent GPA: ${school.gpa}<br>
+                </#if>
+
+                <#if school.summary?has_content>
+                    <br><p>${school.summary}</p>
+                </#if>
+
+                <#sep>
+                    <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                </#sep>
+            </#list>
+        </#if>
+        <#if education.examinations?has_content>
+            <#list education.examinations as examination>
+                <div>
+                    <p>${examination.name}
+
+                        <#if examination.startDate?has_content && examination.endDate?has_content>
+
+                            ${examination.startDate}
+
+                            to
+
+                            ${examination.endDate}
+                            <#elseif examination.startDate?has_content>
+                                ${examination.startDate}
+                                <#elseif examination.endDate?has_content>
+                                    ${examination.endDate}
+
+                        </#if>
+                        <#if examination.subjects?has_content>
+                            :
+                        </#if>
+                    </p>
+                    <#if examination.subjects?has_content>
+                        <ul>
+                            <#list examination.subjects as subject>
+                                <div class="ui two column grid">
+                                    <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                        <p>${subject.name}</p>
+                                    </div>
+                                    <div class="ui column noSpacingText left aligned" style="padding: 0px">
+                                        <p>${subject.result}</p>
+                                    </div>
+                                </div>
+                            </#list>
+                        </ul>
+                    </#if>
+                </div>
+                <#sep>
+                    <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                </#sep>
+            </#list>
+        </#if>
+        </h3>
+    </#if>
+
+    <#if jobWork?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <div>
+            <h3>
+                <#if jobWorkHeading?has_content>
+                    ${jobWorkHeading}
+                    <#else>
+                        Work Experience
+                </#if>
+            </h3>
+        </div>
+        <#list jobWork as work>
+
+            <p>
+            <h5>
+                ${work.company}
+                <#if work.company?has_content && work.position?has_content>
+                    -
+                </#if>
+                <#if work.position?has_content>
+                    ${work.position}
+                </#if>
+                <#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
+                    -
+                </#if>
+
+                <#if work.startDate?has_content && work.endDate?has_content>
+
+                    ${work.startDate}
+
+                    to
+
+                    ${work.endDate}
+                    <#elseif work.startDate?has_content>
+                        ${work.startDate}
+                        <#elseif work.endDate?has_content>
+                            ${work.endDate}
+                </#if>
+            </h5>
+            <#if work.summary?has_content>
+                <p>${work.summary}</p>
+            </#if>
+            <#if work.highlights?has_content>
+                <ul>
+                    <#list work.highlights as highlight>
+                        <#if highlight?has_content>
+                            <li>${highlight}</li>
+                        </#if>
+                    </#list>
+                </ul>
+            </#if>
+
+                <#if work.keywords?has_content>
+                    <b>Notes</b>
+                    <ul>
+                        <div class="ui item">
+                            <#list work.keywords as keyword>
+                                <li><a class="ui item">${keyword}</a></li>
+                            </#list>
+                        </div>
+                    </ul>
+                </#if>
+            </p>
+            <#sep>
+                <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+            </#sep>
+        </#list>
+    </#if>
+
+    <#if accomplishments?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <div>
+            <h3>
+                <#if accomplishmentsHeading?has_content>
+                    ${accomplishmentsHeading}
+                    <#else>
+                        Accomplishments
+                </#if>
+            </h3>
+        </div>
+        <ul>
+            <#list accomplishments as accomplishment>
+                <li>${accomplishment}</li>
+            </#list>
+        </ul>
+    </#if>
+
+    <#if skills?has_content>
+        <!--<div class="ui fitted divider section-header" visibility="hidden"></div>-->
+        <div>
+            <h3>
+                <#if skillsHeading?has_content>
+                    ${skillsHeading}
+                    <#else>
+                        Experience Acquired
+                </#if>
+            </h3>
+        </div>
+        <div class="ui horizontal list">
+            <#list skills as skill>
+                <ul>
+                    <div class="ui item">
+                        <li>${skill}</li>
+                    </div>
+                </ul>
+            </#list>
+        </div>
+    </#if>
+
+    <#if volunteerWork?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <div>
+            <h3>
+                <#if volunteerWorkHeading?has_content>
+                    ${volunteerWorkHeading}
+                    <#else>
+                        Volunteer Work Experience
+                </#if>
+            </h3>
+        </div>
+        <#list volunteerWork as work>
+            <p>
+            <h5>
+                ${work.company}
+                <#if work.company?has_content && work.position?has_content>
+                    -
+                </#if>
+                <#if work.position?has_content>
+                    ${work.position}
+                </#if>
+                <#if work.company?has_content && (work.startDate?has_content || work.endDate?has_content)>
+                    -
+                </#if>
+
+
+                <#if work.startDate?has_content && work.endDate?has_content>
+
+                    ${work.startDate}
+
+                    to
+
+                    ${work.endDate}
+                    <#elseif work.startDate?has_content>
+                        ${work.startDate}
+                        <#elseif work.endDate?has_content>
+                            ${work.endDate}
+                </#if>
+            </h5>
+            <#if work.summary?has_content>
+                <p>${work.summary}</p>
+            </#if>
+            <#if work.highlights?has_content>
+                <ul>
+                    <#list work.highlights as highlight>
+                        <#if highlight?has_content>
+                            <li>${highlight}</li>
+                        </#if>
+                    </#list>
+                </ul>
+            </#if>
+
+            <#if work.keywords?has_content>
+                <b>Notes</b>
+                <ul>
+                    <div class="ui item">
+                        <#list work.keywords as keyword>
+                            <li><a class="ui item">${keyword}</a></li>
+                        </#list>
+                    </div>
+                </ul>
+            </#if>
+
+            </p>
+            <#sep>
+                <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+            </#sep>
+        </#list>
+        </ul>
+    </#if>
+
+    <#if hobbies?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <div>
+            <h3>
+                <#if hobbiesHeading?has_content>
+                    ${hobbiesHeading}
+                    <#else>
+                        Hobbies
+                </#if>
+            </h3>
+        </div>
+        <ul>
+            <#list hobbies as hobby>
+                <li>${hobby}</li>
+            </#list>
+        </ul>
+    </#if>
+
+    <#if references?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <div>
+            <h3>
+                <#if referencesHeading?has_content>
+                    ${referencesHeading}
+                    <#else>
+                        References
+                </#if>
+            </h3>
+        </div>
+        <#list references as referee>
+            <b>${referee.name} (${referee.jobTitle}) </b>
+            <br>
+            Cell: ${referee.company}
+            <br>
+            Phone Number: ${referee.phoneNumber}
+            <br>
+            Email: ${referee.email}
+            <br><br>
+        </#list>
+    </#if>
+
 </body>
+
 </html>

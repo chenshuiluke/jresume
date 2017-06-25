@@ -14,7 +14,8 @@ public class Config {
     String outputDirectory = "output";
     @Parameter(names = {"--theme", "-t"}, description = "The theme to use.", validateWith = ThemeNameValidator.class)
     //String themeName = "cv_template1";
-    String themeName = "alternating_themes";
+    //String themeName = "alternating_themes";
+    String themeName = "resume_template1";
     @Parameter(names = {"--server-mode", "-s"}, description = "Launches JResume in server mode.")
     boolean serverMode = false;
     @Parameter(names = {"--server-port", "-sp"}, description = "The port that JResume will listen to when in server mode.")
