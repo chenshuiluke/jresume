@@ -111,6 +111,13 @@
                             </#if>
                         </h3>
                     </div>
+                    <div class="ui vertical list">
+                        <#list skills as skill>
+                            <div class="ui item">
+                                ${skill}
+                            </div>
+                        </#list>
+                    </div>
                 </div>
                 <br>
                 <#if skills?has_content>

@@ -93,13 +93,13 @@
         </#if>
 
         <#if skills?has_content>
-            <div class="ui fitted divider section-header" visibility="hidden"></div>
+            <!--<div class="ui fitted divider section-header" visibility="hidden"></div>-->
             <div align="center">
                 <h3>
                     <#if skillsHeading?has_content>
                         ${skillsHeading}
                         <#else>
-                            Skills
+                            Experience Acquired
                     </#if>
                 </h3>
             </div>
@@ -279,11 +279,14 @@
                 </#if>
 
                 <#if work.keywords?has_content>
-                    <div class="ui horizontal bulleted list">
-                        <#list work.keywords as keyword>
-                            <a class="ui item">${keyword}</a>
-                        </#list>
-                    </div>
+                    <b>Notes</b>
+                    <ul>
+                        <div class="ui item">
+                            <#list work.keywords as keyword>
+                                <li><a class="ui item">${keyword}</a></li>
+                            </#list>
+                        </div>
+                    </ul>
                 </#if>
                 </p>
                 <#sep>
@@ -344,11 +347,14 @@
                 </#if>
 
                 <#if work.keywords?has_content>
-                    <div class="ui horizontal bulleted list">
-                        <#list work.keywords as keyword>
-                            <a class="ui item">${keyword}</a>
-                        </#list>
-                    </div>
+                    <b>Notes</b>
+                    <ul>
+                        <div class="ui item">
+                            <#list work.keywords as keyword>
+                                <li><a class="ui item">${keyword}</a></li>
+                            </#list>
+                        </div>
+                    </ul>
                 </#if>
 
                 </p>
@@ -384,6 +390,16 @@
                                 ${project.description}
                             </p>
                         </#if>
+                        <#if project.keywords?has_content>
+                            <b>Notes</b>
+                            <ul>
+                                <div class="ui item">
+                                    <#list project.keywords as keyword>
+                                        <li><a class="ui item">${keyword}</a></li>
+                                    </#list>
+                                </div>
+                            </ul>
+                        </#if>
                     </div>
                     <div class="ui column">
                         <#if project.highlights?has_content>
@@ -392,14 +408,6 @@
                                     <li>${highlight}</li>
                                 </#list>
                             </ul>
-                        </#if>
-
-                        <#if project.keywords?has_content>
-                            <div class="ui horizontal bulleted list">
-                                <#list project.keywords as keyword>
-                                    <a class="ui item">${keyword}</a>
-                                </#list>
-                            </div>
                         </#if>
                     </div>
                 </div>
