@@ -282,7 +282,15 @@
                                 <strong>
                                     <div class="ui two column grid">
                                         <div class="ui column noSpacingText left aligned" style="padding: 0px">
-                                            ${school.name} , ${school.address}
+                                            <#if school.name?has_content>
+                                                ${school.name}
+                                            </#if>
+                                            <#if school.address?has_content && school.name?has_content>
+                                                ,
+                                            </#if>
+                                            <#if school.address?has_content>
+                                                ${school.address}
+                                            </#if>
                                         </div>
 
                                     </div>
