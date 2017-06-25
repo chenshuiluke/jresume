@@ -11,9 +11,9 @@ Extended CV Theme:
 1) More detailed information
 2) Main titles center aligned 
 
-![cv_theme_1]http://i.imgur.com/wdvO2M6.png)
+![cv_theme_1](http://i.imgur.com/wdvO2M6.png)
 ![cv_theme_2](http://i.imgur.com/VMcCDkL.png)
-![cv_theme_3]http://i.imgur.com/UBXpoyh.png)
+![cv_theme_3](http://i.imgur.com/UBXpoyh.png)
 
 Alternating Colour Theme:
 1) Information split into two main columns: Personal Information and Work Information
