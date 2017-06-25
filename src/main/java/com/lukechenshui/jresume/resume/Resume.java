@@ -8,8 +8,8 @@ import com.lukechenshui.jresume.resume.items.education.Education;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
 import com.lukechenshui.jresume.resume.items.work.Referee;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
-
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 /**
@@ -97,6 +97,27 @@ public class Resume {
         skills = setArraysWithEmptyStringElementsToNull(skills);
         if (education != null) {
             education.getRidOfArraysWithEmptyElements();
+        }
+        volunteerWork = setArraysWithEmptyObjectsToNull(volunteerWork, VolunteerWork.class);
+        jobWork = setArraysWithEmptyObjectsToNull(jobWork, JobWork.class);
+    }
+
+    private <T> ArrayList<T> setArraysWithEmptyObjectsToNull(ArrayList<T> arrayList, Class<? extends T> impl){
+        try{
+            Constructor<? extends T> constructor;
+            constructor = impl.getConstructor();
+            if(arrayList != null){
+                for(T obj : arrayList){
+                    if(!obj.equals(constructor.newInstance())){
+                        return arrayList;
+                    }
+                }
+            }
+            return null;
+        }
+        catch (Exception exc){
+            exc.printStackTrace();
+            return null;
         }
     }
 
