@@ -1,9 +1,16 @@
 {
   "skillsHeading": "Custom Skills Heading",
   "jobWorkHeading": "Custom Work Heading",
+  "referencesHeading": "References",
   "accomplishmentsHeading": "Custom Accomplishments Heading",
   "projectsHeading": "Custom Projects Heading",
   "hobbiesHeading": "Custom Hobbies Heading",
+  "personInfoHeading": "Personal Info",
+  "websiteHeading": "WWW",
+  "phoneHeading": "Phone Number",
+  "emailHeading": "Email",
+  "keySkillsHeading": "Key Skills",
+  "technicalSkillsHeading": "Technical Skills",
   "person": {
     "name": "Bob",
     "email": "johndoe@gmail.com",
@@ -11,7 +18,7 @@
     "phoneNumber": "+1(334)567-2346",
     "jobTitle": "Software Engineer",
     "website": "https://www.google.com",
-    "objective": "Bleh bleh bleh bleh bleh bleh bleh bleh"
+    "objective": "Paragraph 1 Paragraph 1 Paragraph 1 Paragraph 1 Paragraph 1 Paragraph 1 Paragraph 1<br><br>Paragraph 2 Paragraph 2 Paragraph 2 Paragraph 2 Paragraph 2 Paragraph 2 Paragraph 2"
   },
   "skills": [
     "Java",
@@ -122,7 +129,8 @@
         "startDate": "100AD",
         "endDate": "104AD",
         "summary": "Some summary!",
-        "gpa": "5.0"
+        "gpa": "5.0",
+        "address": "School Address"
       }
     ],
     "examinations": [
@@ -146,6 +154,22 @@
     "Programming",
     "Video editing",
     "Gaming"
+  ],
+  "references": [
+    {
+      "name": "Someone",
+      "email": "Someone@email.com",
+      "phoneNumber": "111-1111",
+      "jobTitle": "Manager",
+      "company": "Some Company 1"
+    },
+    {
+      "name": "Someone Else",
+      "email": "SomeoneElse@email.com",
+      "phoneNumber": "111-1221",
+      "jobTitle": "CEO",
+      "company": "Some Company 2"
+    }
   ]
 }
 

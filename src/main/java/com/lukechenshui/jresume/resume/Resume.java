@@ -6,7 +6,9 @@ import com.lukechenshui.jresume.resume.items.Person;
 import com.lukechenshui.jresume.resume.items.Project;
 import com.lukechenshui.jresume.resume.items.education.Education;
 import com.lukechenshui.jresume.resume.items.work.JobWork;
+import com.lukechenshui.jresume.resume.items.work.Referee;
 import com.lukechenshui.jresume.resume.items.work.VolunteerWork;
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
@@ -33,6 +35,58 @@ public class Resume {
     Config config = new Config();
     int numPersonalDetailsColumns = 3;
     transient JsonObject jsonObject;
+
+    String referencesHeading;
+    ArrayList<Referee> references;
+
+    String personInfoHeading;
+    String phoneHeading;
+    String emailHeading;
+    String websiteHeading;
+
+    String keySkillsHeading;
+    String technicalSkillsHeading;
+
+    public String getPhoneHeading() {
+        return phoneHeading;
+    }
+
+    public String getEmailHeading() {
+        return emailHeading;
+    }
+
+    public String getWebsiteHeading() {
+        return websiteHeading;
+    }
+
+    public void setPhoneHeading(String phoneHeading) {
+        this.phoneHeading = phoneHeading;
+    }
+
+    public void setEmailHeading(String emailHeading) {
+        this.emailHeading = emailHeading;
+    }
+
+    public void setWebsiteHeading(String websiteHeading) {
+        this.websiteHeading = websiteHeading;
+    }
+
+    public String getKeySkillsHeading() {
+        return keySkillsHeading;
+    }
+
+    public void setKeySkillsHeading(String keySkillsHeading) {
+        this.keySkillsHeading = keySkillsHeading;
+    }
+
+    public String getTechnicalSkillsHeading() {
+        return technicalSkillsHeading;
+    }
+
+    public void setTechnicalSkillsHeading(String technicalSkillsHeading) {
+        this.technicalSkillsHeading = technicalSkillsHeading;
+    }
+
     public Resume() {
         config = new Config();
     }
@@ -88,6 +142,14 @@ public class Resume {
         this.person = person;
     }
 
+    public ArrayList<Referee> getReferences() {
+        return references;
+    }
+
+    public void setReferences(ArrayList<Referee> references) {
+        this.references = references;
+    }
+
     public ArrayList<JobWork> getJobWork() {
         return jobWork;
     }
@@ -120,6 +182,10 @@ public class Resume {
         this.projectsHeading = projectsHeading;
     }
 
+    public String getPersonInfoHeading(){return personInfoHeading;}
+
+    public void setPersonInfoHeading(String personInfoHeading){this.personInfoHeading = personInfoHeading;}
+
     public ArrayList<VolunteerWork> getVolunteerWork() {
         return volunteerWork;
     }
@@ -134,6 +200,14 @@ public class Resume {
 
     public void setVolunteerWorkHeading(String volunteerWorkHeading) {
         this.volunteerWorkHeading = volunteerWorkHeading;
+    }
+
+    public String getReferencesHeading() {
+        return referencesHeading;
+    }
+
+    public void setReferencesHeading(String referencesHeading) {
+        this.referencesHeading = referencesHeading;
     }
 
     public void addJobWork(JobWork jobWork){

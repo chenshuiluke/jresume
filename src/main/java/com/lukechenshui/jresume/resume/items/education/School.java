@@ -11,6 +11,7 @@ public class School extends BaseEducationItem {
 
     String gpa;
     String summary;
+    String address;
 
     public String getGpa() {
         return gpa;
@@ -26,5 +27,13 @@ public class School extends BaseEducationItem {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
