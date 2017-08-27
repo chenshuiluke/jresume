@@ -97,10 +97,21 @@ public class Main {
         //System.out.println(html);
 
         System.out.println("Success! You can find your resume at " + runtime.getOutputHtmlFile().getAbsolutePath());
+        createPDF(runtime.getOutputHtmlFile().getAbsolutePath());
         createInlineHTML(runtime.getOutputHtmlFile().getAbsolutePath());
         writer.close();
 
         return location;
+    }
+
+    public static void createPDF(String path){
+        try{
+            String [] args = new String[]{"/bin/bash", "-c", "google-chrome --headless --disable-gpu --print-to-pdf file:///" + path};
+            Process process = new ProcessBuilder(args).start();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void createInlineHTML(String path){
@@ -112,9 +123,12 @@ public class Main {
 //            final Process process = builder.start();
 //            System.out.println("inliner -i output\\resume.html > output\\resume_inline.html");
 
-            java.lang.Runtime runtime = java.lang.Runtime.getRuntime();
-//            Process process = runtime.exec("cmd /c start cmd.exe");
-            Process process1 = runtime.exec("cmd /c inliner -i output/resume.html > output/resume_inline.html");
+//            java.lang.Runtime runtime = java.lang.Runtime.getRuntime();
+//            Process process = runtime.exec("nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null > output/resume_inline.html'");
+//            Process process1 = runtime.exec("google-chrome");
+            String [] args = new String[]{"/bin/bash", "-c", "nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null > output/resume_inline.html'"};
+            Process process = new ProcessBuilder(args).start();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
