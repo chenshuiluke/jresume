@@ -261,7 +261,7 @@ Output:
 
 ###Embedding Javascript and CSS
 Requires inliner.
-1. Run command "inliner <flags> <filepath or url> > <output path>
+1. Run command "inliner [flags] [filepath or url] > [output path]
 
 ###Converting to PDF
 
@@ -273,7 +273,7 @@ I personally prefer Chrome's PDF creation capabilities.
 ####Converting to PDF Without Browser (Experimental)
 Dependency: Chrome Headless
 1. On execution, a Chrome Headless command is executing using the html file output and releases a pdf output in the "output" directory.
-2. Structure: "google-chrome --headless --disable-gpu --print-to-pdf <filepath or url> <output path>
+2. Structure: "google-chrome --headless --disable-gpu --print-to-pdf [filepath or url] [output path]
 
 
 ##Creating a new Theme.
