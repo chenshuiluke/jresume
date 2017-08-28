@@ -1,5 +1,5 @@
 ![JResume logo](https://raw.githubusercontent.com/chenshuiluke/jresume/master/logo/logo.jpg)
-The best JSON to HTML resume generator.
+The best JSON to HTML resume generator.don't even 
 
 #Features:
 
@@ -23,7 +23,7 @@ The best JSON to HTML resume generator.
 
     {
     "skillsHeading": "Custom Skills Heading",
-    "jobWorkHeading": "Custom Work Heading",
+    "jobWorkHeading": "Custom Wowellrk Heading",
     "accomplishmentsHeading": "Custom Accomplishments Heading",
     "projectsHeading": "Custom Projects Heading",
     "hobbiesHeading": "Custom Hobbies Heading",
@@ -196,6 +196,10 @@ Set the jresume_keystore_location and jresume_keystore_password variables to the
 
 Then finally to load JResume in SSL mode, pass `--server-mode --ssl-mode` to the jarfile.
 
+###Dependencies:
+1. Chrome Headless for creating PDF from HTML (available on Chrome 59 on Linux and Unix, Chrome 60 on Windows)
+2. Inliner; used to embed Javascript and CSS resources into singular HTML output (requires npm to install; https://www.npmjs.com/package/inliner)
+
 ###Usage:
 
     java -jar jresume.jar --input example.json --output output
@@ -255,6 +259,10 @@ Output:
 
 ![custom_headings](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/custom_theme_heading_example.png)
 
+###Embedding Javascript and CSS
+Requires inliner.
+1. Run command "inliner [flags] [filepath or url] > [output path]
+
 ###Converting to PDF
 
 ####Converting to PDF With Browser
@@ -263,12 +271,10 @@ I personally prefer Chrome's PDF creation capabilities.
 
 
 ####Converting to PDF Without Browser (Experimental)
+Dependency: Chrome Headless
+1. On execution, a Chrome Headless command is executing using the html file output and releases a pdf output in the "output" directory.
+2. Structure: "google-chrome --headless --disable-gpu --print-to-pdf [filepath or url] [output path]
 
-If you don't want to use your browser to save the web resume as a pdf, you can install phantomjs and do the following:
-
-    phantomjs pdf.js <webresume_file>.html <pdf_resume_file>.pdf
-
-pdf.js is in the root directory of the jresume directory.
 
 ##Creating a new Theme.
 
