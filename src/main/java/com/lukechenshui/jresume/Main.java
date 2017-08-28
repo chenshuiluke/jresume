@@ -20,6 +20,10 @@ import org.w3c.tidy.Tidy;
 import spark.Request;
 import spark.Response;
 
+import javax.script.Bindings;
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
@@ -93,8 +97,57 @@ public class Main {
         //System.out.println(html);
 
         System.out.println("Success! You can find your resume at " + runtime.getOutputHtmlFile().getAbsolutePath());
+        createPDF(runtime.getOutputHtmlFile().getAbsolutePath());
+        createInlineHTML(runtime.getOutputHtmlFile().getAbsolutePath());
         writer.close();
+
         return location;
+    }
+
+    public static void createPDF(String path){
+        try{
+            String [] args = new String[]{"/bin/bash", "-c", "cd output; google-chrome --headless --disable-gpu --print-to-pdf file:///" + path};
+            Process process = new ProcessBuilder(args).start();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void createInlineHTML(String path){
+        try {
+//            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "inliner -i output/resume.html > output/resume_inline.html");
+//            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dir");
+
+//            builder.redirectErrorStream(true);
+//            final Process process = builder.start();
+//            System.out.println("inliner -i output\\resume.html > output\\resume_inline.html");
+
+//            java.lang.Runtime runtime = java.lang.Runtime.getRuntime();
+//            Process process = runtime.exec("nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null > output/resume_inline.html'");
+//            Process process1 = runtime.exec("google-chrome");
+            String [] args = new String[]{"/bin/bash", "-c", "nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null'"};
+            Process process = new ProcessBuilder(args).redirectErrorStream(true).redirectOutput(new File("output/resume_inline.html")).start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void watch(final Process process) {
+        new Thread() {
+            public void run() {
+                BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line = null;
+                try {
+                    while ((line = input.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
 
