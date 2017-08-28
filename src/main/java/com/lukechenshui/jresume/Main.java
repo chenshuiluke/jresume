@@ -106,7 +106,7 @@ public class Main {
 
     public static void createPDF(String path){
         try{
-            String [] args = new String[]{"/bin/bash", "-c", "google-chrome --headless --disable-gpu --print-to-pdf file:///" + path};
+            String [] args = new String[]{"/bin/bash", "-c", "cd output; google-chrome --headless --disable-gpu --print-to-pdf file:///" + path};
             Process process = new ProcessBuilder(args).start();
         }
         catch (Exception e){
@@ -126,8 +126,8 @@ public class Main {
 //            java.lang.Runtime runtime = java.lang.Runtime.getRuntime();
 //            Process process = runtime.exec("nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null > output/resume_inline.html'");
 //            Process process1 = runtime.exec("google-chrome");
-            String [] args = new String[]{"/bin/bash", "-c", "nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null > output/resume_inline.html'"};
-            Process process = new ProcessBuilder(args).start();
+            String [] args = new String[]{"/bin/bash", "-c", "nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null'"};
+            Process process = new ProcessBuilder(args).redirectErrorStream(true).redirectOutput(new File("output/resume_inline.html")).start();
 
         } catch (Exception e) {
             e.printStackTrace();
