@@ -63,6 +63,10 @@ public class Runtime {
         return Paths.get(outputDirectory.getAbsolutePath(), "resume.html").toFile();
     }
 
+    public  File getOutputHtmlFile(String file) {
+        return Paths.get(outputDirectory.getAbsolutePath(), file).toFile();
+    }
+
     public File getOutputDirectory() {
         return outputDirectory;
     }
