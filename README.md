@@ -1,7 +1,7 @@
 ![JResume logo](https://raw.githubusercontent.com/chenshuiluke/jresume/master/logo/logo.jpg)
 The best JSON to HTML resume generator.don't even 
 
-#Features:
+# Features:
 
 1. You can keep all your resume information separate from it's layout in a JSON file.
 2. Once you give JResume your resume JSON file and the desired theme, it will output an HTML resume for you.
@@ -17,9 +17,9 @@ The best JSON to HTML resume generator.don't even
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
-##Example usage
+## Example usage
 
-###Example JSON resume (example.json):
+### Example JSON resume (example.json):
 
     {
     "skillsHeading": "Custom Skills Heading",
@@ -174,7 +174,7 @@ The best JSON to HTML resume generator.don't even
 
 
 
-###Server Usage:
+### Server Usage:
 
     java -jar jresume.jar --input whatever --server-mode --server-port optional_server_port
 
@@ -185,7 +185,7 @@ Then send send a POST request to `localhost:8080/webresume`. That will return th
 In the same folder where you downloaded the html file, create a directory called "resources" and extract the contents of the resources zip file to the new resources folder. Then simply open up your web resume html file in your browser.
 
 
-####Configuring SSL in the Server:
+#### Configuring SSL in the Server:
 To make jresume use ssl, you need to set the `jresume_keystore_location` and `jresume_keystore_password` environment variables.
 To create a keystore from an existing letsencrypt certificate, run the following:
 
@@ -196,23 +196,23 @@ Set the jresume_keystore_location and jresume_keystore_password variables to the
 
 Then finally to load JResume in SSL mode, pass `--server-mode --ssl-mode` to the jarfile.
 
-###Dependencies:
+### Dependencies:
 1. Chrome Headless for creating PDF from HTML (available on Chrome 59 on Linux and Unix, Chrome 60 on Windows)
 2. Inliner; used to embed Javascript and CSS resources into singular HTML output (requires npm to install; https://www.npmjs.com/package/inliner)
 
-###Usage:
+### Usage:
 
     java -jar jresume.jar --input example.json --output output
 
-###Output:
+### Output:
 
 ![default_theme_output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
 
-###Compiling
+### Compiling
 
 You can either compile it using Intellij IDEA or Maven.
 
-####Compiling using Maven
+#### Compiling using Maven
 
 1. Clone the repository.
 2. `cd` into the repository.
@@ -220,11 +220,11 @@ You can either compile it using Intellij IDEA or Maven.
 4. Run `mvn package`.
 5. You can then utilize the jarfiles in the `target` subdirectory.
 
-###Customizing the Output:
+### Customizing the Output:
 
 
 
-####Customizing Section Headings
+#### Customizing Section Headings
 You can customize the various headings by adding the following to your resume JSON file:
 
 1. skillsHeading
@@ -259,24 +259,34 @@ Output:
 
 ![custom_headings](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/custom_theme_heading_example.png)
 
-###Embedding Javascript and CSS
-Requires inliner.
-1. Run command "inliner [flags] [filepath or url] > [output path]
+### Embedding Javascript and CSS
+Requires `inliner` from npm. Install it via `sudo npm -g inliner`
 
-###Converting to PDF
+If inliner is available, jresume will automatically create an HTML file that has all the CSS and JS dependencies inlined into a single file.
 
-####Converting to PDF With Browser
+### Converting to PDF
+
+#### Converting to PDF With Browser
 You can just open the webresume HTML file in your browser, press Ctrl+p and then follow your browser's instructions.
 I personally prefer Chrome's PDF creation capabilities.
 
 
-####Converting to PDF Without Browser (Experimental)
-Dependency: Chrome Headless
-1. On execution, a Chrome Headless command is executing using the html file output and releases a pdf output in the "output" directory.
-2. Structure: "google-chrome --headless --disable-gpu --print-to-pdf [filepath or url] [output path]
+#### Converting to PDF Without Browser (Experimental)
+
+*Chrome needs to be updated and able to be executed via `google-chrome`. You may need to create a symbolic link*
+
+##### Symlinking google-chrome if it can be executed via `./google-chrome`
+
+1. Find out where chrome is currently installed by running `whereis <name_of_chrome_executable_on_system>`. In my case, the name of the executable was `google-chrome-stable` it was located at `/usr/bin/google-chrome-stable`
+2. Create a symlink to Chrome using `sudo ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome`
 
 
-##Creating a new Theme.
+
+
+On execution, a Chrome Headless command is executed using the html file output and releases a pdf output in the "output" directory.
+
+
+## Creating a new Theme.
 
 1. Create a new file in the `themes` folder and give it a name of <new_theme_name.html>
 2. Examine the contents of `themes/default.html` to see how themes work
