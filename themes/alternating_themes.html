@@ -105,10 +105,8 @@
                     <div class = "ui row">
                         <div style="background-color: #222933;color: white" align="center">
                             <h3>
-                                <#if keySkillsHeading?has_content>
-                                    ${keySkillsHeading}
-                                    <#else>
-                                        Key Skills
+                                <#if skills?has_content>
+                                        Skills
                                 </#if>
                             </h3>
                         </div>
@@ -119,28 +117,6 @@
                                 </div>
                             </#list>
                         </div>
-                    </div>
-                </#if>
-                <br>
-                <#if skills?has_content>
-                    <div class="ui fitted divider section-header" visibility="hidden"></div>
-                    <div class = "ui row">
-                        <div style="background-color: #222933;color: white" align="center">
-                            <h3>
-                                <#if technicalSkillsHeading?has_content>
-                                    ${technicalSkillsHeading}
-                                    <#else>
-                                        Technical Skills
-                                </#if>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="ui vertical list">
-                        <#list skills as skill>
-                            <div class="ui item" style="margin-left: 5%">
-                                ${skill}
-                            </div>
-                        </#list>
                     </div>
                 </#if>
                 <br>
@@ -372,7 +348,54 @@
                     </#list>
                 </ul>
             </#if>
-            </h3>
+            <#if projects?has_content>
+                <div class="ui fitted divider section-header" visibility="hidden"></div>
+                <h3>
+                    <#if projectsHeading?has_content>
+                        ${projectsHeading}
+                        <#else>
+                            Projects
+                    </#if>
+                </h3>
+                <#list projects as project>
+                    <div class="ui two column grid">
+                        <div class="ui column" style="width: 30%">
+                            <#if project.name?has_content>
+                                <p><strong>${project.name}</strong></p>
+                            </#if>
+                            <#if project.url?has_content>
+                                <a class="ui link" href="${project.url}" target="_blank">${project.url}</a>
+                            </#if>
+                            <#if project.description?has_content>
+                                <p>
+                                    ${project.description}
+                                </p>
+                            </#if>
+                        </div>
+                        <div class="ui column" style="width: 70%">
+                            <#if project.highlights?has_content>
+                                <ul>
+                                    <#list project.highlights as highlight>
+                                        <li>${highlight}</li>
+                                    </#list>
+                                </ul>
+                            </#if>
+
+                            <#if project.keywords?has_content>
+                                <div class="ui horizontal bulleted list">
+                                    <#list project.keywords as keyword>
+                                        <a class="ui item">${keyword}</a>
+                                    </#list>
+                                </div>
+                            </#if>
+                        </div>
+                        <#sep>
+                            <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+                        </#sep>
+                    </div>
+
+                </#list>
+            </#if>
         </div>
     </div>
 </body>
