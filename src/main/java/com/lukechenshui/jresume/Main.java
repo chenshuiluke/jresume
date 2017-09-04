@@ -101,7 +101,7 @@ public class Main {
 //        createPDF(runtime.getOutputHtmlFile().getAbsolutePath());
         createInlineHTML(runtime);
 
-        return location;
+        return runtime.getOutputHtmlFile("resume_inline.html");
     }
 
     public static void createPDF(String path){
@@ -117,8 +117,10 @@ public class Main {
 
     public static void createInlineHTML(Runtime runtime){
         try {
-            String [] args = new String[]{"/bin/bash", "-c", "nohup script --quiet --return --command 'inliner -i output/resume.html /dev/null'"};
-            Process process = new ProcessBuilder(args).redirectErrorStream(true).redirectOutput(new File("output/resume_inline.html")).start();
+            System.out.println("Dir " + runtime.getOutputDirectory().getAbsolutePath());
+            System.out.println("Output file" + runtime.getOutputHtmlFile());
+            String [] args = new String[]{"/bin/bash","-c", "cd " + runtime.getOutputDirectory().getAbsolutePath() +" && nohup script --quiet --return --command '`npm get prefix`/bin/inliner -i " + runtime.getOutputHtmlFile().getAbsolutePath() + " /dev/null'"};
+            Process process = new ProcessBuilder(args).redirectErrorStream(true).redirectOutput(runtime.getOutputHtmlFile("resume_inline.html")).start();
             process.waitFor();
             createPDF(runtime.getOutputHtmlFile("resume_inline.html").getAbsolutePath());
         } catch (Exception e) {
@@ -292,7 +294,7 @@ public class Main {
         rawResponse.setContentType("text/html");
         OutputStream out = rawResponse.getOutputStream();
         writeFiletoOutputStreamByteByByte(location, out);
-        FileDeleteStrategy.FORCE.delete(outputDirectory);
+        //FileDeleteStrategy.FORCE.delete(outputDirectory);
 
         return rawResponse;
     }
