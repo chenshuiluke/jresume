@@ -30,14 +30,6 @@ public class Runtime {
 
     public  void unzipResourceZip(String file) {
         try {
-            tempDirectory = new File("data/jresume-tempresource-zip-dir-" + id);
-            tempDirectory.mkdir();
-
-            if (!config.isServerMode()) {
-                ZipFile zipFile = new ZipFile(file);
-                zipFile.extractAll(tempDirectory.getPath());
-            }
-            String[] files = tempDirectory.list();
             if (!Files.exists(Paths.get("output"))) {
                 Files.createDirectory(Paths.get("output"));
             }
@@ -46,10 +38,9 @@ public class Runtime {
                 resourceDirectory.mkdirs();
             }
 
-            if (!config.isServerMode()) {
-                FileUtils.copyDirectory(tempDirectory, resourceDirectory);
-                FileDeleteStrategy.FORCE.delete(tempDirectory);
-            }
+            ZipFile zipFile = new ZipFile(file);
+            zipFile.extractAll(resourceDirectory.getAbsolutePath());
+
         } catch (Exception exc) {
             exc.printStackTrace();
         }
