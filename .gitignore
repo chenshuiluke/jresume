@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/intellij,java
-typescript
+*typescript*
+additions.html
+additions.json
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
