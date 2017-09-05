@@ -14,7 +14,7 @@ public class Config {
     String outputDirectory = "output";
     @Parameter(names = {"--theme", "-t"}, description = "The theme to use.", validateWith = ThemeNameValidator.class)
 //    String themeName = "cv_template1";
-    String themeName = "alternating_themes";
+    String themeName = "default";
     //String themeName = "resume_template1";
     @Parameter(names = {"--server-mode", "-s"}, description = "Launches JResume in server mode.")
     boolean serverMode = false;
@@ -38,6 +38,8 @@ public class Config {
     String resourceDirectory = "resources";
     @Parameter(names = {"--show-trackable-information", "-st"}, description = "Shows trackable information such as your address, phone number, etc.")
     boolean showTrackable = false;
+    @Parameter(names= {"--test-mode", "-tm"}, description = "Runs tests")
+    boolean testMode = false;
     /*
     This zipfile will be created at startup when the jresume is running in server mode. Then, it will
     be copied to each request's output directory and the generated web resume will be added to the copy and

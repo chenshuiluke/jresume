@@ -99,7 +99,10 @@
                 <#if education.schools?has_content>
                     <#list education.schools as school>
                         <p><strong>
-                            ${school.name}
+                            <#if school.name?has_content>
+                                ${school.name}
+                            </#if>
+
 
                             <#if school.gpa?has_content>
                                 - GPA: ${school.gpa}
@@ -224,7 +227,9 @@
 
                     <p>
                     <h5>
-                        ${work.company}
+                        <#if work.company?has_content>
+                            ${work.company}
+                        </#if>
                         <#if work.company?has_content && work.position?has_content>
                             -
                         </#if>
@@ -286,7 +291,10 @@
                 <#list volunteerWork as work>
                     <p>
                     <h5>
-                        ${work.company}
+                        <#if work.company?has_content>
+                            ${work.company}
+                        </#if>
+
                         <#if work.company?has_content && work.position?has_content>
                             -
                         </#if>

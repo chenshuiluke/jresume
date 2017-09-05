@@ -51,6 +51,13 @@ public class Main {
             setupLogging();
             Files.createDirectory(Paths.get("data"));
             //createExample();
+            if(config.testMode){
+                Test test = new Test();
+                if(!test.test(config)){
+                    System.err.println("Test failed");
+                    System.exit(1);
+                }
+            }
 
             if (config.serverMode) {
                 if (config.sslMode) {
@@ -312,6 +319,7 @@ public class Main {
         if (!isValidJSON(json)) {
             throw new InvalidJSONException();
         }
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
