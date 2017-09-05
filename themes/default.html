@@ -131,7 +131,10 @@
                 <#if education.examinations?has_content>
                     <#list education.examinations as examination>
                         <div>
-                            <p>${examination.name}
+                            <p>
+                                <#if examination.name?has_content>
+                                ${examination.name}
+                                </#if>
 
                                 <#if examination.startDate?has_content && examination.endDate?has_content>
 
