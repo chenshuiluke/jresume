@@ -158,10 +158,14 @@
                                     <#list examination.subjects as subject>
                                         <div class="ui two column grid">
                                             <div class="ui column noSpacingText left aligned" style="padding: 0px">
-                                                <p>${subject.name}</p>
+                                                <#if subject.name?has_content>
+                                                    <p>${subject.name}</p>
+                                                </#if>
                                             </div>
                                             <div class="ui column noSpacingText right aligned" style="padding: 0px">
-                                                <p>${subject.result}</p>
+                                                <#if subject.result?has_content>
+                                                    <p>${subject.result}</p>
+                                                </#if>
                                             </div>
                                         </div>
                                     </#list>
