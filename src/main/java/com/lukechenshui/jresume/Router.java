@@ -29,7 +29,7 @@ class Router{
 
     Files.createDirectory(Paths.get("data"));
   }
-  public void initializeRoutes() throws InvalidEnvironmentVariableException{
+  public void initializeRoutes() throws Exception{
     if (config.sslMode) {
         String keystoreLocation = Optional.ofNullable(System.getenv("jresume_keystore_location")).orElseThrow(
                 () -> new InvalidEnvironmentVariableException("jresume_keystore_location is not set in the environment"));
@@ -44,6 +44,7 @@ class Router{
         System.out.println("Keystore can execute: " + keystore.canExecute());
         secure(keystoreLocation, keystorePassword, null, null);
     }
+    startListeningAsServer();
     post("/webresume/html", "application/json", (request, response) -> {
       ResumeGenerator generator = new ResumeGenerator(config);
       return generator.generateResumeInRoute("default", request, response, WEBREQUEST_TYPE.HTML);

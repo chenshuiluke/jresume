@@ -1,5 +1,5 @@
 ![JResume logo](https://raw.githubusercontent.com/chenshuiluke/jresume/master/logo/logo.jpg)
-The best JSON to HTML resume generator.don't even 
+The best JSON to HTML resume generator.don't even
 
 # Features:
 
@@ -12,7 +12,7 @@ The best JSON to HTML resume generator.don't even
 4. You can simply use your browser's print-to-pdf feature to save the resume as a PDF file.
 5. A web frontend is being developed at [jresume-web](https://jresume.lukecs.com/) :)
 6. Can run as a server.
-    * You can send your JSON resume as a POST request to /webresume and get a full zip containing the HTML file and its resources. 
+    * You can send your JSON resume as a POST request to /webresume and get a full zip containing the HTML file and its resources.
     * You can currently test it out by going to [jresume-web](https://jresume.lukecs.com/). This is a frontend that sends the generated JSON to an instance of JResume running in server mode.
 
 ![output](https://raw.githubusercontent.com/chenshuiluke/jresume/master/screenshots/1_default_theme_latest.png)
@@ -273,13 +273,16 @@ I personally prefer Chrome's PDF creation capabilities.
 
 #### Converting to PDF Without Browser (Experimental)
 
-*Chrome needs to be updated and able to be executed via `google-chrome`. You may need to create a symbolic link*
+*You need to have at least Chrome 59 on Linux/Mac or Chrome 60 on Windows and able to be executed via `google-chrome`. You may need to create a symbolic link. You will also need to globally install the `chrome-headless-render-pdf` npm package*
 
 ##### Symlinking google-chrome if it can be executed via `./google-chrome`
 
 1. Find out where chrome is currently installed by running `whereis <name_of_chrome_executable_on_system>`. In my case, the name of the executable was `google-chrome-stable` it was located at `/usr/bin/google-chrome-stable`
 2. Create a symlink to Chrome using `sudo ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome`
 
+##### Installing chrome-headless-render-pdf
+
+Just execute `sudo npm install -g chrome-headless-render-pdf`
 
 
 

@@ -115,9 +115,11 @@ public class ResumeGenerator{
   }
 
   public Object generateResumeInRoute(String theme, Request request, Response response, WEBREQUEST_TYPE type) throws Exception {
+      runtime.setWebRequestType(type);
+
       File location = writeResume(request.body(), theme);
       HttpServletResponse rawResponse = response.raw();
-      runtime.setWebRequestType(type);
+
       if(type == WEBREQUEST_TYPE.HTML){
           rawResponse.setContentType("text/html");
       }
@@ -138,6 +140,9 @@ public class ResumeGenerator{
       }
       String html = generateResumeHTML(json, theme);
       File location = runtime.getOutputHtmlFile();
+      if(!location.exists()){
+        location.getParentFile().mkdirs();
+      };
       FileWriter writer = new FileWriter(location, false);
       writer.write(html);
       writer.close();
@@ -187,7 +192,7 @@ public class ResumeGenerator{
   public void createPDF(String path, RuntimeConfiguration runtime){
       System.out.println(path);
       try{
-          String [] args = new String[]{"/bin/bash", "-c", "cd " + runtime.getOutputDirectory().getAbsolutePath() + " ; google-chrome --headless --disable-gpu --print-to-pdf file://" + path};
+          String [] args = new String[]{"/bin/bash", "-c", "cd " + runtime.getOutputDirectory().getAbsolutePath() + " ; `npm get prefix`/bin/chrome-headless-render-pdf --url file://" + path + " --pdf output.pdf"};
           Process process = new ProcessBuilder(args).start();
           process.waitFor();
       }
