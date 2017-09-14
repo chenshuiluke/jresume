@@ -46,6 +46,7 @@
         .resume .sub-heading{
             font-size: 11px;
             font-weight: 800;
+            margin-bottom: 0px;
         }
         .resume .text{
             font-size: 11px !important;
@@ -125,6 +126,7 @@
 
             </div>
         </div>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
     </#if>
 
     <#if accomplishments?has_content>
@@ -252,15 +254,220 @@
                         </ul>
                     </#if>
                 </div>
-                <#sep>
-                    <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
-                </#sep>
             </#list>
         </#if>
         </h3>
     </#if>
 
+    <#if jobWork?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <h3 class="heading">
+            <#if jobWorkHeading?has_content>
+                ${jobWorkHeading}
+                <#else>
+                    Work Experience
+            </#if>
+        </h3>
+        <#list jobWork as work>
 
+
+            <h5 class="sub-heading">
+                <#if work.company?has_content>
+                    ${work.company}
+                </#if>
+                <#if work.company?has_content && work.position?has_content>
+                    -
+                </#if>
+                <#if work.position?has_content>
+                    ${work.position}
+                </#if>
+            </h5>
+            <p class="text">
+                <#if work.startDate?has_content && work.endDate?has_content>
+
+                    ${work.startDate}
+
+                    to
+
+                    ${work.endDate}
+                    <#elseif work.startDate?has_content>
+                        ${work.startDate}
+                    <#elseif work.endDate?has_content>
+                        ${work.endDate}
+                </#if>
+            </p>
+            <#if work.summary?has_content>
+                <p class="text">${work.summary}</p>
+            </#if>
+            <#if work.highlights?has_content>
+                <ul>
+                    <#list work.highlights as highlight>
+                        <#if highlight?has_content>
+                            <li class="text">${highlight}</li>
+                        </#if>
+                    </#list>
+                </ul>
+            </#if>
+
+            <#if work.keywords?has_content>
+                <div class="ui horizontal list">
+                    <#list work.keywords as keyword>
+                        <div class="ui item text">${keyword}</div>
+                        <#sep>
+                            <div class="ui item text">
+                                |
+                            </div>
+                        </#sep>
+                    </#list>
+                </div>
+            </#if>
+            <#sep>
+                <div class="ui fitted divider section-header" visibility="hidden"></div>
+            </#sep>
+        </#list>
+    </#if>
+    <#if volunteerWork?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <h3 class="heading">
+            <#if volunteerWorkHeading?has_content>
+                ${volunteerWorkHeading}
+                <#else>
+                    Volunteer Work Experience
+            </#if>
+        </h3>
+        <#list volunteerWork as work>
+            <p>
+            <h5 class="sub-heading">
+                <#if work.company?has_content>
+                    ${work.company}
+                </#if>
+
+                <#if work.company?has_content && work.position?has_content>
+                    -
+                </#if>
+                <#if work.position?has_content>
+                    ${work.position}
+                </#if>
+
+
+
+            </h5>
+            <p class="text">
+                <#if work.startDate?has_content && work.endDate?has_content>
+
+                    ${work.startDate}
+
+                    to
+
+                    ${work.endDate}
+                    <#elseif work.startDate?has_content>
+                        ${work.startDate}
+                        <#elseif work.endDate?has_content>
+                            ${work.endDate}
+                </#if>
+            </p>
+            <#if work.summary?has_content>
+                <p class="text">${work.summary}</p>
+            </#if>
+            <#if work.highlights?has_content>
+                <ul>
+                    <#list work.highlights as highlight>
+                        <#if highlight?has_content>
+                            <li class="text">${highlight}</li>
+                        </#if>
+                    </#list>
+                </ul>
+            </#if>
+
+            <#if work.keywords?has_content>
+                <div class="ui horizontal list">
+                    <#list work.keywords as keyword>
+                        <div class="ui item text">${keyword}</div>
+                        <#sep>
+                            <div class="ui item text">
+                                |
+                            </div>
+                        </#sep>
+                    </#list>
+                </div>
+            </#if>
+
+            </p>
+            <#sep>
+                <div class="ui fitted divider section-item" style="border-top:1px solid rgb(255,255,255);border-bottom:1px solid rgb(255,255,255)"></div>
+            </#sep>
+        </#list>
+        </ul>
+    </#if>
+
+    <#if projects?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <h3 class="heading">
+            <#if projectsHeading?has_content>
+                ${projectsHeading}
+                <#else>
+                    Projects
+            </#if>
+        </h3>
+        <#list projects as project>
+            <div class="ui two column grid">
+                <div class="ui column">
+                    <#if project.name?has_content>
+                        <p class="sub-heading">${project.name}</p>
+                    </#if>
+                    <#if project.url?has_content>
+                        <a class="text" href="${project.url}" target="_blank">${project.url}</a>
+                    </#if>
+                    <#if project.description?has_content>
+                        <p class="text">
+                            ${project.description}
+                        </p>
+                    </#if>
+                    <#if project.keywords?has_content>
+                        <div class="ui horizontal list">
+                            <#list project.keywords as keyword>
+                                <div class="ui item text">${keyword}</div>
+                                <#sep>
+                                    <div class="ui item text">
+                                        |
+                                    </div>
+                                </#sep>
+                            </#list>
+                        </div>
+                    </#if>
+                </div>
+                <div class="ui column">
+                    <#if project.highlights?has_content>
+                        <ul>
+                            <#list project.highlights as highlight>
+                                <li class="text">${highlight}</li>
+                            </#list>
+                        </ul>
+                    </#if>
+
+
+                </div>
+            </div>
+            <#sep>
+                <div class="ui fitted divider section-header" visibility="hidden"></div>
+            </#sep>
+        </#list>
+    </#if>
+    <#if hobbies?has_content>
+        <div class="ui fitted divider section-header" visibility="hidden"></div>
+        <h3 class="heading">
+            <#if hobbiesHeading?has_content>
+                ${hobbiesHeading}
+                <#else>
+                    Hobbies
+            </#if>
+        </h3>
+        <ul>
+            <#list hobbies as hobby>
+                <li class="text">${hobby}</li>
+            </#list>
+        </ul>
+    </#if>
 </div>
 
 </body>
