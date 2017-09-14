@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/semantic/dist/semantic.min.css">
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/semantic/dist/components/rating.min.css">
+    <link type="text/css" rel="stylesheet" href=
+            "${config.resourceDirectory}/fonts.css">
+    <title>Resume</title>
+    <style>
+        .resume #contact-list {
+            float: right;
+        }
+
+        @font-face {
+            font-family: SourceCodePro-Regular;
+            src: url('fonts/SourceCodePro-Regular.ttf');
+        }
+
+        .resume #person-name {
+            font-family: SourceCodePro-Regular, monospace;
+            font-size: 24px;
+            word-spacing: 500px;
+            line-height: 24px;
+        }
+        .resume .contact-item > p, .resume .contact-item > a{
+            display:inline-block;
+            font-size: 11px;
+            font-family: SourceCodePro-Regular, monospace;
+            color:black;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="resume ui text container">
+    <#if person?has_content>
+        <div class="ui grid" id="person">
+            <div class="two wide column">
+                <#if person.name?has_content>
+                    <h1 id="person-name">
+                        ${person.name?upper_case}
+                    </h1>
+                </#if>
+            </div>
+            <div class="fourteen wide column">
+                <#if !config.showTrackable>
+                    <div id="contact-list">
+                        <#if person.website?has_content>
+                            <div class="contact-item">
+                                <i class="black linkify icon"></i>
+                                <a href="${person.website}" target="_blank">${person.website}</a>
+                            </div>
+                        </#if>
+                        <#if person.email?has_content>
+                            <div class="contact-item">
+                                <i class="black mail icon"></i>
+                                <a>${person.email}</a>
+                            </div>
+                        </#if>
+
+                    </div>
+
+                </#if>
+
+                <#if config.showTrackable>
+                    <div id="contact-list">
+                        <#if person.website?has_content>
+                            <div class="contact-item">
+                                <i class="black linkify icon"></i>
+                                <a href="${person.website}" target="_blank">${person.website}</a>
+                            </div>
+                        </#if>
+                        <#if person.email?has_content>
+                            <div class="contact-item">
+                                <i class="black mail icon"></i>
+                                <a>${person.email}</a>
+                            </div>
+                        </#if>
+                        <#if person.phoneNumber?has_content>
+                            <div class="contact-item">
+                                <i class="black mobile icon"></i>
+                                <a>${person.phoneNumber}</a>
+                            </div>
+                        </#if>
+
+                    </div>
+                </#if>
+
+            </div>
+        </div>
+    </#if>
+</div>
+
+</body>
+
+</html>
