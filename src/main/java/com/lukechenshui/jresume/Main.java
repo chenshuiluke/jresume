@@ -39,12 +39,5 @@ public class Main {
     }
 
 
-    public static ArrayList<String> getListOfThemes() {
-        ArrayList<String> themes = new ArrayList<>();
-        File themeFolder = new File("themes");
-        for (String themeName : themeFolder.list()) {
-            themes.add(FilenameUtils.getBaseName(themeName));
-        }
-        return themes;
-    }
+
 }

@@ -200,7 +200,7 @@ public class ResumeGenerator {
         try {
             System.out.println("Dir " + runtime.getOutputDirectory().getAbsolutePath());
             System.out.println("Output file" + runtime.getOutputHtmlFile());
-            String[] args = new String[]{"/bin/bash", "-c", "cd " + runtime.getOutputDirectory().getAbsolutePath() + " && nohup script --quiet --return --command '`npm get prefix`/bin/inliner -i " + runtime.getOutputHtmlFile().getAbsolutePath() + " /dev/null'"};
+            String[] args = new String[]{"/bin/bash", "-c", "cd " + runtime.getOutputDirectory().getAbsolutePath() + " && nohup script --quiet --return --command '`npm get prefix`/bin/inliner " + runtime.getOutputHtmlFile().getAbsolutePath() + " /dev/null'"};
             Process process = new ProcessBuilder(args).redirectErrorStream(true).redirectOutput(runtime.getOutputHtmlFile("resume_inline.html")).start();
             process.waitFor();
 

@@ -11,11 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static spark.Spark.*;
 
-class Router {
+public class Router {
     Config config;
 
     Router(Config config) {
@@ -56,21 +57,39 @@ class Router {
             return generator.generateResumeInRoute("default", request, response, WEBREQUEST_TYPE.PDF);
         });
 
-//        post("/webresume/:theme", (request, response) -> {
-//            String desiredTheme = request.params(":theme");
-//            ArrayList<String> themes = getListOfThemes();
-//            if (themes.contains(desiredTheme)) {
-//                return generateWebResumeInRoute(desiredTheme, request, response, WEBREQUEST_TYPE.HTML);
-//            } else {
-//                response.type("application/json");
-//                response.status(400);
-//
-//                JSONObject responseObj = new JSONObject();
-//                responseObj.put("error", "The theme you have selected does not exist");
-//
-//                return responseObj.toString();
-//            }
-//        });
+        post("/webresume/html/:theme", (request, response) -> {
+            String desiredTheme = request.params(":theme");
+            ArrayList<String> themes = getListOfThemes();
+            if (themes.contains(desiredTheme)) {
+                ResumeGenerator generator = new ResumeGenerator(config);
+                return generator.generateResumeInRoute(desiredTheme, request, response, WEBREQUEST_TYPE.HTML);
+            } else {
+                response.type("application/json");
+                response.status(400);
+
+                JSONObject responseObj = new JSONObject();
+                responseObj.put("error", "The theme you have selected does not exist");
+
+                return responseObj.toString();
+            }
+        });
+
+        post("/webresume/pdf/:theme", (request, response) -> {
+            String desiredTheme = request.params(":theme");
+            ArrayList<String> themes = getListOfThemes();
+            if (themes.contains(desiredTheme)) {
+                ResumeGenerator generator = new ResumeGenerator(config);
+                return generator.generateResumeInRoute(desiredTheme, request, response, WEBREQUEST_TYPE.PDF);
+            } else {
+                response.type("application/json");
+                response.status(400);
+
+                JSONObject responseObj = new JSONObject();
+                responseObj.put("error", "The theme you have selected does not exist");
+
+                return responseObj.toString();
+            }
+        });
 
 
         get("/", (request, response) -> {
@@ -124,5 +143,13 @@ class Router {
             // Note: this may or may not be necessary in your particular application
             response.type("application/json");
         });
+    }
+    public static ArrayList<String> getListOfThemes() {
+        ArrayList<String> themes = new ArrayList<>();
+        File themeFolder = new File("themes");
+        for (String themeName : themeFolder.list()) {
+            themes.add(FilenameUtils.getBaseName(themeName));
+        }
+        return themes;
     }
 }

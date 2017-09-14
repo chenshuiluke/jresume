@@ -2,7 +2,7 @@ package com.lukechenshui.jresume.validators;
 
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.ParameterException;
-import com.lukechenshui.jresume.Main;
+import com.lukechenshui.jresume.Router;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ThemeNameValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) throws ParameterException {
-        ArrayList<String> themes = Main.getListOfThemes();
+        ArrayList<String> themes = Router.getListOfThemes();
 
         if (!themes.contains(value)) {
             throw new ParameterException("The theme " + value + " does not exist.");
