@@ -1,5 +1,5 @@
 ![JResume logo](https://raw.githubusercontent.com/chenshuiluke/jresume/master/logo/logo.jpg)
-The best JSON to HTML resume generator.don't even
+The best JSON to HTML resume generator.
 
 # Features:
 
